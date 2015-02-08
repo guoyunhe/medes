@@ -1,3 +1,4 @@
 .directory
 *.kate-swp
-/Theme/nbproject/private/
+/plugin/nbproject/private/
+/theme/nbproject/private/
