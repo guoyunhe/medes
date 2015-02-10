@@ -1,6 +1,5 @@
 <?php
-
-/* 
+/*
  * Copyright (C) 2015 Guo Yunhe <guoyunhebrave@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -16,4 +15,41 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+?>
+<!DOCTYPE html>
+<html <?php language_attributes(); ?> class="no-js">
+    <head>
+        <meta charset="<?php bloginfo('charset'); ?>">
+        <meta name="viewport" content="width=device-width">
+        <title><?php wp_title(); ?></title>
+        <link rel="profile" href="http://gmpg.org/xfn/11">
+        <link rel="pingback" href="<?php bloginfo('pingback_url'); ?>">
+        <?php wp_head(); ?>
+    </head>
 
+    <body <?php body_class(); ?>>
+
+        <header id="site-header">
+            MEDes
+
+            <div id="mobile-icons">
+                <span id="search-icon"><i class="fa fa-fw fa-bars"></i>haha</span>
+                <span id="menu-icon"><i class="fa fa-fw fa-search"></i>haha</span>
+            </div>
+
+            <div id="search-form"></div>
+
+            <div id="site-menu">
+                <?php if ( has_nav_menu('primary')) : ?>
+                    <nav id="site-navigation" class="main-navigation" role="navigation">
+                        <?php
+                        // Primary navigation menu.
+                        wp_nav_menu(array(
+                            'menu_class' => 'nav-menu',
+                            'theme_location' => 'primary',
+                        ));
+                        ?>
+                    </nav><!-- .main-navigation -->
+                <?php endif; ?>
+            </div>
+        </header>

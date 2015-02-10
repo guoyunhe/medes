@@ -16,4 +16,17 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+?>
 
+<footer id="colophon" class="site-footer" role="contentinfo">
+    <div class="site-info">
+        2015 MEDes<br>
+        Designed by Eloise Smith-Foster, Guo Yunhe, Lucia Cosma,
+        Martina Dellepiane, Ole Thomas Tørresen
+    </div><!-- .site-info -->
+</footer><!-- .site-footer -->
+
+<?php wp_footer(); ?>
+
+</body>
+</html>
