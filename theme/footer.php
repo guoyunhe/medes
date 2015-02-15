@@ -1,6 +1,5 @@
 <?php
-
-/* 
+/*
  * Copyright (C) 2015 Guo Yunhe <guoyunhebrave@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -18,13 +17,30 @@
  */
 ?>
 
-<footer id="colophon" class="site-footer" role="contentinfo">
+<footer id="site-footer" role="contentinfo">
     <div class="site-info">
         2015 MEDes<br>
-        Designed by Eloise Smith-Foster, Guo Yunhe, Lucia Cosma,
+        This website is designed by Eloise Smith-Foster, Guo Yunhe, Lucia Cosma,
         Martina Dellepiane, Ole Thomas Tørresen
     </div><!-- .site-info -->
-</footer><!-- .site-footer -->
+    <div class="social-links">
+        <a class="click inline button" href="#"><i class="fa fa-lg fa-twitter"></i></a>
+        <a class="click inline button" href="#"><i class="fa fa-lg fa-facebook"></i></a>
+        <a class="click inline button" href="#"><i class="fa fa-lg fa-linkedin"></i></a>
+    </div>
+    <div class="download-link">
+        <div class="click inline">
+            <i class="fa fa-lg fa-download"></i> Download
+            <div class="dropdown top">
+                <div class="click">File 1</div>
+                <div class="click">File 2</div>
+                <div class="click">File 3</div>
+                <div class="click">File 4</div>
+                <div class="click">File 5</div>
+            </div>
+        </div>
+    </div>
+</footer><!-- #site-footer -->
 
 <?php wp_footer(); ?>
 

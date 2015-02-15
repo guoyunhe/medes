@@ -22,6 +22,17 @@ function schoolunion_setup() {
     add_theme_support('post-thumbnails');
     set_post_thumbnail_size(700, 400, true);
     add_image_size('audio-thumb', 600, 300);
+    // Site logo
+    $args = array(
+        'header-text' => array(
+            'site-title',
+            'site-description',
+        ),
+        'size' => 'large',
+    );
+    add_theme_support('site-logo', $args);
+    
+
     // HTML5 search form
     add_theme_support('html5', array('search-form'));
     // Editor style

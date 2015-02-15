@@ -17,7 +17,7 @@
  */
 ?>
 <!DOCTYPE html>
-<html <?php language_attributes(); ?> class="no-js">
+<html <?php language_attributes(); ?>>
     <head>
         <meta charset="<?php bloginfo('charset'); ?>">
         <meta name="viewport" content="width=device-width">
@@ -28,28 +28,26 @@
     </head>
 
     <body <?php body_class(); ?>>
-
         <header id="site-header">
-            MEDes
-
-            <div id="mobile-icons">
-                <span id="search-icon"><i class="fa fa-fw fa-bars"></i>haha</span>
-                <span id="menu-icon"><i class="fa fa-fw fa-search"></i>haha</span>
+            <div class="site-title-group">
+                <!-- Site logo feature provided by Jetpack plugin -->
+                <?php if (function_exists('jetpack_the_site_logo')) jetpack_the_site_logo(); ?>
+                <div class="site-name"><?php bloginfo('name'); ?></div>
+                <div class="site-description"><?php bloginfo('description'); ?></div>
             </div>
-
-            <div id="search-form"></div>
-
-            <div id="site-menu">
-                <?php if ( has_nav_menu('primary')) : ?>
-                    <nav id="site-navigation" class="main-navigation" role="navigation">
-                        <?php
-                        // Primary navigation menu.
-                        wp_nav_menu(array(
-                            'menu_class' => 'nav-menu',
-                            'theme_location' => 'primary',
-                        ));
-                        ?>
-                    </nav><!-- .main-navigation -->
-                <?php endif; ?>
+            <div class="click-wrap">
+                <span id="top-search-click" class="click inline round">
+                    <i class="fa fa-lg fa-search"></i>
+                </span>
+                <span id="top-menu-click" class="click inline round">
+                    <i class="fa fa-lg fa-bars"></i>
+                    <div class="dropdown">
+                        <div class="click">Maps</div>
+                        <div class="click">Schools</div>
+                        <div class="click">Workshops</div>
+                        <div class="click">People</div>
+                        <div class="click">About</div>
+                    </div>
+                </span>
             </div>
         </header>

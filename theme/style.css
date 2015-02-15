@@ -31,3 +31,177 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     Author     : Guo Yunhe <guoyunhebrave@gmail.com>
 */
 
+/***************
+ * Basic style *
+ ***************/
+
+body {
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+    font-family: sans-serif;
+    background-color: #2a2d2f;
+    color: white;
+}
+
+/***************
+ * UI Elements *
+ ***************/
+
+/* Click and dropdown */
+
+.click {
+    display: block;
+    position: relative;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    height: 40px;
+    min-width: 40px;
+    padding: 10px;
+    line-height: 20px;
+    cursor: pointer;
+    text-align: left;
+}
+
+.click.inline {
+    display: inline-block;
+    text-align: center;
+}
+
+.click.round {
+    border-radius: 3px;
+}
+
+.click:hover {
+    background-color: rgba(0,0,0,0.1);
+}
+
+.click.active, .click:active {
+    box-shadow: 0 0 3px rgba(0,0,0,0.5) inset;
+    background-color: rgba(0,0,0,0.2);
+}
+
+.dropdown {
+    position: absolute;
+    right: 0;
+    top: 45px;
+    display: none;
+    background: #46484a;
+    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+}
+
+.dropdown.left {
+    left: 0;
+    right: auto;
+}
+
+.dropdown.top {
+    bottom: 45px;
+    top: auto;
+}
+
+.click.active .dropdown {
+    display: block;
+}
+
+/**************************
+ * Site Header and Footer *
+ **************************/
+
+/* Site header (top bar) */
+
+#site-header {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    padding: 10px;
+    background-color: #2f3133;
+    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+}
+
+#site-header.fusion {
+    box-shadow: none;
+    background: none;
+}
+
+.home #site-header.fusion .site-title-group {
+    display: none;
+}
+
+.site-title-group {
+    height: 40px;
+}
+
+#site-header .site-title-group {
+    float: left;
+}
+
+.site-logo {
+    max-width: 40px;
+    max-height: 40px;
+    width: auto;
+    height: auto;
+    float: left;
+    margin-right: 10px;
+}
+
+.site-name {
+    font-size: 1.4em;
+    font-weight: bold;
+}
+
+.site-description {
+    font-size: 0.8em;
+    width: 15em;
+}
+
+#site-header .click-wrap {
+    text-align: right;
+}
+
+
+/* Footer */
+
+#site-footer {
+    padding: 40px 10px 60px 10px;
+}
+
+.site-info {
+    font-style: italic;
+}
+
+.social-links {
+    float: left;
+}
+
+.social-links a {
+    color: white;
+}
+
+.download-link {
+    float: right;
+}
+
+/**************
+ * Front Page *
+ **************/
+
+#front-page-header {
+    padding: 60px 10px 30px 10px;
+}
+
+#front-page-header .site-title-group {
+    height: 80px;
+    font-size: 1.8em;
+}
+
+#front-page-header .site-logo {
+    max-width: 80px;
+    max-height: 80px;
+    width: auto;
+    height: auto;
+}
