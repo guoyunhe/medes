@@ -41,6 +41,19 @@ get_header(); ?>
     </p>
 </div>
 
+<div id="front-page-map" class="section">
+    <i class="fa fa-globe"></i>
+</div>
+<div id="map-popup" class="popup">
+    <div class="popup-header">
+        <div class="popup-close">
+            <i class="fa fa-lg fa-close"></i> Close
+        </div>
+    </div>
+    <div id="map-container"></div>
+    <div class="popup-footer"></div>
+</div>
+
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec iaculis turpis molestie mi eleifend, convallis tristique tortor semper. Curabitur maximus lacus ut tincidunt laoreet. Suspendisse potenti. Donec egestas ante risus, accumsan mattis elit interdum convallis. Vestibulum venenatis ipsum ut tincidunt tempor. Curabitur pellentesque, lacus sed varius vulputate, odio sapien euismod lorem, sed rutrum magna urna vel velit. Ut at dui nec tortor bibendum volutpat.
 <br><br>

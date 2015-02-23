@@ -15,8 +15,15 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+var map;
 
 jQuery(function () {
+    
+    /* Basic UI Elements
+     * 
+     * Click, dropdown, popup...
+     */
+    
     // Click element events
     jQuery('.click').click(function (event) {
         event.stopPropagation();
@@ -37,13 +44,62 @@ jQuery(function () {
         jQuery('.click:not(.tab)').removeClass('active');
     });
     
+    // Dropdown use the active status of click by default, so no event
+    
+    // Popup
+    jQuery('.popup').each(function () {
+        var popup = jQuery( this );
+        popup.find('.popup-close').click(function () {
+            popup.hide();
+        });
+        
+    });
+    
+    
+    /* Page Layout and Responsive Design
+     * 
+     * Top bar...
+     */
+    
     // Top bar fusion effect
     topbarFusion();
     jQuery(window).scroll(topbarFusion);
     jQuery(window).resize(topbarFusion);
+    
+    /* Front Page
+     * 
+     * Popup, maps, slides
+     */
+    
+    // OpenLayers Map
+    var maplayer = new ol.layer.Tile({
+        source: new ol.source.OSM()
+    });
+    var map = new ol.Map({
+        target: 'map-container',
+        layers: [
+        ],
+        view: new ol.View({
+            center: ol.proj.transform([37.41, 8.82], 'EPSG:4326', 'EPSG:3857'),
+            zoom: 4
+        })
+    });
+    
+    console.log(map);
+    
+    // Popup
+    
+    jQuery('#front-page-map i').click(function () {
+        jQuery('#map-popup').show();
+        maplayer.redraw();
+    });
+    
 });
 
-// Top bar fusion effect
+/* Top Bar Fusion Effect
+ *
+ * Detect scroll length of page
+ */
 function topbarFusion() {
     if (jQuery(document).scrollTop() < jQuery('#site-header').height()) {
         jQuery('#site-header').addClass('fusion');

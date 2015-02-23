@@ -104,6 +104,32 @@ body {
     display: block;
 }
 
+/* Popup */
+
+.popup {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background: #46484a;
+    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+    z-index: 100;
+    width: 100%;
+    height: 100%;
+}
+
+.popup-header {
+    height: 40px;
+    text-align: center;
+    padding: 10px;
+    line-height: 20px;
+}
+
+.popup-close {
+    float: right;
+    cursor: pointer;
+}
+
 /**************************
  * Site Header and Footer *
  **************************/
@@ -190,6 +216,8 @@ body {
  * Front Page *
  **************/
 
+/* Header */
+
 #front-page-header {
     padding: 60px 10px 30px 10px;
 }
@@ -204,4 +232,16 @@ body {
     max-height: 80px;
     width: auto;
     height: auto;
+}
+
+#front-page-map i {
+    font-size: 200px;
+    float: right;
+    cursor: pointer;
+}
+
+#map-container {
+    height: 400px;
+    width: 100%;
+    margin: 0;
 }

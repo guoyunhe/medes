@@ -47,6 +47,9 @@ add_action('after_setup_theme', 'schoolunion_setup');
 function schoolunion_scripts() {
     wp_enqueue_style('theme-style', get_stylesheet_uri(), array(), '20150210.1');
     wp_enqueue_style('font-awesome-style', get_stylesheet_directory_uri() . '/font-awesome/css/font-awesome.min.css', array(), '4.3.0');
+    wp_enqueue_style('openlayers-style', 'http://openlayers.org/en/v3.2.1/css/ol.css');
+    wp_enqueue_script('jquery');
+    wp_enqueue_script('openlayers', 'http://openlayers.org/en/v3.2.1/build/ol.js', array('jquery'));
     wp_enqueue_script('theme-script', get_stylesheet_directory_uri() . '/script.js', array('jquery'));
 }
 
