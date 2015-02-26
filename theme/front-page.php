@@ -26,19 +26,28 @@ get_header(); ?>
         <div class="site-name"><?php bloginfo('name'); ?></div>
         <div class="site-description"><?php bloginfo('description'); ?></div>
     </div>
-    <h1>
-        The best design school is not one school.
-    </h1>
-    <p>
-        The MEDes is a unique network of seven leading European design schools.
-        During the five year programme, students are integrated into three design
-        education systems and join a strong international community. These diverse
-        experiences provide them with different approaches to design, multi-national
-        perspectives and sensitivity to cultural differences. The MEDes course
-        encourage and enables students to develop- their creativity and imagination,
-        their design research and investigation skills, and their professional
-        executive practice.
-    </p>
+    <div class="site-intro">
+        <!--
+        This block should be replaced by a custom data filed that users can set
+        their own text, images...
+        -->
+        <h1>
+            The best design school is not one school.
+        </h1>
+        <p>
+            The MEDes is a unique network of seven leading European design schools.
+            During the five year programme, students are integrated into three design
+            education systems and join a strong international community. These diverse
+            experiences provide them with different approaches to design, multi-national
+            perspectives and sensitivity to cultural differences. The MEDes course
+            encourage and enables students to develop- their creativity and imagination,
+            their design research and investigation skills, and their professional
+            executive practice.
+        </p>
+        <p>
+            <a href="#" style="color:white;"><i class="fa fa-lg fa-plus-circle"></i></a>
+        </p>
+    </div>
 </div>
 
 <div id="front-page-map" class="section">

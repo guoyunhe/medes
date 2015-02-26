@@ -48,6 +48,19 @@ body {
  * UI Elements *
  ***************/
 
+input[type="search"] {
+    box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    padding: 4px;
+    background: none;
+    border: none;
+    border-bottom: 1px solid #555555;
+    height: 20px;
+    line-height: 20px;
+    font-size: 14px;
+    color: white;
+}
+
 /* Click and dropdown */
 
 .click {
@@ -130,6 +143,36 @@ body {
     cursor: pointer;
 }
 
+/******************
+ * Helper Classes *
+ ******************/
+
+/* Clearfix */
+
+.clearfix:before,
+.clearfix:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+/* Float / Pull */
+
+.pull-left {
+    float: left;
+}
+
+.pull-right {
+    float: right;
+}
+
+.inline {
+    display: inline;
+}
+
 /**************************
  * Site Header and Footer *
  **************************/
@@ -153,6 +196,8 @@ body {
     box-shadow: none;
     background: none;
 }
+
+/* Site title group */
 
 .home #site-header.fusion .site-title-group {
     display: none;
@@ -185,9 +230,30 @@ body {
     width: 15em;
 }
 
-#site-header .click-wrap {
-    text-align: right;
+/* Navigation */
+
+#top-menu-click,
+#top-search-click {
+    display: none;
 }
+
+/* Search */
+#top-search-click {
+
+}
+
+#top-search-click .dropdown input {
+    display: block;
+    margin: 10px 15px;
+    background: none;
+    border: none;
+    border-bottom: 1px solid #555555;
+    height: 20px;
+    font-size: 16px;
+    color: white;
+}
+
+/* Menu */
 
 
 /* Footer */
@@ -234,14 +300,33 @@ body {
     height: auto;
 }
 
+/* Map icon */
+
 #front-page-map i {
-    font-size: 200px;
-    float: right;
+    position: fixed;
+    right: -200px;
+    bottom: -200px;
+    font-size: 400px;
     cursor: pointer;
+    opacity: 0.8;
 }
+
+/* Map popup */
 
 #map-container {
     height: 400px;
     width: 100%;
     margin: 0;
+}
+
+@media screen and (max-width: 756px) {
+    #top-menu-wrap,
+    #top-search-wrap {
+        display: none;
+    }
+    
+    #top-menu-click,
+    #top-search-click {
+        display: inline-block;
+    }
 }

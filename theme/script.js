@@ -15,15 +15,13 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-var map;
-
 jQuery(function () {
-    
+
     /* Basic UI Elements
      * 
      * Click, dropdown, popup...
      */
-    
+
     // Click element events
     jQuery('.click').click(function (event) {
         event.stopPropagation();
@@ -43,57 +41,68 @@ jQuery(function () {
     jQuery(document).click(function () {
         jQuery('.click:not(.tab)').removeClass('active');
     });
-    
+
     // Dropdown use the active status of click by default, so no event
-    
+
     // Popup
     jQuery('.popup').each(function () {
-        var popup = jQuery( this );
+        var popup = jQuery(this);
         popup.find('.popup-close').click(function () {
             popup.hide();
         });
-        
+
     });
-    
-    
+
+
     /* Page Layout and Responsive Design
      * 
      * Top bar...
      */
-    
+
     // Top bar fusion effect
     topbarFusion();
     jQuery(window).scroll(topbarFusion);
     jQuery(window).resize(topbarFusion);
     
+    // Search
+    jQuery('#top-search-click .dropdown').click(function (event) {
+        event.stopPropagation();
+    });
+
     /* Front Page
      * 
      * Popup, maps, slides
      */
-    
+
     // OpenLayers Map
-    var maplayer = new ol.layer.Tile({
-        source: new ol.source.OSM()
-    });
+
     var map = new ol.Map({
-        target: 'map-container',
+        target: 'map',
         layers: [
+            new ol.layer.Tile({
+                source: new ol.source.OSM()
+            })
         ],
         view: new ol.View({
             center: ol.proj.transform([37.41, 8.82], 'EPSG:4326', 'EPSG:3857'),
             zoom: 4
         })
     });
-    
-    console.log(map);
-    
-    // Popup
-    
+
+    // Update map size
+    // http://gis.stackexchange.com/questions/31409/openlayers-redrawing-map-after-container-resize
+    // http://dev.openlayers.org/docs/files/OpenLayers/Map-js.html#OpenLayers.Map.updateSize
+
+    jQuery(window).resize(function () {
+        map.updateSize();
+    });
+
+    // Popup map
+
     jQuery('#front-page-map i').click(function () {
         jQuery('#map-popup').show();
-        maplayer.redraw();
     });
-    
+
 });
 
 /* Top Bar Fusion Effect

@@ -29,17 +29,23 @@
 
     <body <?php body_class(); ?>>
         <header id="site-header">
-            <div class="site-title-group">
+            <div class="site-title-group pull-left">
                 <!-- Site logo feature provided by Jetpack plugin -->
                 <?php if (function_exists('jetpack_the_site_logo')) jetpack_the_site_logo(); ?>
                 <div class="site-name"><?php bloginfo('name'); ?></div>
                 <div class="site-description"><?php bloginfo('description'); ?></div>
             </div>
-            <div class="click-wrap">
-                <span id="top-search-click" class="click inline round">
+            <div class="nav-wrap pull-right">
+                <div id="top-search-click" class="click inline round">
                     <i class="fa fa-lg fa-search"></i>
-                </span>
-                <span id="top-menu-click" class="click inline round">
+                    <div class="dropdown">
+                        <input type="search" placeholder="Search..."/>
+                    </div>
+                </div>
+                <div id="top-search-wrap" class="inline">
+                    <input type="search" placeholder="Search..."/>
+                </div>
+                <div id="top-menu-click" class="click inline round">
                     <i class="fa fa-lg fa-bars"></i>
                     <div class="dropdown">
                         <div class="click">Maps</div>
@@ -48,6 +54,13 @@
                         <div class="click">People</div>
                         <div class="click">About</div>
                     </div>
-                </span>
+                </div>
+                <div id="top-menu-wrap" class="inline">
+                    <div class="click inline button">Maps</div>
+                    <div class="click inline button">Schools</div>
+                    <div class="click inline button">Workshops</div>
+                    <div class="click inline button">People</div>
+                    <div class="click inline button">About</div>
+                </div>
             </div>
         </header>
