@@ -401,8 +401,7 @@ function su_save_extra_profile_fields($user_id) {
  * 
  * School
  * 
- * Workshop Series (name, featured image/logo)
- * |-- WorkShop (year, featured image)
+ * Workshop (name, featured image/logo)
  *     |-- Project (name, authors, school, featured image, content)
  * 
  */
@@ -410,101 +409,36 @@ function su_save_extra_profile_fields($user_id) {
 add_action('init', 'su_create_post_type');
 
 function su_create_post_type() {
-    register_post_type(
-        'su_school',
-        array(
-            'labels' => array(
-                'name' => 'Schools',
-                'singular_name' => 'School',
-            ),
-            'supports' => array(
-                'title',
-                'editor',
-                'thumbnail',
-                'excerpt',
-                'revisions',
-                'custom-fields',
-                'comments'
-            ),
-            'public' => true,
-            'has_archive' => true,
-            'show_in_menu' => true,
-            'show_in_nav_menus' => TRUE,
-            'menu_icon' => 'dashicons-welcome-learn-more'
-        )
-    );
-    
-    register_post_type(
-        'su_workshop_series',
-        array(
-            'labels' => array(
-                'name' => 'Workshop Series',
-                'singular_name' => 'Workshop Series'
-            ),
-            'supports' => array(
-                'title',
-                'editor',
-                'thumbnail',
-                'excerpt',
-                'revisions',
-                'custom-fields',
-                'comments'
-            ),
-            'public' => true,
-            'has_archive' => true,
-            'show_in_menu' => true,
-            'menu-icon' => 'dashicons-tickets-alt',
-        )
-    );
-    
-    register_post_type(
-        'su_workshop',
-        array(
-            'labels' => array(
-                'name' => 'Workshops',
-                'singular_name' => 'Workshop',
-                'parent' => 'Parent Movie Review'
-            ),
-            'supports' => array(
-                'title',
-                'editor',
-                'thumbnail',
-                'excerpt',
-                'revisions',
-                'custom-fields',
-                'comments'
-            ),
-            'public' => true,
-            'has_archive' => true,
-            'show_in_menu' => true,
-            'hierarchical' => true,
-        )
-    );
-    
-    register_post_type(
-        'su_project',
-        array(
-            'labels' => array(
-                'name' => 'Projects',
-                'singular_name' => 'Project'
-            ),
-            'supports' => array(
-                'title',
-                'editor',
-                'thumbnail',
-                'excerpt',
-                'revisions',
-                'custom-fields',
-                'comments'
-            ),
-            'public' => true,
-            'has_archive' => true,
-            'show_in_menu' => true,
-            'menu-icon' => 'dashicons-tickets-alt',
-        )
-    );
-}
+    $su_school_post_type_args = [
+        'labels' => ['name' => 'Schools', 'singular_name' => 'School'],
+        'supports' => ['title', 'editor', 'thumbnail', 'excerpt', 'revisions',
+            'custom-fields', 'comments'],
+        'public' => true,
+        'has_archive' => true,
+        'show_in_menu' => true,
+    ];
 
-/**
- * 
- */
+    register_post_type('su_school', $su_school_post_type_args);
+    
+    $su_workshop_post_type_args = [
+        'labels' => ['name' => 'Workshops', 'singular_name' => 'Workshop'],
+        'supports' => ['title', 'editor', 'thumbnail', 'excerpt', 'revisions',
+            'custom-fields', 'comments'],
+        'public' => true,
+        'has_archive' => true,
+        'show_in_menu' => true,
+    ];
+
+    register_post_type('su_workshop', $su_workshop_post_type_args);
+    
+    $su_project_post_type_args = [
+        'labels' => ['name' => 'Projects', 'singular_name' => 'Project'],
+        'supports' => ['title', 'editor', 'thumbnail', 'excerpt', 'revisions',
+            'custom-fields', 'comments'],
+        'public' => true,
+        'has_archive' => true,
+        'show_in_menu' => true,
+    ];
+
+    register_post_type('su_project', $su_project_post_type_args);
+}
