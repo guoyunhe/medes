@@ -409,7 +409,7 @@ function su_save_extra_profile_fields($user_id) {
 add_action('init', 'su_create_post_type');
 
 function su_create_post_type() {
-    $su_school_post_type_args = [
+    $school_post_type_args = [
         'labels' => ['name' => 'Schools', 'singular_name' => 'School'],
         'supports' => ['title', 'editor', 'thumbnail', 'excerpt', 'revisions',
             'custom-fields', 'comments'],
@@ -418,9 +418,9 @@ function su_create_post_type() {
         'show_in_menu' => true,
     ];
 
-    register_post_type('su_school', $su_school_post_type_args);
+    register_post_type('school', $school_post_type_args);
     
-    $su_workshop_post_type_args = [
+    $workshop_post_type_args = [
         'labels' => ['name' => 'Workshops', 'singular_name' => 'Workshop'],
         'supports' => ['title', 'editor', 'thumbnail', 'excerpt', 'revisions',
             'custom-fields', 'comments'],
@@ -429,9 +429,9 @@ function su_create_post_type() {
         'show_in_menu' => true,
     ];
 
-    register_post_type('su_workshop', $su_workshop_post_type_args);
+    register_post_type('workshop', $workshop_post_type_args);
     
-    $su_project_post_type_args = [
+    $project_post_type_args = [
         'labels' => ['name' => 'Projects', 'singular_name' => 'Project'],
         'supports' => ['title', 'editor', 'thumbnail', 'excerpt', 'revisions',
             'custom-fields', 'comments'],
@@ -440,7 +440,7 @@ function su_create_post_type() {
         'show_in_menu' => true,
     ];
 
-    register_post_type('su_project', $su_project_post_type_args);
+    register_post_type('project', $project_post_type_args);
 }
 
 /**
@@ -457,11 +457,11 @@ function su_get_post_list ($post_type) {
 }
 
 function su_get_school_list () {
-    su_get_post_list('su_school');
+    su_get_post_list('school');
 }
 
 function su_get_workshop_list () {
-    su_get_post_list('su_workshop');
+    su_get_post_list('workshop');
 }
 
 function su_get_post_select ($post_type, $selected) {
@@ -476,11 +476,11 @@ function su_get_post_select ($post_type, $selected) {
 }
 
 function su_get_school_select ($selected) {
-    su_get_post_select ('su_school', $selected);
+    su_get_post_select ('school', $selected);
 }
 
 function su_get_workshop_select ($selected) {
-    su_get_post_select ('su_workshop', $selected);
+    su_get_post_select ('workshop', $selected);
 }
 
 /**
@@ -488,14 +488,14 @@ function su_get_workshop_select ($selected) {
  * when saving the post.
  */
 
-add_action( 'add_meta_boxes_su_project', 'su_add_project_meta_box' );
+add_action( 'add_meta_boxes_project', 'su_add_project_meta_box' );
 
 function su_add_project_meta_box() {
     // http://codex.wordpress.org/Function_Reference/add_meta_box
-    add_meta_box('project_info', 'Project Information', 'su_project_info_content', 'su_project', 'side', 'high');
+    add_meta_box('project_info', 'Project Information', 'project_info_content', 'project', 'side', 'high');
 }
 
-function su_project_info_content ($post) {
+function project_info_content ($post) {
     ?>
     <p>
         <label for="workshop">Workshop</label>
