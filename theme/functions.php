@@ -20,8 +20,8 @@
 function schoolunion_setup() {
     // Post thumbnail
     add_theme_support('post-thumbnails');
-    set_post_thumbnail_size(700, 400, true);
-    add_image_size('audio-thumb', 600, 300);
+    set_post_thumbnail_size(800, 300, true);
+    add_image_size('square-thumbnail', 600, 600);
     // Site logo
     $args = array(
         'header-text' => array(
