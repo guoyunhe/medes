@@ -17,19 +17,16 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-get_header(); ?>
+?>
 
-<div id="content">
-    <div class="container clearfix">
+<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+    <a href="<?php echo get_permalink() ?>">
         <?php
-        if (have_posts()) {
-            while (have_posts()) {
-                the_post();
-                get_template_part('content', get_post_type());
-            }
+        // check if the post has a Post Thumbnail assigned to it.
+        if (has_post_thumbnail()) {
+            the_post_thumbnail('square-thumbnail');
         }
         ?>
-    </div>
-</div>
-
-<?php get_footer(); ?>
+        <h1><?php the_title(); ?></h1>
+    </a>
+</article><!-- #post-## -->

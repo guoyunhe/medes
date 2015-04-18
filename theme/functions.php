@@ -21,7 +21,9 @@ function schoolunion_setup() {
     // Post thumbnail
     add_theme_support('post-thumbnails');
     set_post_thumbnail_size(800, 300, true);
-    add_image_size('square-thumbnail', 600, 600);
+    add_image_size('square-thumbnail', 300, 300, true);
+    add_image_size('square-thumbnail-1.5x', 450, 450, true);
+    add_image_size('square-thumbnail-2x', 600, 600, true);
     // Site logo
     $args = array(
         'header-text' => array(

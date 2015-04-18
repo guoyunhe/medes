@@ -17,3 +17,22 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+get_header(); ?>
+
+<div id="content">
+    <div class="container clearfix">
+        <?php
+        if (have_posts()) {
+                the_post();
+        }
+        // check if the post has a Post Thumbnail assigned to it.
+        if (has_post_thumbnail()) {
+            the_post_thumbnail();
+        }
+        ?>
+        <h1><?php the_title(); ?></h1>
+        <?php the_content(); ?>
+    </div>
+</div>
+
+<?php get_footer(); ?>
