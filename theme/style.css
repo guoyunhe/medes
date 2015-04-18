@@ -39,7 +39,7 @@ body {
     margin: 0;
     padding: 0;
     font-size: 14px;
-    font-family: sans-serif;
+    font-family: "Open Sans", sans-serif;
     background-color: #2a2d2f;
     color: white;
 }
@@ -200,10 +200,6 @@ input[type="search"] {
 
 /* Site title group */
 
-.home #site-header.fusion .site-title-group {
-    display: none;
-}
-
 .site-title-group {
     height: 40px;
 }
@@ -222,13 +218,16 @@ input[type="search"] {
 }
 
 .site-name {
-    font-size: 1.4em;
+    margin-left: 50px;
+    font-size: 1.3rem;
     font-weight: bold;
 }
 
 .site-description {
-    font-size: 0.8em;
-    width: 15em;
+    margin-left: 50px;
+    font-size: 0.75rem;
+    width: 12em;
+    overflow: hidden;
 }
 
 /* Navigation */
@@ -282,6 +281,47 @@ input[type="search"] {
 /**************
  * Front Page *
  **************/
+
+/* Dot cloud header */
+
+.large-header {
+    position: relative;
+    width: 100%;
+    background: #333;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center center;
+    z-index: 1;
+}
+
+.main-title {
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    color: #f9f1e9;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate3d(-50%,-50%,0);
+    transform: translate3d(-50%,-50%,0);
+    text-transform: uppercase;
+    font-size: 4.2em;
+    letter-spacing: 0.1em;
+}
+
+.main-title .statistics {
+    display: none;
+}
+
+.main-title .thin {
+    font-weight: 200;
+}
+
+@media only screen and (max-width : 768px) {
+    .main-title {
+        font-size: 3em;
+    }
+}
 
 /* Header */
 

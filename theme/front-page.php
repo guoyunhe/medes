@@ -18,7 +18,27 @@
  */
 
 get_header(); ?>
-
+<div id="large-header" class="large-header">
+    <canvas id="demo-canvas"></canvas>
+    <div class="main-title">
+        <div class="statistics medestrian">
+            <span class="number">350</span>
+            <span class="thin">Medestrians</span>
+        </div>
+        <div class="statistics country">
+            <span class="number">6</span>
+            <span class="thin">Countries</span>
+        </div>
+        <div class="statistics school">
+            <span class="number">7</span>
+            <span class="thin">Schools</span>
+        </div>
+        <div class="statistics network">
+            <span class="number">One</span>
+            <span class="thin">Network</span>
+        </div>
+    </div>
+</div>
 <div id="front-page-header" class="">
     <div class="site-title-group">
         <!-- Site logo feature provided by Jetpack plugin -->
