@@ -53,7 +53,10 @@ function schoolunion_scripts() {
     wp_enqueue_script('tweenlite', get_stylesheet_directory_uri() . '/gsap/TweenLite.min.js');
     wp_enqueue_script('easepack', get_stylesheet_directory_uri() . '/gsap/EasePack.min.js');
     wp_enqueue_script('raf', get_stylesheet_directory_uri() . '/raf/rAF.js');
-    wp_enqueue_script('theme-script', get_stylesheet_directory_uri() . '/script.js', array('jquery', 'tweenlite', 'easepack', 'raf'));
+    wp_enqueue_script('d3', get_stylesheet_directory_uri() . '/d3/d3.min.js');
+    wp_enqueue_script('topojson', get_stylesheet_directory_uri() . '/topojson/topojson.min.js');
+    wp_enqueue_script('datamaps', get_stylesheet_directory_uri() . '/datamaps/datamaps.world.min.js');
+    wp_enqueue_script('theme-script', get_stylesheet_directory_uri() . '/script.js', array('jquery', 'tweenlite', 'easepack', 'raf', 'd3', 'topojson', 'datamaps'));
     
 }
 

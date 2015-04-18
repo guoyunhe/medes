@@ -282,5 +282,52 @@ function topbarFusion() {
     }
 }
 
-    
-    
+jQuery(function(){
+    buildDatamap.init();
+});
+
+buildDatamap = {
+    datamapObj: {},
+
+    init: function() {
+        jQuery('#datamap').height(jQuery('#datamap').width() * 2 / 3);
+        this.datamapObj = new Datamap({
+            element: document.getElementById("datamap"),
+            scope: 'world',
+            fills: {
+                defaultFill: "#eeeeee",
+                activeFill: "#99ddee",
+                CHN: '#ff0000'
+            },
+            geographyConfig: {
+                borderWidth: 0.2,
+                borderColor: '#000000',
+                popupTemplate: function(geography, data) { //this function should just return a string
+                    return '<div class="hoverinfo"><strong>' + geography.properties.name + '</strong></div>';
+                },
+                popupOnHover: true, //disable the popup while hovering
+                highlightOnHover: true,
+                highlightFillColor: '#FC8D59',
+                highlightBorderColor: 'rgba(250, 15, 160, 0.2)',
+                highlightBorderWidth: 2
+            },
+            data: {
+                CHN: {fillKey: 'activeFill'},
+                FIN: {fillKey: 'activeFill'},
+                JPN: {fillKey: 'activeFill'},
+                DEU: {fillKey: 'activeFill'},
+                FRA: {fillKey: 'activeFill'},
+                ITA: {fillKey: 'activeFill'},
+                USA: {fillKey: 'activeFill'}
+            }
+        });
+        
+        this.bindUIEvents();
+    },
+
+    bindUIEvents: function() {
+        jQuery('.datamaps-subunit').click(function(){
+            jQuery('#city-list').show();
+        });
+    }
+};

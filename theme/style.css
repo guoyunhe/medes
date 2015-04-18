@@ -341,35 +341,38 @@ input[type="search"] {
     height: auto;
 }
 
-/* Map icon */
+/* Datamap */
 
-#front-page-map i {
+#datamap-container {
+    margin: auto;
+}
+
+#datamap {
+    position: relative;
+}
+
+.datamaps-hoverover {
+    color: black;
+}
+
+#city-list {
+    display: none;
     position: fixed;
-    right: -200px;
-    bottom: -200px;
-    font-size: 400px;
-    cursor: pointer;
-    opacity: 0.8;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    padding: 20px;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 1000;
 }
 
-/* Map popup */
-
-#map-container {
-    height: 400px;
-    width: 100%;
-    margin: 0;
-}
-
-@media screen and (max-width: 756px) {
-    #top-menu-wrap,
-    #top-search-wrap {
-        display: none;
-    }
-    
-    #top-menu-click,
-    #top-search-click {
-        display: inline-block;
-    }
+.card {
+    width: 130px;
+    height: 130px;
+    padding: 10px;
+    float: left;
+    font-size: 2.5em;
 }
 
 /* Content Area */
