@@ -47,6 +47,7 @@ add_action('after_setup_theme', 'schoolunion_setup');
  * JavaScript & CSS
  */
 function schoolunion_scripts() {
+    wp_enqueue_style('normalize', get_stylesheet_directory_uri() . '/normalize/normalize.css', array(), '3.0.2');
     wp_enqueue_style('theme-style', get_stylesheet_uri(), array(), '20150210.1');
     wp_enqueue_style('font-awesome-style', get_stylesheet_directory_uri() . '/font-awesome/css/font-awesome.min.css', array(), '4.3.0');
     wp_enqueue_script('jquery');
