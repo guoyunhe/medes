@@ -10,43 +10,21 @@ License URI: http://www.gnu.org/licenses/gpl-3.0.html
 Tags: education
 Text Domain: schoolunion
 */
-/*
-Copyright (C) 2015 Guo Yunhe <guoyunhebrave@gmail.com>
 
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
+/*------------------------------------------------------------------------------
+Body and Basic HTML Style
 
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program.  If not, see <http://www.gnu.org/licenses/>.
+Used to style basic HTML elements to our design.
 */
-/* 
-    Created on : 2015-2-8, 20:32:18
-    Author     : Guo Yunhe <guoyunhebrave@gmail.com>
-*/
-
-/***************
- * Basic style *
- ***************/
 
 body {
-    margin: 0;
-    padding: 0;
     font-size: 14px;
     font-family: "Open Sans", sans-serif;
     background-color: #2a2d2f;
-    color: white;
+    color: #ffffff;
 }
 
-/***************
- * UI Elements *
- ***************/
+/* Form, Input and Button */
 
 input[type="search"] {
     box-sizing: content-box;
@@ -61,10 +39,19 @@ input[type="search"] {
     color: white;
 }
 
-/* Click and dropdown */
+
+
+/*------------------------------------------------------------------------------
+Components
+
+Some components that might be used for multiple times.
+*/
+
+
+/* Click - Text behave like button or switch */
 
 .click {
-    display: block;
+    display: block; /* Default click is block */
     position: relative;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -76,14 +63,20 @@ input[type="search"] {
     text-align: left;
 }
 
+/* Inline click */
+
 .click.inline {
     display: inline-block;
     text-align: center;
 }
 
+/* With round corner style */
+
 .click.round {
     border-radius: 3px;
 }
+
+/* Interaction effects */
 
 .click:hover {
     background-color: rgba(0,0,0,0.1);
@@ -93,6 +86,9 @@ input[type="search"] {
     box-shadow: 0 0 3px rgba(0,0,0,0.5) inset;
     background-color: rgba(0,0,0,0.2);
 }
+
+
+/* Dropdown - Dropdown list menu */
 
 .dropdown {
     position: absolute;
@@ -113,20 +109,23 @@ input[type="search"] {
     top: auto;
 }
 
+/* Contained in and controlled by click component */
+
 .click.active .dropdown {
     display: block;
 }
 
-/* Popup */
+
+/* Popup - Hover block, modal or full screen presentation */
 
 .popup {
     display: none;
-    position: fixed;
+    position: fixed; /* Full screen mode by default */
     left: 0;
     top: 0;
     background: #46484a;
     box-shadow: 0 0 5px rgba(0,0,0,0.5);
-    z-index: 100;
+    z-index: 100; /* Topmost layer */
     width: 100%;
     height: 100%;
 }
@@ -143,21 +142,28 @@ input[type="search"] {
     cursor: pointer;
 }
 
-/******************
- * Helper Classes *
- ******************/
 
-/* Clearfix */
+
+/*------------------------------------------------------------------------------
+Helper Classes
+
+Tiny style that used in many places
+*/
+
+
+/* Clearfix - Contain float elements easily, from
+http://nicolasgallagher.com/micro-clearfix-hack/ */
 
 .clearfix:before,
 .clearfix:after {
-    content: " "; /* 1 */
-    display: table; /* 2 */
+    content: " ";
+    display: table;
 }
 
 .clearfix:after {
     clear: both;
 }
+
 
 /* Float / Pull */
 
@@ -169,15 +175,11 @@ input[type="search"] {
     float: right;
 }
 
-.inline {
-    display: inline;
-}
 
-/**************************
- * Site Header and Footer *
- **************************/
 
-/* Site header (top bar) */
+/*------------------------------------------------------------------------------
+Site Header
+*/
 
 #site-header {
     box-sizing: border-box;
@@ -193,20 +195,23 @@ input[type="search"] {
     z-index: 10;
 }
 
+/* When scroll to page top, header bar background and shadow become transparent,
+fused with page content */
+
 #site-header.fusion {
     box-shadow: none;
     background: none;
 }
 
+
 /* Site title group */
 
 .site-title-group {
     height: 40px;
-}
-
-#site-header .site-title-group {
     float: left;
 }
+
+/* Logo - JetPack feature, size large (1024x1024px) */
 
 .site-logo {
     max-width: 40px;
@@ -225,12 +230,13 @@ input[type="search"] {
 
 .site-description {
     margin-left: 50px;
-    font-size: 0.75rem;
+    font-size: 12px;
     width: 12em;
     overflow: hidden;
 }
 
-/* Navigation */
+
+/* Navigation icon */
 
 #top-menu-click,
 #top-search-click {
@@ -256,7 +262,9 @@ input[type="search"] {
 /* Menu */
 
 
-/* Footer */
+/*------------------------------------------------------------------------------
+Footer
+*/
 
 #site-footer {
     padding: 40px 10px 60px 10px;
@@ -278,16 +286,18 @@ input[type="search"] {
     float: right;
 }
 
-/**************
- * Front Page *
- **************/
+
+
+/*------------------------------------------------------------------------------
+Front Page
+*/
+
 
 /* Dot cloud header */
 
 .large-header {
     position: relative;
     width: 100%;
-    background: #333;
     overflow: hidden;
     background-size: cover;
     background-position: center center;
@@ -323,23 +333,6 @@ input[type="search"] {
     }
 }
 
-/* Header */
-
-#front-page-header {
-    padding: 60px 10px 30px 10px;
-}
-
-#front-page-header .site-title-group {
-    height: 80px;
-    font-size: 1.8em;
-}
-
-#front-page-header .site-logo {
-    max-width: 80px;
-    max-height: 80px;
-    width: auto;
-    height: auto;
-}
 
 /* Datamap */
 
@@ -375,6 +368,15 @@ input[type="search"] {
     font-size: 2.5em;
 }
 
+
+
+/*------------------------------------------------------------------------------
+Archive Page
+
+The list of schools, workshops, people. Function of these page will move to
+front page, so they will not be used anymore.
+*/
+
 /* Content Area */
 
 #content {
@@ -386,11 +388,6 @@ input[type="search"] {
 #content .container {
     margin: -10px;
 }
-
-/*****************
- * Post List *
- * (School, Workshop, Project, People) *
- *****************/
 
 article {
     position: relative;
@@ -417,3 +414,39 @@ article h1 {
     font-size: 28px;
     text-shadow: 0 0 3px rgba(0,0,0,0.3);
 }
+
+/*------------------------------------------------------------------------------
+User Page
+
+As a popup layer on front page.
+1. User photo and banner
+2. Name, school, location, etc.
+3. Links of Facebook, Twitter, LinkedIn, blog, etc.
+4. Timeline, including schools and work experience
+5. Project list
+*/
+
+
+
+/*------------------------------------------------------------------------------
+School Page
+
+As a popup layer on front page.
+1. Featured photo
+2. School name, location, etc.
+3. Tab 1 - Short description of this school
+4. Tab 2 - People of this school
+5. Tab 3 - Workshop/projects of this school
+*/
+
+
+
+/*------------------------------------------------------------------------------
+Workshop Page
+
+As a popup layer on front page.
+1. Featured photo
+2. Name
+3. Tab 1 - Short description
+5. Tab 2 - Projects by years
+*/
