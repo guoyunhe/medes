@@ -295,7 +295,7 @@ Front Page
 
 /* Dot cloud header */
 
-.large-header {
+#dot-cloud {
     position: relative;
     width: 100%;
     overflow: hidden;

@@ -18,7 +18,8 @@
  */
 
 get_header(); ?>
-<div id="large-header" class="large-header">
+
+<div id="dot-cloud" class="section">
     <canvas id="demo-canvas"></canvas>
     <div class="main-title">
         <div class="statistics medestrian">
@@ -39,14 +40,9 @@ get_header(); ?>
         </div>
     </div>
 </div>
-<div id="front-page-header" class="">
-    <div class="site-title-group">
-        <!-- Site logo feature provided by Jetpack plugin -->
-        <?php if (function_exists('jetpack_the_site_logo')) jetpack_the_site_logo(); ?>
-        <div class="site-name"><?php bloginfo('name'); ?></div>
-        <div class="site-description"><?php bloginfo('description'); ?></div>
-    </div>
-    <div class="site-intro">
+
+<div id="front-page-intro" class="section">
+    <div class="container">
         <!--
         This block should be replaced by a custom data filed that users can set
         their own text, images...
@@ -65,10 +61,11 @@ get_header(); ?>
             executive practice.
         </p>
         <p>
-            <a href="#" style="color:white;"><i class="fa fa-lg fa-plus-circle"></i></a>
+            <a href="#" style="color:white; float: right;"><i class="fa fa-lg fa-plus-circle"></i></a>
         </p>
-    </div>
-</div>
+    </div><!-- .container -->
+</div><!-- #front-page-intro.section -->
+
 <div id="datamap-container" class="container">
     <div id="datamap"></div>
     <div id="city-list">
@@ -80,6 +77,5 @@ get_header(); ?>
         <div class="card city" style="background-color: mistyrose;">City Name 5</div>
     </div>
 </div>
-
 
 <?php get_footer(); ?>
