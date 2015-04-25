@@ -383,7 +383,7 @@ h1.white-heading {
 #featured-people .inner {
     left: 0;
     width: 3000px;
-    height: 500px;
+    height: 600px;
     position: relative;
     transition: 1s;
 }
@@ -394,7 +394,7 @@ h1.white-heading {
     position: relative;
     float: left;
     width: 500px;
-    height: 500px;
+    height: 600px;
     overflow: hidden;
     cursor: pointer;
     transition: 0.5s;
@@ -437,18 +437,41 @@ h1.white-heading {
     height: auto;
 }
 
+.featured-person .tagline {
+    position: absolute;
+    left: 0;
+    bottom: 100px;
+    width: 100%;
+    height: 90px;
+    padding: 10px;
+    line-height: 45px;
+    font-size: 32px;
+    background-color: gold;
+}
+
+.featured-person .tags {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    padding: 10px;
+    line-height: 30px;
+    font-size: 22px;
+}
+
 #featured-people .scroll {
     position: absolute;
     top: 0;
     bottom: 0;
-    line-height: 500px;
+    line-height: 600px;
     width: 50px;
     font-size: 28px;
     text-align: center;
     background: rgba(255,255,255,0.4);
     text-shadow: 1px 1px 3px black;
-    box-shadow: -5px 0 5px -5px rgba(0,0,0,0.5),
-        5px 0 5px -5px rgba(0,0,0,0.5);
+    box-shadow: -3px 0 5px -5px rgba(0,0,0,0.5),
+        3px 0 5px -5px rgba(0,0,0,0.5);
     transition: background 1s;
     cursor: pointer;
 }
