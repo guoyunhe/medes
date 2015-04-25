@@ -66,6 +66,20 @@ get_header(); ?>
     </div><!-- .container -->
 </div><!-- #front-page-intro.section -->
 
+<div id="featured-people" class="section clearfix">
+    <h1 class="white-heading">Today's inspiration</h1>
+    <div class="container">
+        <div class="outer">
+            <div class="inner">
+                <?php get_template_part( 'featured-people' ); ?>
+            </div>
+        </div>
+        <div class="scroll left"><i class="fa fa-arrow-left"></i></div>
+        <div class="scroll right"><i class="fa fa-arrow-right"></i></div>
+    </div>
+    
+</div>
+
 <div id="datamap-container" class="container">
     <div id="datamap"></div>
     <div id="city-list">

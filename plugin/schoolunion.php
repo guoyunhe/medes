@@ -32,6 +32,7 @@
 
 defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 
+include_once 'featured-people.php';
 
 /**
  * Register Form Extend
@@ -381,6 +382,13 @@ function su_save_extra_profile_fields($user_id) {
             unlink(get_user_meta( $user_id, 'su_avatar_file', true ));
             update_user_meta($user_id, 'su_avatar', $upload_result['url']);
             update_user_meta($user_id, 'su_avatar_file', $upload_result['file']);
+            $image = wp_get_image_editor($upload_result['file']); // Return an 
+            //implementation that extends <tt>WP_Image_Editor</tt>
+            if ( ! is_wp_error( $image ) ) {
+                $image->resize( 300, 300, true );
+                $image->save( $upload_result['file'] );
+                error_log( 'avatar resized!' );
+            }
         }
     }
     
@@ -392,6 +400,13 @@ function su_save_extra_profile_fields($user_id) {
             unlink(get_user_meta( $user_id, 'su_photo_file', true ));
             update_user_meta($user_id, 'su_photo', $upload_result['url']);
             update_user_meta($user_id, 'su_photo_file', $upload_result['file']);
+            $image = wp_get_image_editor($upload_result['file']); // Return an 
+            //implementation that extends <tt>WP_Image_Editor</tt>
+            if ( ! is_wp_error( $image ) ) {
+                $image->resize( 900, 500, true );
+                $image->save( $upload_result['file'] );
+                error_log( 'photo resized!' );
+            }
         }
     }
 }

@@ -85,8 +85,9 @@ function topbarFusion() {
 }
 
 jQuery(function(){
-    PeopleDatamap.init();
     DotCloud.init();
+    FeaturedPeopleScroll.init();
+    PeopleDatamap.init();
 });
 
 DotCloud = {
@@ -304,6 +305,35 @@ DotCloud = {
     }
 };
 
+FeaturedPeopleScroll = {
+    init: function () {
+        var $scrollOuter = jQuery('#featured-people .outer');
+        var $scrollInner = jQuery('#featured-people .inner');
+        
+        jQuery('#featured-people .right').click(function(){
+            var offset = $scrollInner.offset();
+            offset.left -= $scrollOuter.width() * 0.8;
+            
+            if(offset.left + $scrollInner.width() < $scrollOuter.width()) {
+                offset.left = $scrollOuter.width() - $scrollInner.width();
+                jQuery(this).fadeOut();
+            }
+            $scrollInner.offset(offset);
+            jQuery('#featured-people .left').show();
+        });
+        jQuery('#featured-people .left').click(function(){
+            var offset = $scrollInner.offset();
+            offset.left += $scrollOuter.width() * 0.8;
+            
+            if(offset.left > 0) {
+                offset.left = 0;
+                jQuery(this).fadeOut();
+            }
+            $scrollInner.offset(offset);
+            jQuery('#featured-people .right').show();
+        });
+    }
+};
 
 PeopleDatamap = {
     datamapObj: {},
