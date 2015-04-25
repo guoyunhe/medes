@@ -81,14 +81,44 @@ get_header(); ?>
 </div>
 
 <div id="datamap-container" class="container">
-    <div id="datamap"></div>
-    <div id="city-list">
-        <h1>Cites in Country</h1>
-        <div class="card city" style="background-color: aquamarine;">City Name 1</div>
-        <div class="card city" style="background-color: antiquewhite;">City Name 2</div>
-        <div class="card city" style="background-color: buttonface;">City Name 3</div>
-        <div class="card city" style="background-color: darkorange;">City Name 4</div>
-        <div class="card city" style="background-color: mistyrose;">City Name 5</div>
+    <div class="tabs">
+        <span id="people-map-click" class="click active" data-target="#people-map">
+            People
+        </span>
+        <span id="school-map-click" class="click" data-target="#school-map">
+            School
+        </span>
+        <span id="workshop-map-click" class="click" data-target="#workshop-map">
+            Workshop
+        </span>
+    </div>
+    <div class="panes">
+        <div id="people-map" class="pane active">
+            <div class="map-grid tabs">
+                <div class="click tab active" data-target="#datamap"><i class="fa fa-globe"></i></div>
+                <div class="click tab" data-target="#grid"><i class="fa fa-th"></i></div>
+            </div>
+            <div class="panes">
+                <div id="datamap" class="pane active"></div>
+                <div id="grid" class="pane clearfix">
+                    <div class="card city" style="background-color: aquamarine;">Finland</div>
+                    <div class="card city" style="background-color: antiquewhite;">Germany</div>
+                    <div class="card city" style="background-color: buttonface;">China</div>
+                    <div class="card city" style="background-color: darkorange;">Itali</div>
+                    <div class="card city" style="background-color: mistyrose;">Japan</div>
+                </div>
+            </div>
+            
+            <div id="city-list" class="popup hover">
+                <h1>Cites in Country</h1>
+                <div class="card city" style="background-color: aquamarine;">City Name 1</div>
+                <div class="card city" style="background-color: antiquewhite;">City Name 2</div>
+                <div class="card city" style="background-color: buttonface;">City Name 3</div>
+                <div class="card city" style="background-color: darkorange;">City Name 4</div>
+                <div class="card city" style="background-color: mistyrose;">City Name 5</div>
+                <div class="popup-close"><i class="fa fa-close"></i></div>
+            </div>
+        </div>
     </div>
 </div>
 

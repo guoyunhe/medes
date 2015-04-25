@@ -109,9 +109,20 @@ Some components that might be used for multiple times.
     top: auto;
 }
 
-/* Contained in and controlled by click component */
+/* Dropdowns are contained in and controlled by click component */
 
 .click.active .dropdown {
+    display: block;
+}
+
+/* Tabs and panes */
+
+.pane {
+    position: relative;
+    display: none;
+}
+
+.pane.active {
     display: block;
 }
 
@@ -123,11 +134,16 @@ Some components that might be used for multiple times.
     position: fixed; /* Full screen mode by default */
     left: 0;
     top: 0;
-    background: #46484a;
+    background: rgba(0,0,0,0.5);
     box-shadow: 0 0 5px rgba(0,0,0,0.5);
     z-index: 100; /* Topmost layer */
     width: 100%;
     height: 100%;
+}
+
+.popup.hover {
+    position: absolute;
+    
 }
 
 .popup-header {
@@ -138,7 +154,13 @@ Some components that might be used for multiple times.
 }
 
 .popup-close {
-    float: right;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
     cursor: pointer;
 }
 
@@ -503,24 +525,25 @@ h1.white-heading {
     color: black;
 }
 
-#city-list {
-    display: none;
-    position: fixed;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    padding: 20px;
-    background-color: rgba(0,0,0,0.5);
-    z-index: 1000;
-}
-
 .card {
     width: 130px;
     height: 130px;
     padding: 10px;
     float: left;
     font-size: 2.5em;
+}
+
+.map-grid.tabs {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    z-index: 1;
+}
+
+.map-grid.tabs .click {
+    height: 50px;
+    font-size: 30px;
+    line-height: 30px;
 }
 
 

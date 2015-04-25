@@ -15,80 +15,94 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-jQuery(function () {
-
-    /* Basic UI Elements
-     * 
-     * Click, dropdown, popup...
-     */
-
-    // Click element events
-    jQuery('.click').click(function (event) {
-        event.stopPropagation();
-        if (jQuery(this).hasClass('button')) {
-            jQuery('.click:not(.tab)').removeClass('active');
-            return;
-        }
-        if (jQuery(this).hasClass('active')) {
-            jQuery(this).removeClass('active');
-            return;
-        } else {
-            jQuery('.click:not(.tab)').removeClass('active');
-            jQuery(this).addClass('active');
-            return;
-        }
-    });
-    jQuery(document).click(function () {
-        jQuery('.click:not(.tab)').removeClass('active');
-    });
-
-    // Dropdown use the active status of click by default, so no event
-
-    // Popup
-    jQuery('.popup').each(function () {
-        var popup = jQuery(this);
-        popup.find('.popup-close').click(function () {
-            popup.hide();
-        });
-
-    });
-
-
-    /* Page Layout and Responsive Design
-     * 
-     * Top bar...
-     */
-
-    // Top bar fusion effect
-    topbarFusion();
-    jQuery(window).scroll(topbarFusion);
-    jQuery(window).resize(topbarFusion);
-    
-    // Search
-    jQuery('#top-search-click .dropdown').click(function (event) {
-        event.stopPropagation();
-    });
-
-    
+jQuery(function(){
+    ClickModule.init();
+    TabPaneModule.init();
+    PopupModule.init();
+    SiteHeaderFusion.init();
+    DotCloud.init();
+    FeaturedPeopleScroll.init();
+    PeopleDatamap.init();
 });
+
+ClickModule = {
+    init: function(){
+        jQuery('.click').click(function (event) {
+            event.stopPropagation();
+            if (jQuery(this).hasClass('button')) {
+                jQuery('.click:not(.tab)').removeClass('active');
+                return;
+            }
+            if (jQuery(this).hasClass('active')) {
+                jQuery(this).removeClass('active');
+                return;
+            } else {
+                jQuery('.click:not(.tab)').removeClass('active');
+                jQuery(this).addClass('active');
+                return;
+            }
+        });
+        jQuery(document).click(function () {
+            jQuery('.click:not(.tab)').removeClass('active');
+        });
+    }
+};
+
+TabPaneModule = {
+    init: function() {
+        this.bindEvent();
+    },
+    bindEvent: function() {
+        jQuery('.tabs').each(function(){
+            $tabGroup = jQuery(this);
+            $tabs = $tabGroup.children('.click.tab');
+            $tabs.click(function(){
+                $tabs.removeClass('active');
+                jQuery(this).addClass('active');
+                $target = jQuery(jQuery(this).data('target'));
+                $target.siblings('.pane').removeClass('active');
+                $target.addClass('active');
+            });
+        });
+    }
+};
+
+PopupModule = {
+    init: function(){
+        this.bindEvent();
+    },
+    bindEvent: function(){
+        jQuery('.popup').each(function () {
+            var $popup = jQuery(this);
+            $popup.find('.popup-close').click(function () {
+                $popup.hide();
+            });
+        });
+    }
+};
 
 /* Top Bar Fusion Effect
  *
  * Detect scroll length of page
  */
-function topbarFusion() {
-    if (jQuery(document).scrollTop() < jQuery('#site-header').height()) {
-        jQuery('#site-header').addClass('fusion');
-    } else {
-        jQuery('#site-header').removeClass('fusion');
-    }
-}
 
-jQuery(function(){
-    DotCloud.init();
-    FeaturedPeopleScroll.init();
-    PeopleDatamap.init();
-});
+SiteHeaderFusion = {
+    init: function () {
+        this.fusion();
+        this.bindEvent();
+    },
+    bindEvent: function() {
+        jQuery(window).scroll(this.fusion);
+        jQuery(window).resize(this.fusion);
+    },
+    fusion: function () {
+        if (jQuery(document).scrollTop() < jQuery('#site-header').height()) {
+            jQuery('#site-header').addClass('fusion');
+        } else {
+            jQuery('#site-header').removeClass('fusion');
+        }
+    }
+};
 
 DotCloud = {
     width: 0,
@@ -339,7 +353,7 @@ PeopleDatamap = {
     datamapObj: {},
 
     init: function() {
-        jQuery('#datamap').height(jQuery('#datamap').width() * 2 / 3);
+        jQuery('#datamap').height(jQuery('#datamap').width() * 0.5);
         this.datamapObj = new Datamap({
             element: document.getElementById("datamap"),
             scope: 'world',
