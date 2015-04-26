@@ -17,7 +17,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+
 add_action('wp_head', 'su_ajaxurl');
+
+/**
+ * Fefine AJAX URL for front end, not only admin side.
+ */
 
 function su_ajaxurl() {
     ?>
@@ -39,7 +44,9 @@ function su_get_user_page() {
         <?php echo $user->first_name; ?>
         <?php echo $user->last_name; ?>
     </div>
+    <img class="avatar" src="<?php echo $user->su_avatar; ?>"/>
+    <img class="photo" src="<?php echo $user->su_photo; ?>"/>
 </div>
     <?php
-
+    die();
 }

@@ -33,6 +33,7 @@
 defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 
 include_once 'featured-people.php';
+include_once 'user-ajax.php';
 
 /**
  * Register Form Extend

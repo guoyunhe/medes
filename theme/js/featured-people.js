@@ -16,32 +16,48 @@
  */
 
 
-FeaturedPeopleScroll = {
+FeaturedPeople = {
     init: function () {
+        this.bindScrollEvent();
+        this.bindPopupEvent();
+    },
+    
+    bindScrollEvent: function () {
         var $scrollOuter = jQuery('#featured-people .outer');
         var $scrollInner = jQuery('#featured-people .inner');
-        
-        jQuery('#featured-people .right').click(function(){
+
+        jQuery('#featured-people .right').click(function () {
             var offset = $scrollInner.offset();
             offset.left -= $scrollOuter.width() * 0.8;
-            
-            if(offset.left + $scrollInner.width() < $scrollOuter.width()) {
+
+            if (offset.left + $scrollInner.width() < $scrollOuter.width()) {
                 offset.left = $scrollOuter.width() - $scrollInner.width();
                 jQuery(this).fadeOut();
             }
+
             $scrollInner.offset(offset);
             jQuery('#featured-people .left').show();
         });
-        jQuery('#featured-people .left').click(function(){
+        jQuery('#featured-people .left').click(function () {
             var offset = $scrollInner.offset();
             offset.left += $scrollOuter.width() * 0.8;
-            
-            if(offset.left > 0) {
+
+            if (offset.left > 0) {
                 offset.left = 0;
                 jQuery(this).fadeOut();
             }
+
             $scrollInner.offset(offset);
             jQuery('#featured-people .right').show();
+        });
+    },
+    bindPopupEvent: function () {
+        jQuery('#featured-people .featured-person').click(function () {
+            jQuery('#featured-people .popup').show();
+            suGetUserPage(jQuery(this).data('user-id'), function (data) {
+                window.console.log(data);
+                jQuery('#featured-people .popup-body').html(data);
+            });
         });
     }
 };

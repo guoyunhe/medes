@@ -16,14 +16,12 @@
  */
 
 
-function suGetUserPage(userId) {
+function suGetUserPage(userId, callback) {
     var sendData = {
         'action': 'get_user_page',
         'user_id': userId
     };
-    var receiveData;
-    $.post(ajaxurl, sendData, function (response) {
-        receiveData = response;
+    jQuery.post(ajaxurl, sendData, function (response) {
+        callback(response);
     });
-    return receiveData;
 }

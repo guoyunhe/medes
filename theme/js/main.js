@@ -21,7 +21,7 @@ jQuery(function(){
     PopupModule.init();
     SiteHeaderFusion.init();
     DotCloud.init();
-    FeaturedPeopleScroll.init();
+    FeaturedPeople.init();
     PeopleDatamap.init();
 });
 
