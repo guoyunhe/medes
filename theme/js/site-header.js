@@ -1,5 +1,5 @@
 /* 
- * Copyright (C) 2015 Guo Yunhe <guoyunhebrave@gmail.com>
+ * Copyright (C) 2015 Guo Yunhe <guoyunhebrave at gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,15 +15,26 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-jQuery(function(){
-    ClickModule.init();
-    TabPaneModule.init();
-    PopupModule.init();
-    SiteHeaderFusion.init();
-    DotCloud.init();
-    FeaturedPeopleScroll.init();
-    PeopleDatamap.init();
-});
 
+/* Top Bar Fusion Effect
+ *
+ * Detect scroll length of page
+ */
 
-
+SiteHeaderFusion = {
+    init: function () {
+        this.fusion();
+        this.bindEvent();
+    },
+    bindEvent: function() {
+        jQuery(window).scroll(this.fusion);
+        jQuery(window).resize(this.fusion);
+    },
+    fusion: function () {
+        if (jQuery(document).scrollTop() < jQuery('#site-header').height()) {
+            jQuery('#site-header').addClass('fusion');
+        } else {
+            jQuery('#site-header').removeClass('fusion');
+        }
+    }
+};

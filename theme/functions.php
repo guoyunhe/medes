@@ -64,6 +64,12 @@ function schoolunion_scripts() {
 
     // Theme JavaScript
     wp_enqueue_script('theme-main-script', $jsurl . '/main.js');
+    wp_enqueue_script('theme-ajax-script', $jsurl . '/ajax.js');
+    wp_enqueue_script('theme-datamap-script', $jsurl . '/datamap.js');
+    wp_enqueue_script('theme-dotcloud-script', $jsurl . '/dotcloud.js');
+    wp_enqueue_script('theme-featured-people-script', $jsurl . '/featured-people.js');
+    wp_enqueue_script('theme-site-header-script', $jsurl . '/site-header.js');
+    wp_enqueue_script('theme-ui-module-script', $jsurl . '/ui-module.js');
 
     // Theme CSS
     wp_enqueue_style('theme-main-style', get_stylesheet_uri());
