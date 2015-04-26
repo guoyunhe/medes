@@ -47,22 +47,29 @@ add_action('after_setup_theme', 'schoolunion_setup');
  * JavaScript & CSS
  */
 function schoolunion_scripts() {
-    wp_enqueue_style('normalize', get_stylesheet_directory_uri() . '/normalize/normalize.css', array(), '3.0.2');
-    wp_enqueue_style('theme-style', get_stylesheet_uri(), array(), '20150210.1');
-    wp_enqueue_style('font-awesome-style', get_stylesheet_directory_uri() . '/font-awesome/css/font-awesome.min.css', array(), '4.3.0');
+    $liburl = get_stylesheet_directory_uri() . '/lib';
+    $jsurl = get_stylesheet_directory_uri() . '/js';
+    $cssurl = get_stylesheet_directory_uri() . '/css';
+
+    // Third party libraries
+    wp_enqueue_style('normalize', $liburl . '/normalize/normalize.css');
+    wp_enqueue_style('font-awesome', $liburl . '/font-awesome/css/font-awesome.min.css');
     wp_enqueue_script('jquery');
-    wp_enqueue_script('tweenlite', get_stylesheet_directory_uri() . '/gsap/TweenLite.min.js');
-    wp_enqueue_script('easepack', get_stylesheet_directory_uri() . '/gsap/EasePack.min.js');
-    wp_enqueue_script('raf', get_stylesheet_directory_uri() . '/raf/rAF.js');
-    wp_enqueue_script('d3', get_stylesheet_directory_uri() . '/d3/d3.min.js');
-    wp_enqueue_script('topojson', get_stylesheet_directory_uri() . '/topojson/topojson.min.js');
-    wp_enqueue_script('datamaps', get_stylesheet_directory_uri() . '/datamaps/datamaps.world.min.js');
-    wp_enqueue_script('theme-script', get_stylesheet_directory_uri() . '/script.js', array('jquery', 'tweenlite', 'easepack', 'raf', 'd3', 'topojson', 'datamaps'));
-    
+    wp_enqueue_script('tweenlite', $liburl . '/gsap/TweenLite.min.js');
+    wp_enqueue_script('easepack', $liburl . '/gsap/EasePack.min.js');
+    wp_enqueue_script('raf', $liburl . '/raf/rAF.js');
+    wp_enqueue_script('d3', $liburl . '/d3/d3.min.js');
+    wp_enqueue_script('topojson', $liburl . '/topojson/topojson.min.js');
+    wp_enqueue_script('datamaps', $liburl . '/datamaps/datamaps.world.min.js');
+
+    // Theme JavaScript
+    wp_enqueue_script('theme-main-script', $jsurl . '/main.js');
+
+    // Theme CSS
+    wp_enqueue_style('theme-main-style', get_stylesheet_uri());
 }
 
 add_action('wp_enqueue_scripts', 'schoolunion_scripts');
-
 
 /**
  * Menu
