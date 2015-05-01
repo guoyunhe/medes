@@ -44,3 +44,4 @@ require_once 'hook/workshop.php';
 require_once 'hook/project.php';
 // require api functions
 require_once 'api/get-user-page.php';
+require_once 'api/create-user.php';

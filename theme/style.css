@@ -11,7 +11,10 @@ Tags: education
 Text Domain: schoolunion
 */
 
+@import "css/form.css";
+
 @import "css/user-page.css";
+@import "css/create-user.css";
 
 /*------------------------------------------------------------------------------
 Body and Basic HTML Style
@@ -25,22 +28,6 @@ body {
     background-color: #2a2d2f;
     color: #ffffff;
 }
-
-/* Form, Input and Button */
-
-input[type="search"] {
-    box-sizing: content-box;
-    -moz-box-sizing: content-box;
-    padding: 4px;
-    background: none;
-    border: none;
-    border-bottom: 1px solid #555555;
-    height: 20px;
-    line-height: 20px;
-    font-size: 14px;
-    color: white;
-}
-
 
 
 /*------------------------------------------------------------------------------

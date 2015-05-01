@@ -1,3 +1,5 @@
+<?php
+
 /* 
  * Copyright (C) 2015 Guo Yunhe <guoyunhebrave@gmail.com>
  *
@@ -14,17 +16,4 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
-jQuery(function(){
-    ClickModule.init();
-    TabPaneModule.init();
-    PopupModule.init();
-    SiteHeaderFusion.init();
-    DotCloud.init();
-    FeaturedPeople.init();
-    PeopleDatamap.init();
-    CreateUser.init();
-});
-
-
 

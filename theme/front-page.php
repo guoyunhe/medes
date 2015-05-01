@@ -17,7 +17,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-get_header(); ?>
+get_header();
+
+get_template_part('create-user'); ?>
 
 <div id="dot-cloud" class="section">
     <canvas id="demo-canvas"></canvas>

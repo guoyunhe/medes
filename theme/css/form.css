@@ -1,0 +1,69 @@
+/*
+Copyright (C) 2015 Guo Yunhe <guoyunhebrave@gmail.com>
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
+/*
+Style for HTML form, input, select, button, textarea, etc.
+*/
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="number"],
+input[type="search"],
+select {
+    box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    padding: 4px;
+    background: none;
+    border: none;
+    border-bottom: 1px solid white;
+    height: 20px;
+    line-height: 20px;
+    font-size: 14px;
+    color: white;
+}
+
+input[type="text"].large,
+input[type="password"].large,
+input[type="email"].large,
+input[type="number"].large,
+input[type="search"].large,
+select.large {
+    height: 30px;
+}
+
+input.block,
+button.block,
+select.block {
+    display: block;
+}
+
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
+button {
+    border: 1px solid white;
+    background-color: transparent;
+    color: white;
+}
+
+input[type="button"].large,
+input[type="submit"].large,
+input[type="reset"].large,
+button.large {
+    height: 30px;
+}
