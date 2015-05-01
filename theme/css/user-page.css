@@ -1,0 +1,61 @@
+/*
+Copyright (C) 2015 Guo Yunhe <guoyunhebrave at gmail.com>
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
+#user-page .popup-body {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.user-header {
+    position: relative;
+    background-size: contain;
+    background-blend-mode: multiply;
+}
+
+#user-page .avatar {
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    width: 100px;
+    height: 100px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+}
+
+#user-page .name {
+    position: absolute;
+    left: 20px;
+    top: 140px;
+    font-size: 24px;
+    font-weight: bold;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+}
+
+#user-page .school {
+    position: absolute;
+    left: 20px;
+    bottom: 220px;
+    font-size: 20px;
+}
+
+#user-page .photo {
+    display: block;
+    margin: 0;
+    padding: 0;
+    max-width: 100%;
+    height: auto;
+    opacity: 0;
+}

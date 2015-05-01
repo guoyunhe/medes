@@ -38,15 +38,8 @@ add_action( 'wp_ajax_nopriv_get_user_page', 'su_get_user_page' );
 function su_get_user_page() {
     $user_id = $_POST['user_id'];
     $user = new WP_User($user_id);
-    ?>
-<div class="user-header">
-    <div class="user-name">
-        <?php echo $user->first_name; ?>
-        <?php echo $user->last_name; ?>
-    </div>
-    <img class="avatar" src="<?php echo $user->su_avatar; ?>"/>
-    <img class="photo" src="<?php echo $user->su_photo; ?>"/>
-</div>
-    <?php
+    
+    include 'view/user-page.php';
+    
     die();
 }

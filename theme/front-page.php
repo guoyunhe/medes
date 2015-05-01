@@ -77,7 +77,7 @@ get_header(); ?>
         <div class="scroll left"><i class="fa fa-arrow-left"></i></div>
         <div class="scroll right"><i class="fa fa-arrow-right"></i></div>
     </div>
-    <div class="popup">
+    <div id="user-page" class="popup">
         <div class="popup-close"><i class="fa fa-close"></i></div>
         <div class="popup-body"></div>
     </div>

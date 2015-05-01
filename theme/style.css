@@ -11,6 +11,8 @@ Tags: education
 Text Domain: schoolunion
 */
 
+@import "css/user-page.css";
+
 /*------------------------------------------------------------------------------
 Body and Basic HTML Style
 
@@ -134,11 +136,11 @@ Some components that might be used for multiple times.
     position: fixed; /* Full screen mode by default */
     left: 0;
     top: 0;
+    width: 100%;
+    height: 100%;
     background: rgba(0,0,0,0.5);
     box-shadow: 0 0 5px rgba(0,0,0,0.5);
     z-index: 100; /* Topmost layer */
-    width: 100%;
-    height: 100%;
 }
 
 .popup.hover {
@@ -161,7 +163,9 @@ Some components that might be used for multiple times.
     height: 40px;
     text-align: center;
     line-height: 40px;
+    font-size: 24px;
     cursor: pointer;
+    z-index: 1;
 }
 
 
