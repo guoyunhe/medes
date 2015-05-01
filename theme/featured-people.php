@@ -20,7 +20,7 @@ $featured_people = su_get_featured_people();
 foreach ($featured_people as $featured_person) {
     ?>
     <div class="featured-person"
-         data-user-id="<?php echo $featured_person->id ?>">
+         data-user-id="<?php echo $featured_person->ID ?>">
         <div class="name">
             <?php
             echo $featured_person->first_name

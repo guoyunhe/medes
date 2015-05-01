@@ -33,7 +33,7 @@ function myplugin_register_form() {
 
     $first_name = (!empty($_POST['first_name']) ) ? trim($_POST['first_name']) : '';
     $last_name = (!empty($_POST['last_name']) ) ? trim($_POST['last_name']) : '';
-    include 'view/user-profile-admin';
+    include __DIR__ . '/../view/user-profile-admin.php';
 }
 
 //2. Add validation. In this case, we make sure first_name is required.

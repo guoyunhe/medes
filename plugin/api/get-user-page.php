@@ -38,8 +38,8 @@ add_action( 'wp_ajax_nopriv_get_user_page', 'su_get_user_page' );
 function su_get_user_page() {
     $user_id = $_POST['user_id'];
     $user = new WP_User($user_id);
-    
-    include 'view/user-page.php';
-    
+
+    include __DIR__ . '/../view/user-page.php';
+
     die();
 }
