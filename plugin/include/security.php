@@ -19,6 +19,7 @@
 
 /**
  * Check secret key, make sure this user has the right to create account
+ * TODO move this secret key to database, not write in code.
  * @return boolean If the secret key is valid
  */
 
