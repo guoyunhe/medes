@@ -19,7 +19,11 @@
 
 get_header();
 
-get_template_part('create-user'); ?>
+if (su_check_secret_key()) {
+    get_template_part('create-user');
+}
+
+?>
 
 <div id="dot-cloud" class="section">
     <canvas id="demo-canvas"></canvas>
