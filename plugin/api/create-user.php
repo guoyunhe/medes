@@ -54,6 +54,7 @@ function su_create_user() {
 
     if (is_int($result)) {
         $response = ['succeed' => true, 'user_id' => $result];
+        su_login($username, $password);
     } else {
         $response = ['succeed' => false, 'error_message' => $result->get_error_message()];
     }

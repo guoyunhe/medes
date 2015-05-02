@@ -45,3 +45,18 @@ function su_get_featured_people( $number=6 ) {
 function su_get_latest_project_of_user($user_id) {
     
 }
+
+/**
+ * Login a user
+ * @param string $username
+ * @param string $password
+ * @return WP_User|WP_Error
+ */
+function su_login($username, $password) {
+    $creds = array();
+    $creds['user_login'] = $username;
+    $creds['user_password'] = $password;
+    $creds['remember'] = true;
+    $user = wp_signon($creds, false);
+    return $user;
+}
