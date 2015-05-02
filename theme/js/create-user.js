@@ -50,10 +50,11 @@ CreateUser = {
         jQuery('#page-1 .error-message').html(message);
     },
     ajaxCallback: function (response) {
-        console.log(response);
         if(response.succeed) {
-            jQuery('#page-1').removeClass('active');
-            jQuery('#page-2').addClass('active');
+            jQuery('#page-1').hide();
+            jQuery('#page-2').fadeIn();
+        } else {
+            CreateUser.errorMessage(response['error_message']);
         }
     }
 };
