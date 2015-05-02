@@ -39,7 +39,12 @@ add_action('wp_ajax_create_user', 'su_create_user');
 add_action('wp_ajax_nopriv_create_user', 'su_create_user');
 
 function su_create_user() {
-    // TODO Check secret key to stop unwanted registeration!
+    // Check secret key to stop unwanted registeration!
+    if (!su_check_secret_key_on_submit()) {
+        $response = ['succeed' => false, 'error_message' => 'Wrong secret key!'];
+        echo json_encode($response);
+        die();
+    }
 
     $username = filter_input(INPUT_POST, 'username');
     $password = filter_input(INPUT_POST, 'password');

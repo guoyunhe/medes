@@ -40,6 +40,7 @@ CreateUser = {
     createUser: function () {
         var sendData = {
             'action': 'create_user',
+            'secret_key': jQuery('#page-1 input[name="secret_key"]').val(),
             'username': jQuery('#page-1 input[name="username"]').val(),
             'password': jQuery('#page-1 input[name="password"]').val(),
             'email': jQuery('#page-1 input[name="email"]').val()

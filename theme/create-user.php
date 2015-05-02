@@ -25,6 +25,8 @@
         <div id="page-1" class="page active" data-page="1">
             <h3>Welcome to Join MEDes!</h3>
             <div class="error-message"></div>
+            <input type="hidden" name="secret_key"
+                   value="<?= filter_input(INPUT_GET, 'secret_key') ?>">
             <input type="text" name="username" class="block large"
                    placeholder="Choose a cool username"/>
             <input type="password" name="password" class="block large"
