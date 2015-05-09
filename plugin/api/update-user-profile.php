@@ -39,16 +39,17 @@ add_action('wp_ajax_nopriv_update_user_profile_basic', 'su_update_user_profile_b
 function su_update_user_profile_basic() {
     // Check if user is logged in
     if (!is_user_logged_in()) {
+        echo 'please login';
         die();
     }
+
     $user_id = get_current_user_id();
 
     su_update_user_name($user_id);
     su_update_user_location($user_id);
+    su_update_user_role($user_id);
     su_update_user_schools($user_id);
 
-    $response = ['succeed' => true];
-    echo json_encode($response);
     die();
 }
 
@@ -74,8 +75,15 @@ function su_update_user_location($user_id) {
     }
 }
 
+function su_update_user_role($user_id) {
+    $role = filter_input(INPUT_POST, 'role');
+    if ($role !== false) {
+        update_user_meta($user_id, 'role', $role);
+    }
+}
+
 function su_update_user_schools($user_id) {
-    $schools = filter_input(INPUT_POST, 'schools');
+    $schools = filter_input(INPUT_POST, 'schools', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
     if ($schools !== false) {
         update_user_meta($user_id, 'schools', json_encode($schools));
     }

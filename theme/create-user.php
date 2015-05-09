@@ -46,7 +46,7 @@
             <input type="text" name="city" class="block large"
                    placeholder="City you are living"/>
             <h3>MEDes Path</h3>
-            <select name="su_role" class="block large">
+            <select name="role" class="block large">
                 <option value="student" selected>Student</option>
                 <option value="teacher">Teacher</option>
                 <option value="tutor">Tutor</option>
@@ -59,7 +59,7 @@
                    placeholder="Second school"/><br>
             <?php su_get_year_select(null, 'year_3', 'large'); ?>
             <input type="text" name="school_3" class="large"
-                   placeholder="Third school"/><br>
+                   placeholder="Third school"/><br><br>
             <button class="next large">NEXT</button>
         </div>
     </div>

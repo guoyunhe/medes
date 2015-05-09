@@ -21,5 +21,4 @@ jQuery(function(){
     SiteHeaderFusion.init();
     //DotCloud.init();
     FeaturedPeople.init();
-    CreateUser.init();
 });
