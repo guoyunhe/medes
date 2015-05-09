@@ -17,7 +17,7 @@
  */
 ?>
 <!-- Popup box to create new user, step by step -->
-<div id="create-user" class="popup" style="display: block;">
+<div id="create-user" class="popup">
     <div class="popup-close"><i class="fa fa-close"></i></div>
     <div class="popup-body">
         <div id="page-1" class="page active" data-page="1">

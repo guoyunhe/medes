@@ -80,3 +80,7 @@ UpdateProfileBasic = {
         
     }
 };
+
+jQuery(function(){
+    openPopup(jQuery('#create-user'));
+});

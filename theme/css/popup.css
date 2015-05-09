@@ -55,6 +55,5 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     right: 0;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
-    height: 100%;
-    width: 100%;
+    overflow: auto;
 }

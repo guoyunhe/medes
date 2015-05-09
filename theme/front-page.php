@@ -130,4 +130,4 @@ if (su_check_secret_key()) {
     </div>
 </div>
 
-<?php get_footer(); ?>
+<?php get_footer();
