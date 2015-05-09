@@ -62,5 +62,27 @@
                    placeholder="Third school"/><br><br>
             <button class="next large">NEXT</button>
         </div>
+        
+        <div id="page-3" class="page active" data-page="3">
+            <div class="container">
+                <div class="user-header">
+                    <div class="name">
+                        <span></span>
+                        <button><i class="fa fa-edit"></i> Edit</button>
+                    </div>
+                    <div class="school">
+                        <span></span>
+                        <button><i class="fa fa-edit"></i> Edit</button>
+                    </div>
+                    <div class="avatar">
+                        <input type="file" name="avatar"/>
+                        <button><i class="fa fa-camera"></i></button>
+                    </div>
+                    <input type="file" name="photo"/>
+                    <button><i class="fa fa-camera"></i></button>
+                </div>
+            </div>
+            <button class="next large">FINISH</button>
+        </div>
     </div>
 </div>

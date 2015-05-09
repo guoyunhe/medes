@@ -28,6 +28,10 @@ UpdateProfileBasic = {
 };
 
 jQuery(function () {
+    if(jQuery('#create-user').length === 0) {
+        return;
+    }
+    
     // Open user creation popup/wizard
     openPopup(jQuery('#create-user'));
 
