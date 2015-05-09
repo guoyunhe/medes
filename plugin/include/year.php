@@ -1,3 +1,5 @@
+<?php
+
 /* 
  * Copyright (C) 2015 Guo Yunhe <guoyunhebrave@gmail.com>
  *
@@ -15,11 +17,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-jQuery(function(){
-    ClickModule.init();
-    TabPaneModule.init();
-    SiteHeaderFusion.init();
-    //DotCloud.init();
-    FeaturedPeople.init();
-    CreateUser.init();
-});
+function su_get_year_select($selected=null, $name='year', $class='', $id = '') {
+    $start = 1990;
+    $end = date("Y");
+    require __DIR__ . '/../view/year-select.php';
+}

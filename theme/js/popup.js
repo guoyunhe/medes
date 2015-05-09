@@ -15,11 +15,23 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-jQuery(function(){
-    ClickModule.init();
-    TabPaneModule.init();
-    SiteHeaderFusion.init();
-    //DotCloud.init();
-    FeaturedPeople.init();
-    CreateUser.init();
+jQuery(function () {
+    jQuery('.popup').each(function () {
+        var $popup = jQuery(this);
+        $popup.find('.popup-close').click(function () {
+            closePopup($popup);
+        });
+    });
 });
+
+function openPopup(element) {
+    if (!jQuery(element).hasClass('hover')) {
+        jQuery('body, html').css('overflow', 'hidden');
+    }
+    jQuery(element).fadeIn();
+}
+
+function closePopup(element) {
+    jQuery(element).fadeOut();
+    jQuery('body, html').css('overflow', '');
+}

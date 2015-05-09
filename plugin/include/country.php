@@ -25,8 +25,9 @@
  * 
  * @return array An array of all countries in the world
  */
-function get_country_array() {
-    require '../data/country-array.php';
+function su_get_country_array() {
+    $country_array = require __DIR__ . '/../data/country-array.php';
+    return $country_array;
 }
 
 /**
@@ -34,9 +35,9 @@ function get_country_array() {
  * 
  * @param string $selected Selected country code, eg. 'US', 'FI', 'CN'
  */
-function get_country_select($selected = 0) {
-    $country_array = get_country_array();
-    require '../view/country-select.php';
+function su_get_country_select($selected = 0) {
+    $country_array = su_get_country_array();
+    require __DIR__ . '/../view/country-select.php';
 }
 
 /**
@@ -47,7 +48,7 @@ function get_country_select($selected = 0) {
  * 
  * @return array An array of countries that have users
  */
-function get_exist_country_array() {
+function su_get_exist_country_array() {
     return ['FI' => 'Finland'];
 }
 
@@ -56,7 +57,7 @@ function get_exist_country_array() {
  * 
  * @param string $selected Selected country code, eg. 'US', 'FI', 'CN'
  */
-function get_exist_country_select($selected = 0) {
-    $country_array = get_exist_country_array();
-    require '../view/country-select.php';
+function su_get_exist_country_select($selected = 0) {
+    $country_array = su_get_exist_country_array();
+    require __DIR__ . '/../view/country-select.php';
 }

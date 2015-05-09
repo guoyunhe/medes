@@ -57,17 +57,3 @@ TabPaneModule = {
         });
     }
 };
-
-PopupModule = {
-    init: function(){
-        this.bindEvent();
-    },
-    bindEvent: function(){
-        jQuery('.popup').each(function () {
-            var $popup = jQuery(this);
-            $popup.find('.popup-close').click(function () {
-                $popup.hide();
-            });
-        });
-    }
-};

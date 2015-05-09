@@ -74,15 +74,14 @@ if (su_check_secret_key()) {
 
 <div id="featured-people" class="section clearfix">
     <h1 class="white-heading">Today's inspiration</h1>
-    <div class="container">
-        <div class="outer">
-            <div class="inner">
-                <?php get_template_part( 'featured-people' ); ?>
-            </div>
+    <div class="outer">
+        <div class="inner">
+            <?php get_template_part('featured-people'); ?>
         </div>
         <div class="scroll left"><i class="fa fa-arrow-left"></i></div>
         <div class="scroll right"><i class="fa fa-arrow-right"></i></div>
     </div>
+
     <div id="user-page" class="popup">
         <div class="popup-close"><i class="fa fa-close"></i></div>
         <div class="popup-body"></div>

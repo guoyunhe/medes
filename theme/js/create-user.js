@@ -59,3 +59,24 @@ CreateUser = {
         }
     }
 };
+
+UpdateProfileBasic = {
+    init: function () {
+        jQuery('#page-2 .next').click(function(){
+            CreateUser.updateProfile();
+        });
+    },
+    updateProfileBasic: function () {
+        var sendData = {
+            'action': 'update_user_profile_basic',
+            'secret_key': jQuery('#page-1 input[name="secret_key"]').val(),
+            'username': jQuery('#page-1 input[name="username"]').val(),
+            'password': jQuery('#page-1 input[name="password"]').val(),
+            'email': jQuery('#page-1 input[name="email"]').val()
+        };
+        jQuery.post(ajaxurl, sendData, this.ajaxCallback, 'json');
+    },
+    ajaxCallback: function () {
+        
+    }
+};

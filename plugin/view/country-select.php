@@ -22,8 +22,8 @@
         Select a country
     </option>
     <?php foreach ($country_array as $id => $name): ?>
-        <option value="<?= $id ?>" <?= $selected === $id ? 'selected' : '' ?>>
-            <?= $name ?>
-        </option>
+    <option value="<?= $id ?>" <?= $selected === $id ? 'selected' : '' ?>>
+        <?php echo $name; ?>
+    </option>
     <?php endforeach; ?>
 </select>

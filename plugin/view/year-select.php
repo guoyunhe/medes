@@ -1,3 +1,5 @@
+<?php
+
 /* 
  * Copyright (C) 2015 Guo Yunhe <guoyunhebrave@gmail.com>
  *
@@ -15,11 +17,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-jQuery(function(){
-    ClickModule.init();
-    TabPaneModule.init();
-    SiteHeaderFusion.init();
-    //DotCloud.init();
-    FeaturedPeople.init();
-    CreateUser.init();
-});
+?>
+<select name="<?= $name ?>" class="<?= $class ?>" id="<?= $id ?>">
+    <?php for ($year = $start; $year < $end; $year++): ?>
+        <option><?php echo $year ?></option>
+    <?php endfor; ?>
+</select>

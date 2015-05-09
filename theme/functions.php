@@ -70,6 +70,7 @@ function schoolunion_scripts() {
     wp_enqueue_script('theme-site-header-script', $jsurl . '/site-header.js');
     wp_enqueue_script('theme-ui-module-script', $jsurl . '/ui-module.js');
     wp_enqueue_script('theme-create-user-script', $jsurl . '/create-user.js');
+    wp_enqueue_script('theme-popup-script', $jsurl . '/popup.js');
 
     // Theme CSS
     wp_enqueue_style('theme-main-style', get_stylesheet_uri());
