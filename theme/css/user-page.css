@@ -15,27 +15,34 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#user-page .popup-body {
+.user-page {
     max-width: 900px;
-    margin: 0 auto;
 }
 
-.user-header {
+.user-page .header {
+    height: 300px;
     position: relative;
+    background-color: #c0c0c0;
     background-size: contain;
     background-blend-mode: multiply;
 }
 
-#user-page .avatar {
+.user-page .avatar {
     position: absolute;
-    left: 20px;
-    top: 20px;
-    width: 100px;
-    height: 100px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+    left: 0;
+    top: 0;
+    width: 300px;
+    height: 300px;
+    background-color: lightblue;
 }
 
-#user-page .name {
+.user-page .avatar button {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+}
+
+.user-page .name {
     position: absolute;
     left: 20px;
     top: 140px;
@@ -44,18 +51,25 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     text-shadow: 0 1px 3px rgba(0,0,0,0.5);
 }
 
-#user-page .school {
+.user-page .schools {
     position: absolute;
     left: 20px;
     bottom: 220px;
     font-size: 20px;
 }
 
-#user-page .photo {
+.user-page .photos {
     display: block;
     margin: 0;
     padding: 0;
     max-width: 100%;
     height: auto;
     opacity: 0;
+}
+
+.user-page .picture {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    background-color: rgba(255,255,255,0.3);
 }

@@ -15,18 +15,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-UpdateProfileBasic = {
-    init: function () {
-        
-    },
-    updateProfileBasic: function () {
-        
-    },
-    ajaxCallback: function () {
-
-    }
-};
-
 jQuery(function () {
     if(jQuery('#create-user').length === 0) {
         return;
@@ -116,4 +104,77 @@ jQuery(function () {
         jQuery.post(ajaxurl, sendData);
     });
 
+    // Page 3: user profile page
+    
+    // Avatar
+    jQuery('#page-3 .avatar button').click(function () {
+        jQuery('#page-3 .avatar input')[0].click();
+    });
+
+    jQuery('#page-3 .avatar input').change(function () {
+        var file_data = jQuery(this).prop('files')[0];
+        var form_data = new FormData();
+        form_data.append('action', 'update_user_avatar');
+        form_data.append('avatar', file_data);
+        console.log(ajaxurl);
+        jQuery.ajax({
+            url: ajaxurl,
+            data: form_data,
+            method: 'POST',
+            dataType: 'json',
+            processData: false,
+            contentType: false
+        }).done(updateAvatar);
+    });
+    
+    function updateAvatar(data) {
+        jQuery('#page-3 .avatar').css('background-image', 'url("' + data.avatar_url + '")');
+    }
+    
+    // Photos
+    jQuery('#page-3 .add-picture').click(function () {
+        jQuery('#page-3 .add-picture input')[0].click();
+    });
+    
+    jQuery('#page-3 .add-picture input').change(function () {
+        var file_data = jQuery(this).prop('files')[0];
+        var form_data = new FormData();
+        form_data.append('action', 'upload_user_picture');
+        form_data.append('picture', file_data);
+        console.log(ajaxurl);
+        jQuery.ajax({
+            url: ajaxurl,
+            data: form_data,
+            method: 'POST',
+            dataType: 'json',
+            processData: false,
+            contentType: false
+        }).done(addPicture);
+    });
+    
+    function addPicture(data) {
+        var $picture = jQuery('<div class="picture"><span class="remove"><i class="fa fa-remove"></i></span></div>');
+        $picture.data('uuid', data.uuid);
+        $picture.css('background-image', 'url("' + data.url + '")');
+        jQuery('#page-3 .add-picture').after($picture);
+        $picture.find('.remove').click(function(){
+            var sendData ={
+                'action': 'remove_user_picture',
+                'uuid': data.uuid
+            };
+            jQuery.ajax({
+                url: ajaxurl,
+                data: sendData,
+                method: 'POST',
+                dataType: 'json'
+            });
+            $picture.remove();
+        });
+    }
+    
+    // Links
+    
+    // Experience
+    
+    // Description text?
 });

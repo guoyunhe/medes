@@ -32,3 +32,34 @@ For create user popup wizard
     max-width: 400px;
     margin: 100px auto;
 }
+
+/* Avatar */
+
+.avatar input[type=file] {
+    display: none;
+}
+
+/* Pictures */
+
+.add-picture {
+    width: 150px;
+    height: 150px;
+    line-height: 150px;
+    text-align: center;
+    background-color: rgba(255,255,255,0.3);
+    cursor: pointer;
+    font-size: 36px;
+}
+
+.add-picture input {
+    display: none;
+}
+
+.user-page .picture .remove {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    font-size: 22px;
+    cursor: pointer;
+    color: red;
+}

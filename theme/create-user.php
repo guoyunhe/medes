@@ -54,33 +54,51 @@
             <?php su_get_year_select(null, 'year_1', 'large'); ?>
             <input type="text" name="school_1" class="large"
                    placeholder="First school"/><br>
-            <?php su_get_year_select(null, 'year_2', 'large'); ?>
+                   <?php su_get_year_select(null, 'year_2', 'large'); ?>
             <input type="text" name="school_2" class="large"
                    placeholder="Second school"/><br>
-            <?php su_get_year_select(null, 'year_3', 'large'); ?>
+                   <?php su_get_year_select(null, 'year_3', 'large'); ?>
             <input type="text" name="school_3" class="large"
                    placeholder="Third school"/><br><br>
             <button class="next large">NEXT</button>
         </div>
-        
+
         <div id="page-3" class="page active" data-page="3">
             <div class="container">
-                <div class="user-header">
-                    <div class="name">
-                        <span></span>
-                        <button><i class="fa fa-edit"></i> Edit</button>
+                <div class="user-page">
+                    <div class="header">
+                        <div class="name">
+                            <span></span>
+                            <button><i class="fa fa-edit"></i> Edit</button>
+                        </div>
+                        <div class="school">
+                            <span></span>
+                            <button><i class="fa fa-edit"></i> Edit</button>
+                        </div>
+                        <div class="avatar">
+                            <input type="file" name="avatar"/>
+                            <button><i class="fa fa-camera"></i> Edit</button>
+                        </div>
                     </div>
-                    <div class="school">
-                        <span></span>
-                        <button><i class="fa fa-edit"></i> Edit</button>
+                    <div class="links">
+                        <div class="link"><i class="fa fa-facebook"></i></div>
+                        <div class="link"><i class="fa fa-twitter"></i></div>
+                        <div class="link"><i class="fa fa-linkedin"></i></div>
+                        <div class="link"><i class="fa fa-google-plus"></i></div>
+                        <div class="link"><i class="fa fa-instagram"></i></div>
+                        <div class="link"><i class="fa fa-flickr"></i></div>
+                        <div class="link"><i class="fa fa-skype"></i></div>
+                        <div class="link"><i class="fa fa-email"></i></div>
                     </div>
-                    <div class="avatar">
-                        <input type="file" name="avatar"/>
-                        <button><i class="fa fa-camera"></i></button>
+                    <div class="experience"></div>
+                    <div class="pictures">
+                        <div class="add-picture">
+                            <i class="fa fa-camera"></i>
+                            <input type="file" name="picture"/>
+                        </div>
                     </div>
-                    <input type="file" name="photo"/>
-                    <button><i class="fa fa-camera"></i></button>
                 </div>
+
             </div>
             <button class="next large">FINISH</button>
         </div>
