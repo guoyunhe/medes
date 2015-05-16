@@ -34,17 +34,31 @@ defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 
 // require static functions
 require_once 'include/user.php';
-#require_once 'include/school.php';
+require_once 'include/school.php';
 require_once 'include/country.php';
 require_once 'include/year.php';
 require_once 'include/security.php';
+require_once 'include/ajax-utility.php';
+
 // require hook functions
 require_once 'hook/user-register.php';
 require_once 'hook/user-admin.php';
 require_once 'hook/school.php';
 require_once 'hook/workshop.php';
-require_once 'hook/project.php';
+
 // require api functions
-require_once 'api/get-user-page.php';
-require_once 'api/create-user.php';
-require_once 'api/update-user-profile.php';
+require_once 'api/user.php';
+
+/**
+ * Define AJAX URL for front end, not only admin side.
+ */
+
+add_action('wp_head', 'su_ajaxurl');
+
+function su_ajaxurl() {
+    ?>
+    <script type="text/javascript">
+    var ajaxurl = '<?php echo admin_url('admin-ajax.php'); ?>';
+    </script>
+    <?php
+}

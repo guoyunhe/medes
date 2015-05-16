@@ -1,7 +1,7 @@
 <?php
 
 /* 
- * Copyright (C) 2015 Guo Yunhe <guoyunhebrave at gmail.com>
+ * Copyright (C) 2015 Guo Yunhe <guoyunhebrave@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,7 +17,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
-
-
-
+function su_get_school_select($selected_value, $name = 'school', $class = '', $id = '') {
+    $query = new WP_Query("post_type=school");
+    while ($query->have_posts()) {
+        $query->the_post();
+        $schools[get_the_ID()] = get_the_title();
+    }
+    
+    include __DIR__ . '/../view/school-select.php';
+}

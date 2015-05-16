@@ -71,5 +71,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     position: relative;
     width: 150px;
     height: 150px;
+    float: left;
     background-color: rgba(255,255,255,0.3);
+    background-size: cover;
 }

@@ -1,7 +1,7 @@
 <?php
 
 /* 
- * Copyright (C) 2015 Guo Yunhe <guoyunhebrave at gmail.com>
+ * Copyright (C) 2015 Guo Yunhe <guoyunhebrave@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,19 +17,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-get_header(); ?>
-
-<div id="content">
-    <div class="container clearfix">
-        <?php
-        if (have_posts()) {
-            while (have_posts()) {
-                the_post();
-                get_template_part('content', get_post_type());
-            }
-        }
-        ?>
-    </div>
-</div>
-
-<?php get_footer(); ?>
+?>
+<select name="<?php echo $name ?>" class="<?php echo $class ?>"
+        id="<?php echo $id ?>">
+    <?php foreach ($schools as $id => $name): ?>
+        <option value="<?php echo $id ?>">
+            <?php echo $name ?>
+        </option>
+    <?php endforeach; ?>
+</select>

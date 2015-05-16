@@ -1,7 +1,7 @@
 <?php
 
 /* 
- * Copyright (C) 2015 Guo Yunhe <guoyunhebrave at gmail.com>
+ * Copyright (C) 2015 Guo Yunhe <guoyunhebrave@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,7 +17,17 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+/**
+ * Static page popup
+ */
 
-
-
-
+?>
+<div id="static-page-popup" class="popup">
+    <div class="popup-close"><i class="fa fa-close"></i></div>
+    <div class="popup-body">
+        <div class="container">
+            <h1 class="page-title"></h1>
+            <div class="page-content"></div>
+        </div>
+    </div>
+</div>

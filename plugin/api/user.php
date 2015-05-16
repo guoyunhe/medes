@@ -19,63 +19,193 @@
 
 
 /**
- * Basic profile update API
+ * API: create new user account
  * 
+ * AJAX:
+ * url: from ajaxurl variable
  * data: {
- *     action: 'update_user_profile_basic'
- *     user_id: int
- *     first_name: string
- *     last_name: string,
- *     country: string,
- *     city: string,
- *     schools: array,
+ *     action: 'create_user',
+ *     username: string
+ *     password: string
+ *     password_repeat: string
+ *     email: string
  * }
- * method: post
- * return: {succeed: true}, or {succeed:false}
+ * method: 'post'
+ * return: {succeed: true, userid: int} or {succeed: false, error message: string}
  */
-add_action('wp_ajax_update_user_profile_basic', 'su_update_user_profile_basic');
-add_action('wp_ajax_nopriv_update_user_profile_basic', 'su_update_user_profile_basic');
 
-function su_update_user_profile_basic() {
-    // Check if user is logged in
-    if (!is_user_logged_in()) {
-        echo 'please login';
+add_action('wp_ajax_create_user', 'su_create_user');
+add_action('wp_ajax_nopriv_create_user', 'su_create_user');
+
+function su_create_user() {
+    // Check secret key to stop unwanted registeration!
+    if (!su_check_secret_key_on_submit()) {
+        $response = ['succeed' => false, 'error_message' => 'Wrong secret key!'];
+        echo json_encode($response);
         die();
     }
 
-    $user_id = get_current_user_id();
+    $username = filter_input(INPUT_POST, 'username');
+    $password = filter_input(INPUT_POST, 'password');
+    $email = filter_input(INPUT_POST, 'email');
 
-    su_update_user_name($user_id);
-    su_update_user_location($user_id);
-    su_update_user_role($user_id);
-    su_update_user_schools($user_id);
+    $result = wp_create_user($username, $password, $email);
 
+    if (is_int($result)) {
+        $response = ['succeed' => true, 'user_id' => $result];
+        su_login($username, $password);
+    } else {
+        $response = ['succeed' => false, 'error_message' => $result->get_error_message()];
+    }
+    echo json_encode($response);
     die();
 }
 
-function su_update_user_name($user_id) {
+/**
+ * API: Return a JSON of user page data.
+ * 
+ * [Request]
+ * 
+ * user_id: int
+ * 
+ * [Response]
+ * 
+ * succeed: boolean
+ * error_message: string
+ * first_name: string
+ * last_name: string
+ * country: string
+ * city: string
+ * role: string
+ * schools: array
+ * links: array
+ * avatar: array
+ * pictures: array
+ * experience: array
+ */
+
+add_action( 'wp_ajax_get_user_page', 'su_get_user_page' );
+add_action( 'wp_ajax_nopriv_get_user_page', 'su_get_user_page' );
+
+function su_get_user_page() {
+    $user_id = filter_input(INPUT_POST, 'user_id');
+    
+    if($user_id === false) {
+        $user_id = get_current_user_id(); // Request without any paramaters
+    }
+    
+    $user = get_userdata( $user_id );
+
+    if ($user === false) {
+        $response = ['succeed' => false, 'error_message' => 'User doesn\'t exist'];
+    } else {
+        $response = [
+            'succeed' => true,
+            'username' => $user->user_login,
+            'first_name' => $user->first_name,
+            'last_name' => $user->last_name,
+            'country' => $user->country,
+            'city' => $user->city,
+            'role' => $user->role,
+            'avatar' => json_decode($user->avatar, true),
+            'schools' => json_decode($user->schools, true),
+            'links' => json_decode($user->links, true),
+            'pictures' => json_decode($user->pictures, true),
+            'experience' => json_decode($user->experience, true),
+        ];
+    }
+
+    echo json_encode($response);
+    die();
+}
+
+
+/**
+ * API: Update first name and last name
+ * 
+ * [Request]
+ * 
+ * first_name: string
+ * last_name: string
+ * 
+ * [Response]
+ * 
+ * succeed: boolean
+ */
+
+add_action('wp_ajax_update_real_name', 'su_update_real_name');
+add_action('wp_ajax_nopriv_update_real_name', 'su_update_real_name');
+
+function su_update_real_name() {
+    su_check_login();
+    $user_id = get_current_user_id();
+
     $first_name = filter_input(INPUT_POST, 'first_name');
     $last_name = filter_input(INPUT_POST, 'last_name');
-    if ($first_name !== false) {
+
+    if ($first_name !== false && $last_name !== false) {
         update_user_meta($user_id, 'first_name', $first_name);
-    }
-    if ($last_name !== false) {
         update_user_meta($user_id, 'last_name', $last_name);
+        $response = ['succeed' => true];
+    } else {
+        $response = ['succeed' => false];
     }
+
+    echo json_encode($response);
+    die();
 }
 
-function su_update_user_location($user_id) {
+/**
+ * API: Update country and city
+ * 
+ * [Request]
+ * 
+ * country: string
+ * city: string
+ * 
+ * [Response]
+ * 
+ * succeed: boolean
+ */
+
+add_action('wp_ajax_update_user_location', 'su_update_user_location');
+add_action('wp_ajax_nopriv_update_user_location', 'su_update_user_location');
+
+function su_update_user_location() {
+    su_check_login();
+    $user_id = get_current_user_id();
+
     $country = filter_input(INPUT_POST, 'country');
     $city = filter_input(INPUT_POST, 'city');
-    if ($country !== false) {
+
+    if ($country !== false && $city !== false) {
         update_user_meta($user_id, 'country', $country);
-    }
-    if ($city !== false) {
         update_user_meta($user_id, 'city', $city);
+        $response = ['succeed' => true];
+    } else {
+        $response = ['succeed' => false];
     }
+
+    echo json_encode($response);
+    die();
 }
 
-function su_update_user_role($user_id) {
+/**
+ * API: Update country and city
+ * 
+ * [Request]
+ * 
+ * role: string
+ * 
+ * [Response]
+ * 
+ * succeed: boolean
+ */
+
+add_action('wp_ajax_update_user_role', 'su_update_user_role');
+add_action('wp_ajax_nopriv_update_user_role', 'su_update_user_role');
+
+function su_update_user_role() {
     $role = filter_input(INPUT_POST, 'role');
     if ($role !== false) {
         update_user_meta($user_id, 'role', $role);
@@ -192,52 +322,4 @@ function su_remove_user_picture() {
     update_user_meta($user_id, 'pictures', json_encode($pictures));
     
     die();
-}
-
-function su_check_login() {
-    if (!is_user_logged_in()) {
-        $response = ['succeed'=>false, 'error_message' => 'Please login!'];
-        echo json_encode($response);
-        die();
-    }
-}
-
-function su_check_picture($key_name) {
-    if (!isset($_FILES[$key_name])) {
-        $response = ['succeed' => false, 'error_message' => 'No upload file found!'];
-        echo json_encode($response);
-        die();
-    }
-}
-
-function su_save_file($key_name) {
-
-    $overrides = array('test_form' => false);
-    $result = wp_handle_upload($_FILES[$key_name], $overrides);
-
-    if (!isset($result['file'])) {
-        $response = ['succeed' => false, 'error_message' => 'Saving file failed!'];
-        echo json_encode($response);
-        die();
-    }
-
-    return $result;
-}
-
-function su_resize_picture($file, $width, $height, $crop = false) {
-
-    $image_editor = wp_get_image_editor($file);
-
-    if (is_wp_error($image_editor)) {
-        error_log('Cannot resize picture');
-    }
-
-    $image_editor->resize($width, $height, $crop);
-    $image_editor->save($file);
-}
-
-function su_remove_file($file) {
-    if (file_exists($file)) {
-        unlink($file);
-    }
 }

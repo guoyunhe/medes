@@ -19,9 +19,35 @@
 
 get_header();
 
+// Load popup modals of user, school and workshop page
 if (su_check_secret_key()) {
-    get_template_part('create-user');
+    get_template_part('user/create');
+    get_template_part('user/edit-basic');
 }
+
+if (su_check_secret_key() || is_user_logged_in()) {
+    get_template_part('user/edit');
+}
+
+get_template_part('user/view');
+
+if (is_user_logged_in() && is_admin()) {
+    // Only admin can create and edit school
+    get_template_part('school/create');
+    get_template_part('school/edit');
+}
+
+get_template_part('school/view');
+
+if (is_user_logged_in() && is_admin()) {
+    // Only admin can create and edit workshop
+    get_template_part('workshop/create');
+    get_template_part('workshop/edit');
+}
+
+get_template_part('workshop/view');
+
+get_template_part('static-page');
 
 ?>
 
