@@ -60,7 +60,7 @@
                     <div class="click inline button">Schools</div>
                     <div class="click inline button">Workshops</div>
                     <div class="click inline button">People</div>
-                    <div class="click inline button">About</div>
+                    <a href="#page/2" class="click inline button">About</a>
                 </div>
             </div>
         </header>

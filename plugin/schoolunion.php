@@ -48,6 +48,7 @@ require_once 'hook/workshop.php';
 
 // require api functions
 require_once 'api/user.php';
+require_once 'api/page.php';
 
 /**
  * Define AJAX URL for front end, not only admin side.

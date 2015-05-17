@@ -62,15 +62,16 @@ function schoolunion_scripts() {
     wp_enqueue_script('datamaps', $liburl . '/datamaps/datamaps.world.min.js');
 
     // Theme JavaScript
-    wp_enqueue_script('theme-main-script', $jsurl . '/main.js');
-    wp_enqueue_script('theme-ajax-script', $jsurl . '/ajax.js');
-    wp_enqueue_script('theme-datamap-script', $jsurl . '/datamap.js');
-    wp_enqueue_script('theme-dotcloud-script', $jsurl . '/dotcloud.js');
-    wp_enqueue_script('theme-featured-people-script', $jsurl . '/featured-people.js');
-    wp_enqueue_script('theme-site-header-script', $jsurl . '/site-header.js');
-    wp_enqueue_script('theme-ui-module-script', $jsurl . '/ui-module.js');
-    wp_enqueue_script('theme-create-user-script', $jsurl . '/create-user.js');
-    wp_enqueue_script('theme-popup-script', $jsurl . '/popup.js');
+    wp_enqueue_script('su-main-script', $jsurl . '/main.js');
+    wp_enqueue_script('su-ajax-script', $jsurl . '/ajax.js');
+    wp_enqueue_script('su-datamap-script', $jsurl . '/datamap.js');
+    wp_enqueue_script('su-dotcloud-script', $jsurl . '/dotcloud.js');
+    wp_enqueue_script('su-featured-people-script', $jsurl . '/featured-people.js');
+    wp_enqueue_script('su-site-header-script', $jsurl . '/site-header.js');
+    wp_enqueue_script('su-ui-module-script', $jsurl . '/ui-module.js');
+    wp_enqueue_script('su-create-user-script', $jsurl . '/create-user.js');
+    wp_enqueue_script('su-popup-script', $jsurl . '/popup.js');
+    wp_enqueue_script('su-static-page-script', $jsurl . '/page.js');
 
     // Theme CSS
     wp_enqueue_style('theme-main-style', get_stylesheet_uri());
