@@ -178,3 +178,39 @@ jQuery(function () {
     
     // Description text?
 });
+
+/**
+ * Open user page popup, query and display user data
+ * @param {Number} userId User ID, can be ignored
+ */
+
+function viewUserPage(userId) {
+    openPopup(jQuery('#user-page-popup'));
+
+    var request = {'action': 'get_user_page_data'};
+
+    if (typeof userId !== 'undefined') {
+        request['user_id'] = userId;
+    }
+
+    jQuery.ajax({
+        url: ajaxurl,
+        data: request,
+        method: 'POST',
+        dataType: 'json'
+    }).done(function (response) {
+        if (!response['succeed']) {
+            return;
+        }
+        // Avatar
+        jQuery('#user-page-popup .avatar').css('background-image',
+                'url("' + response['avatar_url'] + '")');
+        // Display name (first name + last name)
+        jQuery('#user-page-popup .name').text(response['first_name'] + ' ' + response['last_name']);
+    });
+}
+
+// Test, should be removed after finish
+jQuery(function () {
+    viewUserPage();
+});

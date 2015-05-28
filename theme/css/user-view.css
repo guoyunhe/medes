@@ -15,10 +15,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-.user-page {
-    max-width: 900px;
-}
-
+/* Header */
 .user-page .header {
     height: 300px;
     position: relative;
@@ -27,6 +24,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     background-blend-mode: multiply;
 }
 
+/* Avatar */
 .user-page .avatar {
     position: absolute;
     left: 0;
@@ -36,28 +34,49 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     background-color: lightblue;
 }
 
+/* Avatar edit tools */
 .user-page .avatar button {
     position: absolute;
     right: 10px;
     bottom: 10px;
 }
 
+.user-page .avatar input[type=file] {
+    display: none;
+}
+
+/* User real name: first name + last name */
 .user-page .name {
     position: absolute;
-    left: 20px;
+    left: 320px;
     top: 140px;
     font-size: 24px;
     font-weight: bold;
     text-shadow: 0 1px 3px rgba(0,0,0,0.5);
 }
 
+/* Edit */
+.user-page .name button.edit {
+    
+}
+
+.user-page .name input {
+    display: none;
+}
+
+.user-page .name button.save {
+    display: none;
+}
+
+/* Schools */
 .user-page .schools {
     position: absolute;
-    left: 20px;
+    left: 320px;
     bottom: 220px;
     font-size: 20px;
 }
 
+/* Pictures */
 .user-page .photos {
     display: block;
     margin: 0;
@@ -75,3 +94,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     background-color: rgba(255,255,255,0.3);
     background-size: cover;
 }
+
+/* Links */
+
+/* Experience */
+
+/* Skills */

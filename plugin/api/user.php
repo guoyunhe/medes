@@ -19,7 +19,7 @@
 
 
 /**
- * API: create new user account
+ * Create new user account
  * 
  * AJAX:
  * url: from ajaxurl variable
@@ -62,10 +62,11 @@ function su_create_user() {
 }
 
 /**
- * API: Return a JSON of user page data.
+ * Return a JSON of user page data.
  * 
  * [Request]
  * 
+ * action: 'get_user_page_data'
  * user_id: int
  * 
  * [Response]
@@ -77,20 +78,21 @@ function su_create_user() {
  * country: string
  * city: string
  * role: string
+ * avatar_url: string
  * schools: array
  * links: array
- * avatar: array
  * pictures: array
  * experience: array
  */
 
-add_action( 'wp_ajax_get_user_page', 'su_get_user_page' );
-add_action( 'wp_ajax_nopriv_get_user_page', 'su_get_user_page' );
+add_action( 'wp_ajax_get_user_page_data', 'su_get_user_page_data' );
+add_action( 'wp_ajax_nopriv_get_user_page_data', 'su_get_user_page_data' );
 
-function su_get_user_page() {
-    $user_id = filter_input(INPUT_POST, 'user_id');
+function su_get_user_page_data() {
+    echo filter_input(INPUT_POST, 'user_id');
+    $user_id = filter_input(INPUT_POST, 'user_id', FILTER_VALIDATE_INT);
     
-    if($user_id === false) {
+    if($user_id === false || $user_id === null) {
         $user_id = get_current_user_id(); // Request without any paramaters
     }
     
@@ -107,7 +109,7 @@ function su_get_user_page() {
             'country' => $user->country,
             'city' => $user->city,
             'role' => $user->role,
-            'avatar' => json_decode($user->avatar, true),
+            'avatar_url' => $user->avatar_url,
             'schools' => json_decode($user->schools, true),
             'links' => json_decode($user->links, true),
             'pictures' => json_decode($user->pictures, true),
