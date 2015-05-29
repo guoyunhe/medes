@@ -15,25 +15,28 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-jQuery(function () {
-    if(jQuery('#create-user').length === 0) {
-        return;
-    }
-    
+// Create new account popup
+
+function createUserPopup() {
     // Open user creation popup/wizard
-    openPopup(jQuery('#create-user'));
+    openPopup(jQuery('#user-create-popup'));
+}
 
-    // Page 1: register
-
-    jQuery('#page-1 .next').click(function () {
+jQuery(function () {
+    jQuery('#user-create-popup .next').click(function () {
         if (checkPassword()) {
             createUser();
         }
     });
 
     function checkPassword() {
-        var pwd1 = jQuery('#page-1 input[name="password"]').val();
-        var pwd2 = jQuery('#page-1 input[name="password_repeat"]').val();
+        var username = jQuery('#user-create-popup [name="username"]').val();
+        var pwd1 = jQuery('#user-create-popup [name="password"]').val();
+        var pwd2 = jQuery('#user-create-popup [name="password_repeat"]').val();
+        if (username === null || username === '') {
+            errorMessage('Username cannot be empty!');
+            return false;
+        }
         if (pwd1 === null || pwd1 === '') {
             errorMessage('Password cannot be empty!');
             return false;
@@ -48,10 +51,10 @@ jQuery(function () {
     function createUser() {
         var sendData = {
             'action': 'create_user',
-            'secret_key': jQuery('#page-1 input[name="secret_key"]').val(),
-            'username': jQuery('#page-1 input[name="username"]').val(),
-            'password': jQuery('#page-1 input[name="password"]').val(),
-            'email': jQuery('#page-1 input[name="email"]').val()
+            'secret_key': jQuery('#user-create-popup [name="secret_key"]').val(),
+            'username': jQuery('#user-create-popup [name="username"]').val(),
+            'password': jQuery('#user-create-popup [name="password"]').val(),
+            'email': jQuery('#user-create-popup [name="email"]').val()
         };
         jQuery.post(ajaxurl, sendData, ajaxCallback, 'json');
     }
@@ -59,59 +62,79 @@ jQuery(function () {
 
     function ajaxCallback(response) {
         if (response.succeed) {
-            jQuery('#page-1').hide();
-            jQuery('#page-2').fadeIn();
+            closePopup(jQuery('#user-create-popup'));
+            openPopup(jQuery('#user-edit-basic-popup'));
         } else {
             errorMessage(response['error_message']);
         }
     }
 
     function errorMessage(message) {
-        jQuery('#page-1 .error-message').html(message);
+        jQuery('#user-create-popup .error-message').html(message);
     }
+});
 
+// Edit user basic profile popup
 
-    // Page 2: basic information
-    jQuery('#page-2 .next').click(function () {
-        var schools = [];
-        
-        var y = jQuery('#page-2 select[name="year_1"]').val();
-        var s = jQuery('#page-2 input[name="school_1"]').val();
-        if(y.length > 0 && s.length > 0) {
-            schools.push({'year':y, 'school': s});
-        }
-        y = jQuery('#page-2 select[name="year_2"]').val();
-        s = jQuery('#page-2 input[name="school_2"]').val();
-        if(y.length > 0 && s.length > 0) {
-            schools.push({'year':y, 'school': s});
-        }
-        y = jQuery('#page-2 select[name="year_3"]').val();
-        s = jQuery('#page-2 input[name="school_3"]').val();
-        if(y.length > 0 && s.length > 0) {
-            schools.push({'year':y, 'school': s});
-        }
-        
-        var sendData = {
-            'action': 'update_user_profile_basic',
-            'first_name': jQuery('#page-2 input[name="first_name"]').val(),
-            'last_name': jQuery('#page-2 input[name="last_name"]').val(),
-            'country': jQuery('#page-2 select[name="country"]').val(),
-            'city': jQuery('#page-2 input[name="city"]').val(),
-            'role': jQuery('#page-2 select[name="role"]').val(),
-            'schools': schools
+function editUserBasicPopup() {
+    openPopup(jQuery('#user-edit-basic-popup'));
+}
+
+jQuery(function () {
+    jQuery('#user-edit-basic-popup .next').click(function(){
+        var request = {
+            'action': 'edit_user_basic',
+            'first_name': jQuery('#user-edit-basic-popup input[name="first_name"]').val(),
+            'last_name': jQuery('#user-edit-basic-popup input[name="last_name"]').val(),
+            'country': jQuery('#user-edit-basic-popup select[name="country"]').val(),
+            'city': jQuery('#user-edit-basic-popup input[name="city"]').val(),
+            'role': jQuery('#user-edit-basic-popup select[name="role"]').val(),
+            'schools': [
+                {
+                    'year': jQuery('#user-edit-basic-popup select[name="year_1"]').val(),
+                    'school': jQuery('#user-edit-basic-popup select[name="school_1"]').val()
+                },
+                {
+                    'year': jQuery('#user-edit-basic-popup select[name="year_2"]').val(),
+                    'school': jQuery('#user-edit-basic-popup select[name="school_2"]').val()
+                },
+                {
+                    'year': jQuery('#user-edit-basic-popup select[name="year_3"]').val(),
+                    'school': jQuery('#user-edit-basic-popup select[name="school_3"]').val()
+                }
+            ]
         };
         
-        jQuery.post(ajaxurl, sendData);
+        jQuery.ajax({
+            url: ajaxurl,
+            data: request,
+            method: 'POST',
+            dataType: 'json'
+        }).done(function (response) {
+            if (response.succeed) {
+                closePopup(jQuery('#user-edit-basic-popup'));
+                editUserPopup();
+            }
+        });
     });
+});
 
-    // Page 3: user profile page
-    
+
+// Edit user full profile popup
+
+function editUserPopup() {
+    // Open user creation popup/wizard
+    openPopup(jQuery('#user-edit-popup'));
+}
+
+jQuery(function () {
+
     // Avatar
-    jQuery('#page-3 .avatar button').click(function () {
-        jQuery('#page-3 .avatar input')[0].click();
+    jQuery('#user-edit-popup .avatar button').click(function () {
+        jQuery('#user-edit-popup .avatar input')[0].click();
     });
 
-    jQuery('#page-3 .avatar input').change(function () {
+    jQuery('#user-edit-popup .avatar input').change(function () {
         var file_data = jQuery(this).prop('files')[0];
         var form_data = new FormData();
         form_data.append('action', 'update_user_avatar');
@@ -128,20 +151,19 @@ jQuery(function () {
     });
     
     function updateAvatar(data) {
-        jQuery('#page-3 .avatar').css('background-image', 'url("' + data.avatar_url + '")');
+        jQuery('#user-edit-popup .avatar').css('background-image', 'url("' + data.avatar_url + '")');
     }
     
     // Photos
-    jQuery('#page-3 .add-picture').click(function () {
-        jQuery('#page-3 .add-picture input')[0].click();
+    jQuery('#user-edit-popup .add-picture').click(function () {
+        jQuery('#user-edit-popup .add-picture input')[0].click();
     });
     
-    jQuery('#page-3 .add-picture input').change(function () {
+    jQuery('#user-edit-popup .add-picture input').change(function () {
         var file_data = jQuery(this).prop('files')[0];
         var form_data = new FormData();
         form_data.append('action', 'upload_user_picture');
         form_data.append('picture', file_data);
-        console.log(ajaxurl);
         jQuery.ajax({
             url: ajaxurl,
             data: form_data,
@@ -156,7 +178,7 @@ jQuery(function () {
         var $picture = jQuery('<div class="picture"><span class="remove"><i class="fa fa-remove"></i></span></div>');
         $picture.data('uuid', data.uuid);
         $picture.css('background-image', 'url("' + data.url + '")');
-        jQuery('#page-3 .add-picture').after($picture);
+        jQuery('#user-edit-popup .add-picture').after($picture);
         $picture.find('.remove').click(function(){
             var sendData ={
                 'action': 'remove_user_picture',
@@ -177,14 +199,22 @@ jQuery(function () {
     // Experience
     
     // Description text?
+    
+    // Finish button
+    jQuery('#user-edit-popup .finish').click(function () {
+        closePopup(jQuery('#user-edit-popup'));
+        viewUserPopup();
+    });
 });
+
+
 
 /**
  * Open user page popup, query and display user data
  * @param {Number} userId User ID, can be ignored
  */
 
-function viewUserPage(userId) {
+function viewUserPopup(userId) {
     openPopup(jQuery('#user-page-popup'));
 
     var request = {'action': 'get_user_page_data'};
@@ -207,10 +237,24 @@ function viewUserPage(userId) {
                 'url("' + response['avatar_url'] + '")');
         // Display name (first name + last name)
         jQuery('#user-page-popup .name').text(response['first_name'] + ' ' + response['last_name']);
+        
+        // Schools
+        
+        // Links
+        
+        // Pictures
+        var pictures = response['pictures'];
+        for (var key in pictures) {
+            if (pictures.hasOwnProperty(key)) {
+                var $picture = jQuery('<div class="picture"></div>');
+                $picture.css('background-image', 'url("' + pictures[key].url + '")');
+                jQuery('#user-page-popup .pictures').append($picture);
+            }
+        }
     });
 }
 
 // Test, should be removed after finish
 jQuery(function () {
-    viewUserPage();
+    //editUserBasicPopup();
 });

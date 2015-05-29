@@ -62,6 +62,69 @@ function su_create_user() {
 }
 
 /**
+ * API edit user basic information
+ * 
+ * [Request]
+ * 
+ * action: 'edit_user_basic'
+ * first_name: string
+ * last_name: string
+ * country: string
+ * city: string
+ * role: string
+ * schools: array
+ * 
+ * [Response]
+ * 
+ * succeed: boolean
+ * error_message: string
+ */
+
+add_action( 'wp_ajax_edit_user_basic', 'su_edit_user_basic' );
+add_action( 'wp_ajax_nopriv_edit_user_basic', 'su_edit_user_basic' );
+
+function su_edit_user_basic() {
+    su_check_login();
+    $user_id = get_current_user_id();
+
+    $first_name = filter_input(INPUT_POST, 'first_name');
+    $last_name = filter_input(INPUT_POST, 'last_name');
+    $country = filter_input(INPUT_POST, 'country');
+    $city = filter_input(INPUT_POST, 'city');
+    $role = filter_input(INPUT_POST, 'role');
+    $schools = filter_input(INPUT_POST, 'schools', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
+
+    if ($first_name !== false) {
+        update_user_meta($user_id, 'first_name', $first_name);
+    }
+    
+    if ($last_name !== false) {
+        update_user_meta($user_id, 'last_name', $last_name);
+    }
+    
+    if($country !== false) {
+        update_user_meta($user_id, 'country', $country);
+    }
+    
+    if($city !== false) {
+        update_user_meta($user_id, 'city', $city);
+    }
+    
+    if ($role !== false) {
+        update_user_meta($user_id, 'role', $role);
+    }
+    
+    if ($schools !== false) {
+        update_user_meta($user_id, 'schools', json_encode($schools));
+    }
+    
+    $response = ['succeed' => true];
+
+    echo json_encode($response);
+    die();
+}
+
+/**
  * Return a JSON of user page data.
  * 
  * [Request]
@@ -193,7 +256,7 @@ function su_update_user_location() {
 }
 
 /**
- * API: Update country and city
+ * API: Update user role
  * 
  * [Request]
  * 

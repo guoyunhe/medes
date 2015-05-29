@@ -32,6 +32,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     padding-right: 10px;
 }
 
+.container.small {
+    max-width: 400px;
+}
+
 /*
 Clearfix - Contain float elements easily, from
 http://nicolasgallagher.com/micro-clearfix-hack/

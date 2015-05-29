@@ -20,6 +20,7 @@
 ?>
 <select name="<?php echo $name ?>" class="<?php echo $class ?>"
         id="<?php echo $id ?>">
+    <option></option>
     <?php foreach ($schools as $id => $name): ?>
         <option value="<?php echo $id ?>">
             <?php echo $name ?>
