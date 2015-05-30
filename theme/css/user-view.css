@@ -55,19 +55,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     text-shadow: 0 1px 3px rgba(0,0,0,0.5);
 }
 
-/* Edit */
-.user-page .name button.edit {
-    
-}
-
-.user-page .name input {
-    display: none;
-}
-
-.user-page .name button.save {
-    display: none;
-}
-
 /* Schools */
 .user-page .schools {
     position: absolute;
@@ -77,25 +64,34 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 }
 
 /* Pictures */
-.user-page .photos {
-    display: block;
-    margin: 0;
-    padding: 0;
-    max-width: 100%;
-    height: auto;
-    opacity: 0;
+.user-page .pictures {
+    margin: 10px 0;
 }
 
 .user-page .picture {
     position: relative;
-    width: 150px;
-    height: 150px;
+    width: 300px;
+    height: 300px;
     float: left;
     background-color: rgba(255,255,255,0.3);
     background-size: cover;
 }
 
 /* Links */
+
+.links {
+    margin: 10px 0;
+}
+
+.links .link {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    font-size: 30px;
+    line-height: 30px;
+    text-align: center;
+    cursor: pointer;
+}
 
 /* Experience */
 

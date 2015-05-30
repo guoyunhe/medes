@@ -30,6 +30,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     z-index: 100; /* Topmost layer */
 }
 
+.popup.modal {
+    left: 50%;
+    right: 50%;
+    width: 300px;
+    height: auto;
+    margin-left: -150px;
+}
+
 .popup.hover {
     position: absolute;
 }

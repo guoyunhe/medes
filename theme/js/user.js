@@ -122,9 +122,60 @@ jQuery(function () {
 
 // Edit user full profile popup
 
-function editUserPopup() {
+function editUserPopup(userId) {
     // Open user creation popup/wizard
     openPopup(jQuery('#user-edit-popup'));
+    
+    var request = {'action': 'get_user_page_data'};
+
+    if (typeof userId !== 'undefined') {
+        request['user_id'] = userId;
+    }
+
+    jQuery.ajax({
+        url: ajaxurl,
+        data: request,
+        method: 'POST',
+        dataType: 'json'
+    }).done(function (response) {
+        if (!response['succeed']) {
+            return;
+        }
+        // Avatar
+        jQuery('#user-edit-popup .avatar').css('background-image',
+                'url("' + response['avatar_url'] + '")');
+        // Display name (first name + last name)
+        jQuery('#user-edit-popup .name span').text(response['first_name'] + ' ' + response['last_name']);
+        
+        // Schools
+        jQuery('#user-edit-popup .schools span').text('School A/Aalto University/SchoolB');
+        // Links
+        
+        // Pictures
+        jQuery('#user-edit-popup .pictures .picture').remove();
+        var pictures = response['pictures'];
+        for (var key in pictures) {
+            if (pictures.hasOwnProperty(key)) {
+                var $picture = jQuery('<div class="picture"><span class="remove"><i class="fa fa-remove"></i></span></div>');
+                $picture.css('background-image', 'url("' + pictures[key].url + '")');
+                $picture.data('uuid', key);
+                jQuery('#user-edit-popup .add-picture').after($picture);
+                $picture.find('.remove').click(function () {
+                    var sendData = {
+                        'action': 'remove_user_picture',
+                        'uuid': key
+                    };
+                    jQuery.ajax({
+                        url: ajaxurl,
+                        data: sendData,
+                        method: 'POST',
+                        dataType: 'json'
+                    });
+                    $picture.remove();
+                });
+            }
+        }
+    });
 }
 
 jQuery(function () {
@@ -153,6 +204,15 @@ jQuery(function () {
     function updateAvatar(data) {
         jQuery('#user-edit-popup .avatar').css('background-image', 'url("' + data.avatar_url + '")');
     }
+    
+    // Name
+    jQuery('#user-edit-popup .name > button').click(function () {
+        jQuery('#user-edit-popup .name .edit-box').show();
+    });
+    
+    jQuery('#user-edit-popup .name .edit-box button').click(function () {
+        jQuery('#user-edit-popup .name .edit-box').hide();
+    });
     
     // Photos
     jQuery('#user-edit-popup .add-picture').click(function () {
@@ -195,7 +255,13 @@ jQuery(function () {
     }
     
     // Links
+    jQuery('#user-edit-popup .links > button').click(function () {
+        jQuery('#user-edit-popup .links .edit-box').show();
+    });
     
+    jQuery('#user-edit-popup .links .edit-box button').click(function () {
+        jQuery('#user-edit-popup .links .edit-box').hide();
+    });
     // Experience
     
     // Description text?
@@ -239,10 +305,12 @@ function viewUserPopup(userId) {
         jQuery('#user-page-popup .name').text(response['first_name'] + ' ' + response['last_name']);
         
         // Schools
+        jQuery('#user-edit-popup .schools span').text('School A/Aalto University/SchoolB');
         
         // Links
         
         // Pictures
+        jQuery('#user-page-popup .pictures .picture').remove();
         var pictures = response['pictures'];
         for (var key in pictures) {
             if (pictures.hasOwnProperty(key)) {
@@ -254,7 +322,17 @@ function viewUserPopup(userId) {
     });
 }
 
-// Test, should be removed after finish
 jQuery(function () {
-    //editUserBasicPopup();
+    jQuery('#user-page-popup button.edit').click(function () {
+        closePopup(jQuery('#user-page-popup'));
+        editUserPopup();
+    });
+});
+
+// Header user menu
+
+jQuery(function () {
+    jQuery('#site-header .user').click(function () {
+        viewUserPopup();
+    });
 });

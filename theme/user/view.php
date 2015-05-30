@@ -29,13 +29,7 @@
             <div class="header">
                 <div class="avatar"></div>
                 <div class="name"></div>
-                <div class="school"></div>
-            </div>
-            <div class="tabs">
-                <div class="tab"><i class="fa fa-camera"></i></div>
-                <div class="tab"><i class="fa fa-info-circle"></i></div>
-                <div class="tab"><i class="fa fa-lightbulb-o"></i></div>
-                <div class="tab"><i class="fa fa-chain"></i></div>
+                <div class="schools"></div>
             </div>
             <div class="links">
                 <div class="link"><i class="fa fa-facebook"></i></div>
@@ -49,7 +43,8 @@
             </div>
             <div class="experience"></div>
             <div class="skills"></div>
-            <div class="pictures"></div>
+            <div class="pictures clearfix"></div>
+            <button class="edit large">EDIT</button>
         </div><!-- .container -->
     </div><!-- .popup-body -->
 </div><!-- #user-page-popup.popup -->

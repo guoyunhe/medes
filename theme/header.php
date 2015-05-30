@@ -62,5 +62,9 @@
                     <div class="click inline button">People</div>
                     <a href="#page/2" class="click inline button">About</a>
                 </div>
+                <span class="user">
+                    <span class="avatar"></span>
+                    <span class="name">User</span>
+                </span>
             </div>
         </header>
