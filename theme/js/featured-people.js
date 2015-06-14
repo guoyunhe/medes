@@ -59,10 +59,6 @@ FeaturedPeople = {
 jQuery(function(){
     // bind click event and open popup
     jQuery('#featured-people .featured-person').click(function () {
-        openPopup(jQuery('#featured-people .popup'));
-        suGetUserPage(jQuery(this).data('user-id'), function (data) {
-            window.console.log(data);
-            jQuery('#featured-people .popup-body').html(data);
-        });
+        viewUserPopup(jQuery(this).data('user-id'));
     });
 });

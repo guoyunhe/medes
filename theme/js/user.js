@@ -15,13 +15,17 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-// Create new account popup
+/******************************************************************************
+ *                        Create New Account Popup                            *
+ ******************************************************************************/
 
+// Open popup and initialize
 function createUserPopup() {
     // Open user creation popup/wizard
     openPopup(jQuery('#user-create-popup'));
 }
 
+// User interaction and AJAX
 jQuery(function () {
     jQuery('#user-create-popup .next').click(function () {
         if (checkPassword()) {
@@ -74,12 +78,17 @@ jQuery(function () {
     }
 });
 
-// Edit user basic profile popup
 
+/******************************************************************************
+ *                     Edit user basic profile popup                          *
+ ******************************************************************************/
+
+// Open popup and initialize
 function editUserBasicPopup() {
     openPopup(jQuery('#user-edit-basic-popup'));
 }
 
+// User interaction and AJAX
 jQuery(function () {
     jQuery('#user-edit-basic-popup .next').click(function () {
         var request = {
@@ -120,8 +129,15 @@ jQuery(function () {
 });
 
 
-// Edit user full profile popup
-// Initial popup
+/******************************************************************************
+ *                     Edit User Full Profile Popup                           *
+ ******************************************************************************/
+
+/**
+ * Open popup and initialize user data through AJAX
+ * @param {Number} userId
+ * @returns {undefined}
+ */
 function editUserPopup(userId) {
     // Open user creation popup/wizard
     openPopup(jQuery('#user-edit-popup'));
@@ -274,12 +290,14 @@ jQuery(function () {
 });
 
 
+/******************************************************************************
+ *                     Open User Profile View Popup                           *
+ ******************************************************************************/
 
 /**
  * Open user page popup, query and display user data
  * @param {Number} userId User ID, can be ignored
  */
-
 function viewUserPopup(userId) {
     openPopup(jQuery('#user-page-popup'));
 

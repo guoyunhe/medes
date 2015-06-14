@@ -152,7 +152,6 @@ add_action( 'wp_ajax_get_user_page_data', 'su_get_user_page_data' );
 add_action( 'wp_ajax_nopriv_get_user_page_data', 'su_get_user_page_data' );
 
 function su_get_user_page_data() {
-    echo filter_input(INPUT_POST, 'user_id');
     $user_id = filter_input(INPUT_POST, 'user_id', FILTER_VALIDATE_INT);
     
     if($user_id === false || $user_id === null) {
