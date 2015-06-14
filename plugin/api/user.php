@@ -387,3 +387,59 @@ function su_remove_user_picture() {
     
     die();
 }
+
+
+/******************************************************************************
+ *                                   Links                                    *
+ ******************************************************************************/
+
+/**
+ * Request:
+ * action: 'update_user_links'
+ * facebook: string
+ * facebook_private: boolean
+ * twitter: string
+ * twitter_private: boolean
+ * google: string
+ * google_private:boolean
+ * 
+ * Response:
+ * succeed: boolean
+ */
+add_action('wp_ajax_update_user_links', 'su_update_user_links');
+add_action('wp_ajax_nopriv_update_user_links', 'su_update_user_links');
+
+function su_update_user_links () {
+    $link_keys = ['facebook', 'twitter', 'linkedin', 'google', 'openemail'];
+    
+    foreach ($link_keys as $key) {
+        $link = filter_input(INPUT_POST, $key, FILTER_VALIDATE_URL);
+        $link_private = filter_input(INPUT_POST, $key . '_private', FILTER_VALIDATE_BOOLEAN);
+        
+        if ($link !== null) {
+            if ($link) {
+                update_user_meta($user_id, $key, $link);
+            } else {
+                update_user_meta($user_id, $key, '');
+            }
+        }
+        
+        if ($link_private !== null) {
+            if ($link_private) {
+                update_user_meta($user_id, $key . '_private', $link_private);
+            } else {
+                update_user_meta($user_id, $key . '_private', true);
+            }
+        }
+    }
+
+    die();
+}
+
+
+/******************************************************************************
+ *                              User Experience                               *
+ ******************************************************************************/
+/**
+ * Add user experience
+ */
