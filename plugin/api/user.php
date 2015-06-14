@@ -115,7 +115,7 @@ function su_edit_user_basic() {
     }
     
     if ($schools !== false) {
-        update_user_meta($user_id, 'schools', json_encode($schools));
+        update_user_meta($user_id, 'schools', json_encode($schools, JSON_UNESCAPED_UNICODE));
     }
     
     $response = ['succeed' => true];
@@ -179,7 +179,7 @@ function su_get_user_page_data() {
         ];
     }
 
-    echo json_encode($response);
+    echo json_encode($response, JSON_UNESCAPED_UNICODE);
     die();
 }
 
@@ -279,7 +279,7 @@ function su_update_user_role() {
 function su_update_user_schools($user_id) {
     $schools = filter_input(INPUT_POST, 'schools', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
     if ($schools !== false) {
-        update_user_meta($user_id, 'schools', json_encode($schools));
+        update_user_meta($user_id, 'schools', json_encode($schools, JSON_UNESCAPED_UNICODE));
     }
 }
 
@@ -350,7 +350,7 @@ function su_upload_user_picture() {
     }
     
     $pictures[$uuid] = ['url' => $result['url'], 'file' => $result['file']];
-    update_user_meta($user_id, 'pictures', json_encode($pictures));
+    update_user_meta($user_id, 'pictures', json_encode($pictures, JSON_UNESCAPED_UNICODE));
     
     su_resize_picture($result['file'], 1024, 1024);
 
@@ -383,7 +383,7 @@ function su_remove_user_picture() {
     
     su_remove_file($pictures[$uuid]['file']);
     unset($pictures[$uuid]);
-    update_user_meta($user_id, 'pictures', json_encode($pictures));
+    update_user_meta($user_id, 'pictures', json_encode($pictures, JSON_UNESCAPED_UNICODE));
     
     die();
 }
