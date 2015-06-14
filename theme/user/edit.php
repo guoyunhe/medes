@@ -20,67 +20,148 @@
  * Popup box to edit user profile
  */
 ?>
-<div id="user-edit-popup" class="popup user-page">
+<div id="user-edit-popup" class="popup user edit">
     <div class="popup-close"><i class="fa fa-close"></i></div>
     <div class="popup-body">
         <div class="container">
-            <div class="header">
-                <div class="name">
-                    <span></span>
-                    <button><i class="fa fa-edit"></i></button>
-                    <div class="edit-box">
-                        <input type="text" name="first_name" placeholder="First name">
-                        <input type="text" name="last_name" placeholder="Last name">
-                        <button class="save">SAVE</button>
-                    </div>
-                </div>
-                <div class="schools">
-                    <span></span>
-                    <button><i class="fa fa-edit"></i> Edit</button>
-                </div>
+            
+            <div class="edit-section">
+                <div class="edit-section-title">Avatar</div>
                 <div class="avatar">
                     <input type="file" name="avatar"/>
                     <button><i class="fa fa-camera"></i> Edit</button>
                 </div>
             </div>
-            <div class="links">
-                <div class="link"><i class="fa fa-facebook"></i></div>
-                <div class="link"><i class="fa fa-twitter"></i></div>
-                <div class="link"><i class="fa fa-linkedin"></i></div>
-                <div class="link"><i class="fa fa-google-plus"></i></div>
-                <div class="link"><i class="fa fa-instagram"></i></div>
-                <div class="link"><i class="fa fa-flickr"></i></div>
-                <div class="link"><i class="fa fa-skype"></i></div>
-                <div class="link"><i class="fa fa-email"></i></div>
-                <button><i class="fa fa-edit"></i></button>
-                <div class="edit-box">
-                    <input type="text" name="facebook" placeholder="Facebook">
-                    <input type="checkbox"> private<br>
-                    <input type="text" name="twitter" placeholder="Twitter">
-                    <input type="checkbox"> private<br>
-                    <input type="text" name="linkedin" placeholder="LinkedIn">
-                    <input type="checkbox"> private<br>
-                    <input type="text" name="google_plus" placeholder="Google+">
-                    <input type="checkbox"> private<br>
-                    <input type="text" name="instagram" placeholder="Instagram">
-                    <input type="checkbox"> private<br>
-                    <input type="text" name="flickr" placeholder="Flickr">
-                    <input type="checkbox"> private<br>
-                    <input type="text" name="skype" placeholder="Skype">
-                    <input type="checkbox"> private<br>
-                    <input type="text" name="email" placeholder="Email">
-                    <input type="checkbox"> private<br>
-                    <button class="save">SAVE</button>
+            
+            <div id="user-edit-basic" class="edit-section">
+                <div class="edit-section-title">Basic Information</div>
+                <p>
+                    <label>Username</label>
+                    <input type="text" name="username" disabled="disabled"/>
+                    <span>[Cannot change]</span>
+                </p>
+                <p>
+                    <label>First name</label>
+                    <input type="text" name="first_name"/>
+                    <label>Last name</label>
+                    <input type="text" name="last_name"/>
+                </p>
+                <p>
+                    <label>Email</label>
+                    <input type="email" name="email"/>
+                </p>
+            </div>
+            
+            <div id="user-edit-location" class="edit-section">
+                <div class="edit-section-title">Location</div>
+                <p>Where are you living?</p>
+                <p>
+                    <label>Country</label> 
+                    <?php su_get_country_select(null,'live_country'); ?>
+                    <label>City</label>
+                    <input type="text" name="live_city"/>
+                </p>
+                <p>Your hometown</p>
+                <p>
+                    <label>Country</label>
+                    <?php su_get_country_select(null, 'home_country'); ?>
+                    <label>City</label>
+                    <input type="text" name="home_city"/>
+                </p>
+            </div>
+            
+            <div id="user-edit-medes" class="edit-section">
+                <div class="edit-section-title">MEDes Path</div>
+                <p>
+                    <label>Your role</label>
+                    <select name="role">
+                        <option value="student" selected>Student</option>
+                        <option value="teacher">Teacher</option>
+                        <option value="tutor">Tutor</option>
+                    </select>
+                </p>
+                <p>
+                    <label>1<sup>st</sup> year</label>
+                    <?php su_get_year_select(null, 'year_1'); ?>
+                    <label>School</label>
+                    <?php su_get_school_select(null, 'school_1'); ?>
+                </p>
+                <p>
+                    <label>2<sup>nd</sup> year</label>
+                    <?php su_get_year_select(null, 'year_2'); ?>
+                    <label>School</label>
+                    <?php su_get_school_select(null, 'school_2'); ?>
+                </p>
+                <p>
+                    <label>3<sup>rd</sup> year</label>
+                    <?php su_get_year_select(null, 'year_3'); ?>
+                    <label>School</label>
+                    <?php su_get_school_select(null, 'school_3'); ?>
+                </p>
+            </div>
+            
+            <div id="user-edit-pictures" class="edit-section">
+                <div class="edit-section-title">Pictures</div>
+                <div class="pictures clearfix">
+                    <div class="add-picture">
+                        <i class="fa fa-camera"></i>
+                        <input type="file" name="picture"/>
+                    </div>
                 </div>
             </div>
-            <div class="experience"></div>
-            <div class="pictures clearfix">
-                <div class="add-picture">
-                    <i class="fa fa-camera"></i>
-                    <input type="file" name="picture"/>
-                </div>
+            
+            <div id="user-edit-links" class="edit-section">
+                <div class="edit-section-title">Links</div>
+                <p>
+                    <label>Facebook</label>
+                    <input type="text" name="facebook">
+                    <label><input type="checkbox" name="facebook_private"> private</label>
+                </p>
+                <p>
+                    <label>Twitter</label>
+                    <input type="text" name="twitter">
+                    <label><input type="checkbox" name="twitter_private"> private</label>
+                </p>
+                <p>
+                    <label>LinkedIn</label>
+                    <input type="text" name="linkedin">
+                    <label><input type="checkbox" name="linkedin_private"> private</label>
+                </p>
+                <p>
+                    <label>Google+</label>
+                    <input type="text" name="google">
+                    <label><input type="checkbox" name="google_private"> private</label>
+                </p>
+                <p>
+                    <label>Email</label>
+                    <input type="text" name="email">
+                    <label><input type="checkbox" name="email_private"> private</label>
+                </p>
             </div>
-            <button class="finish large">FINISH</button>
+            
+            <div id="user-edit-experience" class="edit-section">
+                <div class="edit-section-title">Experience</div>
+                
+            </div>
+            
+            <div id="user-edit-skills" class="edit-section">
+                <div class="edit-section-title">Skills</div>
+                
+            </div>
+            
+            <div id="user-edit-description" class="edit-section">
+                <div class="edit-section-title">Description</div>
+                <p>
+                    <label>Tagline</label>
+                    <input type="text" name="tagline"/>
+                </p>
+                <p>
+                    <label>Description</label>
+                    <textarea name="description"></textarea>
+                </p>
+            </div>
+            
+            <button class="finish large">View Result</button>
         </div>
     </div>
 </div>

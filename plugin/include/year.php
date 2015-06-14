@@ -17,7 +17,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-function su_get_year_select($selected=null, $name='year', $class='', $id = '') {
+function su_get_year_select($selected=null, $name='year', $class='year', $id = '') {
     $start = 1990;
     $end = date("Y");
     require __DIR__ . '/../view/year-select.php';

@@ -15,6 +15,121 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-.edit-box {
+.edit-section {
+    position: relative;
+    padding: 60px 0 40px 200px;
+    border-top: 1px solid white;
+}
+
+.edit-section:last-child {
+    border-bottom: 1px solid white;
+}
+
+.edit-section-title {
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: white;
+    color: black;
+    font-size: 20px;
+    padding: 4px 10px;
+    font-style: italic;
+}
+
+.edit-section label {
+    display: inline-block;
+    text-align: right;
+    width: 80px;
+}
+
+.edit-section input[type=text],
+.edit-section input[type=email],
+.edit-section input[type=password],
+.edit-section select {
+    display: inline-block;
+    width: 200px;
+}
+
+/* Avatar */
+.popup.edit .avatar {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    background-color: rgba(255,255,255,0.3);
+}
+
+/* Avatar edit button */
+.avatar button {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+}
+
+/* Avatar hidden file input */
+.avatar input[type=file] {
     display: none;
+}
+
+/* MEDes path */
+
+/* Year */
+select.year {
+    width: 60px;
+}
+
+/* Pictures */
+#user-edit-pictures .picture {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    float: left;
+    background-color: rgba(255,255,255,0.3);
+    background-size: cover;
+}
+
+.add-picture {
+    width: 300px;
+    height: 300px;
+    float: left;
+    line-height: 300px;
+    text-align: center;
+    background-color: rgba(255,255,255,0.3);
+    cursor: pointer;
+    font-size: 48px;
+}
+
+.add-picture input {
+    display: none;
+}
+
+.picture .remove {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    font-size: 22px;
+    cursor: pointer;
+    color: red;
+}
+
+/* Description */
+
+/* Tagline */
+#user-edit-description input {
+    width: 400px;
+    max-width: 100%;
+}
+
+/* Textarea */
+#user-edit-description textarea {
+    vertical-align: top;
+    width: 400px;
+    max-width: 100%;
+}
+
+/* "View Result" and "Edit" button */
+
+button.finish, button.edit {
+    position: fixed;
+    top: 8px;
+    right: 60px;
 }

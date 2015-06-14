@@ -67,3 +67,10 @@ input[type="reset"].large,
 button.large {
     height: 30px;
 }
+
+textarea {
+    margin: 0;
+    border: 1px solid white;
+    padding: 4px;
+    background: transparent;
+}

@@ -41,26 +41,3 @@ For create user popup wizard
 
 /* Pictures */
 
-.add-picture {
-    width: 300px;
-    height: 300px;
-    float: left;
-    line-height: 300px;
-    text-align: center;
-    background-color: rgba(255,255,255,0.3);
-    cursor: pointer;
-    font-size: 48px;
-}
-
-.add-picture input {
-    display: none;
-}
-
-.user-page .picture .remove {
-    position: absolute;
-    right: 5px;
-    top: 5px;
-    font-size: 22px;
-    cursor: pointer;
-    color: red;
-}

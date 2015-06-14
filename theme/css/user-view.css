@@ -34,17 +34,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     background-color: lightblue;
 }
 
-/* Avatar edit tools */
-.user-page .avatar button {
-    position: absolute;
-    right: 10px;
-    bottom: 10px;
-}
-
-.user-page .avatar input[type=file] {
-    display: none;
-}
-
 /* User real name: first name + last name */
 .user-page .name {
     position: absolute;
