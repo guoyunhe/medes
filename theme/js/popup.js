@@ -25,7 +25,7 @@ jQuery(function () {
 });
 
 function openPopup(element) {
-    if (!jQuery(element).hasClass('hover')&&!jQuery(element).hasClass('modal')) {
+    if (!jQuery(element).hasClass('hover') && !jQuery(element).hasClass('modal')) {
         jQuery('body, html').css('overflow', 'hidden');
     }
     jQuery(element).fadeIn();
@@ -33,7 +33,7 @@ function openPopup(element) {
 
 function closePopup(element) {
     jQuery(element).fadeOut();
-    if (jQuery(element).hasClass('hover') || jQuery(element).hasClass('modal')) {
+    if (!jQuery(element).hasClass('hover') && !jQuery(element).hasClass('modal')) {
         jQuery('body, html').css('overflow', '');
     }
 }

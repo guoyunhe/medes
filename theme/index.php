@@ -51,7 +51,7 @@ get_template_part('page');
 
 ?>
 
-<div id="dot-cloud" class="section">
+<div id="dot-cloud">
     <canvas id="demo-canvas"></canvas>
     <div class="main-title">
         <div class="statistics medestrian">
