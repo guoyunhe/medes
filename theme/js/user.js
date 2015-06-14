@@ -165,8 +165,7 @@ function editUserPopup(userId) {
 
         // Schools
         jQuery('#user-edit-popup .schools span').text('School A/Aalto University/SchoolB');
-        // Links
-
+        
         // Pictures
         jQuery('#user-edit-popup .pictures .picture').remove();
         var pictures = response['pictures'];
@@ -190,6 +189,25 @@ function editUserPopup(userId) {
                     $picture.remove();
                 });
             }
+        }
+    });
+    
+    // Get full links information for editing, including private links
+    request['action'] = 'get_user_links_edit';
+    jQuery.ajax({
+        url: ajaxurl,
+        data: request,
+        method: 'POST',
+        dataType: 'json'
+    }).done(function (response) {
+        // Links
+        var linkKeys = ['facebook', 'twitter', 'linkedin', 'google', 'openemail'];
+        for(var i = 0; i < linkKeys.length; i++) {
+            var key = linkKeys[i];
+            var link = response[key];
+            var private = response[key + '_private'];
+            jQuery('#user-edit-popup input[name=' + key + ']').val(link);
+            jQuery('#user-edit-popup input[name=' + key + '_private]').prop('checked', private);
         }
     });
 }

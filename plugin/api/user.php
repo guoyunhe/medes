@@ -153,36 +153,47 @@ add_action( 'wp_ajax_nopriv_get_user_page_data', 'su_get_user_page_data' );
 
 function su_get_user_page_data() {
     $user_id = filter_input(INPUT_POST, 'user_id', FILTER_VALIDATE_INT);
-    
-    if($user_id === false || $user_id === null) {
+
+    if ($user_id === false || $user_id === null) {
         $user_id = get_current_user_id(); // Request without any paramaters
     }
-    
-    $user = get_userdata( $user_id );
+
+    $user = get_userdata($user_id);
 
     if ($user === false) {
         $response = ['succeed' => false, 'error_message' => 'User doesn\'t exist'];
-    } else {
-        $response = [
-            'succeed' => true,
-            'username' => $user->user_login,
-            'first_name' => $user->first_name,
-            'last_name' => $user->last_name,
-            'country' => $user->country,
-            'city' => $user->city,
-            'role' => $user->role,
-            'avatar_url' => $user->avatar_url,
-            'schools' => json_decode($user->schools, true),
-            'links' => json_decode($user->links, true),
-            'pictures' => json_decode($user->pictures, true),
-            'experience' => json_decode($user->experience, true),
-        ];
+        echo json_encode($response);
+        die();
     }
 
-    echo json_encode($response, JSON_UNESCAPED_UNICODE);
+    $response = [
+        'succeed' => true,
+        'username' => $user->user_login,
+        'first_name' => $user->first_name,
+        'last_name' => $user->last_name,
+        'country' => $user->country,
+        'city' => $user->city,
+        'role' => $user->role,
+        'avatar_url' => $user->avatar_url,
+        'schools' => json_decode($user->schools, true),
+        'pictures' => json_decode($user->pictures, true),
+        'experience' => json_decode($user->experience, true),
+    ];
+
+    // Links
+    $link_keys = ['facebook', 'twitter', 'linkedin', 'google', 'openemail'];
+
+    foreach ($link_keys as $key) {
+        $link = get_user_meta($user_id, $key, true);
+        $private = get_user_meta($user_id, $key . '_private', true);
+        if (!empty($link) && empty($private)) {
+            $response[$key] = $link;
+        }
+    }
+
+    echo json_encode($response);
     die();
 }
-
 
 /**
  * API: Update first name and last name
@@ -436,6 +447,48 @@ function su_update_user_links () {
         }
     }
 
+    die();
+}
+
+/**
+ * Request:
+ * action: 'get_user_links_edit'
+ * facebook: string
+ * facebook_private: boolean
+ * twitter: string
+ * twitter_private: boolean
+ * google: string
+ * google_private:boolean
+ * 
+ * Response:
+ * succeed: boolean
+ */
+add_action('wp_ajax_get_user_links_edit', 'su_get_user_links_edit');
+add_action('wp_ajax_nopriv_get_user_links_edit', 'su_get_user_links_edit');
+
+function su_get_user_links_edit () {
+    su_can_edit_user();
+    
+    $user_id = filter_input(INPUT_POST, 'user_id', FILTER_VALIDATE_INT);
+    
+    if (empty($user_id)) {
+        $user_id = get_current_user_id();
+    }
+    
+    $response = [
+        'succeed' => true,
+    ];
+    
+    $link_keys = ['facebook', 'twitter', 'linkedin', 'google', 'openemail'];
+
+    foreach ($link_keys as $key) {
+        $link = get_user_meta($user_id, $key, true);
+        $private = get_user_meta($user_id, $key . '_private', true);
+        $response[$key] = $link;
+        $response[$key.'_private'] = boolval($private);
+    }
+    
+    echo json_encode($response);
     die();
 }
 

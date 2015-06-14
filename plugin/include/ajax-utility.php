@@ -30,6 +30,35 @@ function su_check_login() {
 }
 
 /**
+ * Check if current user can edit target user.
+ * Only users themselves and admins can edit users.
+ * @return boolean
+ */
+function su_can_edit_user() {
+    su_check_login();
+    
+    // If user is admin
+    if (is_admin() ) {
+        return true;
+    }
+    
+    $self = get_current_user()->id;
+    $target = filter_input(INPUT_POST, 'user_id', FILTER_VALIDATE_INT);
+    
+    if (empty($target)) {
+        return true; // No user_id specified, users edit themselves
+    }
+    
+    if ($self === $target) {
+        return true;
+    }
+    
+    $response = ['succeed'=>false, 'error_message' => 'You don\'t have permission'];
+    echo json_encode($response);
+    die();
+}
+
+/**
  * Check if a file is uploaded, and if it is a picture.
  * @param string $key_name
  */
