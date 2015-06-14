@@ -410,6 +410,9 @@ add_action('wp_ajax_update_user_links', 'su_update_user_links');
 add_action('wp_ajax_nopriv_update_user_links', 'su_update_user_links');
 
 function su_update_user_links () {
+    su_check_login();
+    $user_id = get_current_user_id();
+    
     $link_keys = ['facebook', 'twitter', 'linkedin', 'google', 'openemail'];
     
     foreach ($link_keys as $key) {

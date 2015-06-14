@@ -271,12 +271,17 @@ jQuery(function () {
     }
 
     // Links
-    jQuery('#user-edit-popup .links > button').click(function () {
-        jQuery('#user-edit-popup .links .edit-box').show();
-    });
-
-    jQuery('#user-edit-popup .links .edit-box button').click(function () {
-        jQuery('#user-edit-popup .links .edit-box').hide();
+    jQuery('#user-edit-links input').change(function () {
+        var name = jQuery(this).attr('name');
+        var value = jQuery(this).val();
+        var request = { action: 'update_user_links' };
+        request[name] = value;
+        jQuery.ajax({
+            url: ajaxurl,
+            data: request,
+            method: 'POST',
+            dataType: 'json'
+        });
     });
     // Experience
 

@@ -134,8 +134,8 @@
                 </p>
                 <p>
                     <label>Email</label>
-                    <input type="text" name="email">
-                    <label><input type="checkbox" name="email_private"> private</label>
+                    <input type="text" name="openemail">
+                    <label><input type="checkbox" name="openemail_private"> private</label>
                 </p>
             </div>
             
