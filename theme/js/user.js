@@ -81,7 +81,7 @@ function editUserBasicPopup() {
 }
 
 jQuery(function () {
-    jQuery('#user-edit-basic-popup .next').click(function(){
+    jQuery('#user-edit-basic-popup .next').click(function () {
         var request = {
             'action': 'edit_user_basic',
             'first_name': jQuery('#user-edit-basic-popup input[name="first_name"]').val(),
@@ -104,7 +104,7 @@ jQuery(function () {
                 }
             ]
         };
-        
+
         jQuery.ajax({
             url: ajaxurl,
             data: request,
@@ -121,11 +121,11 @@ jQuery(function () {
 
 
 // Edit user full profile popup
-
+// Initial popup
 function editUserPopup(userId) {
     // Open user creation popup/wizard
     openPopup(jQuery('#user-edit-popup'));
-    
+
     var request = {'action': 'get_user_page_data'};
 
     if (typeof userId !== 'undefined') {
@@ -146,11 +146,11 @@ function editUserPopup(userId) {
                 'url("' + response['avatar_url'] + '")');
         // Display name (first name + last name)
         jQuery('#user-edit-popup .name span').text(response['first_name'] + ' ' + response['last_name']);
-        
+
         // Schools
         jQuery('#user-edit-popup .schools span').text('School A/Aalto University/SchoolB');
         // Links
-        
+
         // Pictures
         jQuery('#user-edit-popup .pictures .picture').remove();
         var pictures = response['pictures'];
@@ -177,7 +177,7 @@ function editUserPopup(userId) {
         }
     });
 }
-
+// User interaction
 jQuery(function () {
 
     // Avatar
@@ -200,25 +200,25 @@ jQuery(function () {
             contentType: false
         }).done(updateAvatar);
     });
-    
+
     function updateAvatar(data) {
         jQuery('#user-edit-popup .avatar').css('background-image', 'url("' + data.avatar_url + '")');
     }
-    
+
     // Name
     jQuery('#user-edit-popup .name > button').click(function () {
         jQuery('#user-edit-popup .name .edit-box').show();
     });
-    
+
     jQuery('#user-edit-popup .name .edit-box button').click(function () {
         jQuery('#user-edit-popup .name .edit-box').hide();
     });
-    
+
     // Photos
     jQuery('#user-edit-popup .add-picture').click(function () {
         jQuery('#user-edit-popup .add-picture input')[0].click();
     });
-    
+
     jQuery('#user-edit-popup .add-picture input').change(function () {
         var file_data = jQuery(this).prop('files')[0];
         var form_data = new FormData();
@@ -233,14 +233,14 @@ jQuery(function () {
             contentType: false
         }).done(addPicture);
     });
-    
+
     function addPicture(data) {
         var $picture = jQuery('<div class="picture"><span class="remove"><i class="fa fa-remove"></i></span></div>');
         $picture.data('uuid', data.uuid);
         $picture.css('background-image', 'url("' + data.url + '")');
         jQuery('#user-edit-popup .add-picture').after($picture);
-        $picture.find('.remove').click(function(){
-            var sendData ={
+        $picture.find('.remove').click(function () {
+            var sendData = {
                 'action': 'remove_user_picture',
                 'uuid': data.uuid
             };
@@ -253,19 +253,19 @@ jQuery(function () {
             $picture.remove();
         });
     }
-    
+
     // Links
     jQuery('#user-edit-popup .links > button').click(function () {
         jQuery('#user-edit-popup .links .edit-box').show();
     });
-    
+
     jQuery('#user-edit-popup .links .edit-box button').click(function () {
         jQuery('#user-edit-popup .links .edit-box').hide();
     });
     // Experience
-    
+
     // Description text?
-    
+
     // Finish button
     jQuery('#user-edit-popup .finish').click(function () {
         closePopup(jQuery('#user-edit-popup'));
@@ -303,12 +303,12 @@ function viewUserPopup(userId) {
                 'url("' + response['avatar_url'] + '")');
         // Display name (first name + last name)
         jQuery('#user-page-popup .name').text(response['first_name'] + ' ' + response['last_name']);
-        
+
         // Schools
         jQuery('#user-edit-popup .schools span').text('School A/Aalto University/SchoolB');
-        
+
         // Links
-        
+
         // Pictures
         jQuery('#user-page-popup .pictures .picture').remove();
         var pictures = response['pictures'];
@@ -321,7 +321,7 @@ function viewUserPopup(userId) {
         }
     });
 }
-
+// User interaction
 jQuery(function () {
     jQuery('#user-page-popup button.edit').click(function () {
         closePopup(jQuery('#user-page-popup'));
