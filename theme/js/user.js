@@ -160,11 +160,29 @@ function editUserPopup(userId) {
         // Avatar
         jQuery('#user-edit-popup .avatar').css('background-image',
                 'url("' + response['avatar_url'] + '")');
-        // Display name (first name + last name)
-        jQuery('#user-edit-popup .name span').text(response['first_name'] + ' ' + response['last_name']);
-
+        // Username
+        jQuery('#user-edit-popup [name=username]').val(response.username);
+        // First name
+        jQuery('#user-edit-popup [name=first_name]').val(response.first_name);
+        // First name
+        jQuery('#user-edit-popup [name=last_name]').val(response.last_name);
+        // Email
+        jQuery('#user-edit-popup [name=user_email]').val(response.email);
+        // Living country
+        jQuery('#user-edit-popup [name=live_country]').val(response.live_country);
+        // Living city
+        jQuery('#user-edit-popup [name=live_city]').val(response.live_city);
+        // Home country
+        jQuery('#user-edit-popup [name=home_country]').val(response.home_country);
+        // Home city
+        jQuery('#user-edit-popup [name=home_city]').val(response.home_city);
         // Schools
-        jQuery('#user-edit-popup .schools span').text('School A/Aalto University/SchoolB');
+        jQuery('#user-edit-popup [name=school_1]').val(response.school_1);
+        jQuery('#user-edit-popup [name=year_1]').val(response.year_1);
+        jQuery('#user-edit-popup [name=school_2]').val(response.school_2);
+        jQuery('#user-edit-popup [name=year_2]').val(response.year_2);
+        jQuery('#user-edit-popup [name=school_3]').val(response.school_3);
+        jQuery('#user-edit-popup [name=year_3]').val(response.year_3);
         
         // Pictures
         jQuery('#user-edit-popup .pictures .picture').remove();
@@ -232,21 +250,30 @@ jQuery(function () {
             dataType: 'json',
             processData: false,
             contentType: false
-        }).done(updateAvatar);
+        }).done(function(){
+            jQuery('#user-edit-popup .avatar').css('background-image', 'url("' + data.avatar_url + '")');
+        });
     });
-
-    function updateAvatar(data) {
-        jQuery('#user-edit-popup .avatar').css('background-image', 'url("' + data.avatar_url + '")');
+    
+    function updateSimpleUserMeta() {
+        var name = jQuery(this).attr('name');
+        var value = jQuery(this).val();
+        var request = { action: 'edit_user_basic' };
+        request[name] = value;
+        jQuery.ajax({
+            url: ajaxurl,
+            data: request,
+            method: 'POST',
+            dataType: 'json'
+        });
     }
-
-    // Name
-    jQuery('#user-edit-popup .name > button').click(function () {
-        jQuery('#user-edit-popup .name .edit-box').show();
-    });
-
-    jQuery('#user-edit-popup .name .edit-box button').click(function () {
-        jQuery('#user-edit-popup .name .edit-box').hide();
-    });
+    
+    // First name, last name, email
+    jQuery('#user-edit-basic input').change(updateSimpleUserMeta);
+    
+    // Living country, city; home country city
+    jQuery('#user-edit-location input').change(updateSimpleUserMeta);
+    jQuery('#user-edit-location select').change(updateSimpleUserMeta);
 
     // Photos
     jQuery('#user-edit-popup .add-picture').click(function () {

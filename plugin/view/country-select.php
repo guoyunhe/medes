@@ -17,13 +17,11 @@
  */
 ?>
 
-<select name="country" id="country">
-    <option value="0" <?= $selected === 0 ? 'selected' : '' ?>>
-        Select a country
-    </option>
-    <?php foreach ($country_array as $id => $name): ?>
-    <option value="<?= $id ?>" <?= $selected === $id ? 'selected' : '' ?>>
-        <?php echo $name; ?>
+<select name="<?php echo $name ?>" id="<?php echo $id ?>" class="<?php echo $class?>">
+    <option <?= $selected? 'selected' : '' ?>></option>
+    <?php foreach ($country_array as $key => $value): ?>
+    <option value="<?= $key ?>" <?= $selected === $id ? 'selected' : '' ?>>
+        <?php echo $value; ?>
     </option>
     <?php endforeach; ?>
 </select>

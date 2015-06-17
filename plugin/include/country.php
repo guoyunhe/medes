@@ -35,7 +35,7 @@ function su_get_country_array() {
  * 
  * @param string $selected Selected country code, eg. 'US', 'FI', 'CN'
  */
-function su_get_country_select($selected = 0) {
+function su_get_country_select($selected = false, $name='country', $class='', $id='') {
     $country_array = su_get_country_array();
     require __DIR__ . '/../view/country-select.php';
 }

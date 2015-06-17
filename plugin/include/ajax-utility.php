@@ -58,6 +58,18 @@ function su_can_edit_user() {
     die();
 }
 
+function su_update_usermeta($user_id, $key, $filter=FILTER_DEFAULT) {
+    $value = filter_input(INPUT_POST, $key, $filter);
+    if ($value === null) {
+        return;
+    }
+    if ($value === false) {
+        update_user_meta($user_id, $key, '');
+    } else {
+        update_user_meta($user_id, $key, $value);
+    }
+}
+
 /**
  * Check if a file is uploaded, and if it is a picture.
  * @param string $key_name

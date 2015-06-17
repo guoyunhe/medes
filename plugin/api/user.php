@@ -85,38 +85,27 @@ add_action( 'wp_ajax_nopriv_edit_user_basic', 'su_edit_user_basic' );
 
 function su_edit_user_basic() {
     su_check_login();
-    $user_id = get_current_user_id();
+    su_can_edit_user();
 
-    $first_name = filter_input(INPUT_POST, 'first_name');
-    $last_name = filter_input(INPUT_POST, 'last_name');
-    $country = filter_input(INPUT_POST, 'country');
-    $city = filter_input(INPUT_POST, 'city');
-    $role = filter_input(INPUT_POST, 'role');
-    $schools = filter_input(INPUT_POST, 'schools', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
-
-    if ($first_name !== false) {
-        update_user_meta($user_id, 'first_name', $first_name);
-    }
+    $user_id = get_current_user_id(); // @TODO detect user_id
     
-    if ($last_name !== false) {
-        update_user_meta($user_id, 'last_name', $last_name);
-    }
+    su_update_usermeta($user_id, 'first_name');
+    su_update_usermeta($user_id, 'last_name');
+    su_update_usermeta($user_id, 'user_email');
     
-    if($country !== false) {
-        update_user_meta($user_id, 'country', $country);
-    }
+    su_update_usermeta($user_id, 'home_country');
+    su_update_usermeta($user_id, 'home_city');
+    su_update_usermeta($user_id, 'live_country');
+    su_update_usermeta($user_id, 'live_city');
     
-    if($city !== false) {
-        update_user_meta($user_id, 'city', $city);
-    }
+    su_update_usermeta($user_id, 'role');
     
-    if ($role !== false) {
-        update_user_meta($user_id, 'role', $role);
-    }
-    
-    if ($schools !== false) {
-        update_user_meta($user_id, 'schools', json_encode($schools, JSON_UNESCAPED_UNICODE));
-    }
+    su_update_usermeta($user_id, 'school_1');
+    su_update_usermeta($user_id, 'year_1');
+    su_update_usermeta($user_id, 'school_2');
+    su_update_usermeta($user_id, 'year_2');
+    su_update_usermeta($user_id, 'school_3');
+    su_update_usermeta($user_id, 'year_3');
     
     $response = ['succeed' => true];
 
@@ -171,24 +160,37 @@ function su_get_user_page_data() {
         'username' => $user->user_login,
         'first_name' => $user->first_name,
         'last_name' => $user->last_name,
-        'country' => $user->country,
-        'city' => $user->city,
+        'live_country' => $user->live_country,
+        'live_city' => $user->live_city,
+        'home_country' => $user->home_country,
+        'home_city' => $user->home_city,
         'role' => $user->role,
+        'school_1' => $user->school_1,
+        'year_1' => $user->year_1,
+        'school_2' => $user->school_2,
+        'year_2' => $user->year_2,
+        'school_3' => $user->school_3,
+        'year_3' => $user->year_3,
         'avatar_url' => $user->avatar_url,
         'schools' => json_decode($user->schools, true),
         'pictures' => json_decode($user->pictures, true),
         'experience' => json_decode($user->experience, true),
     ];
 
-    // Links
+    // Private data: links
     $link_keys = ['facebook', 'twitter', 'linkedin', 'google', 'openemail'];
 
     foreach ($link_keys as $key) {
         $link = get_user_meta($user_id, $key, true);
         $private = get_user_meta($user_id, $key . '_private', true);
-        if (!empty($link) && empty($private)) {
+        if (!empty($link) && (empty($private) || $user_id === get_current_user_id())) {
             $response[$key] = $link;
         }
+    }
+    
+    // Private data: email
+    if($user_id === get_current_user_id()) {
+        $response['email'] = $user->user_email;
     }
 
     echo json_encode($response);
