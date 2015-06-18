@@ -20,8 +20,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     height: 300px;
     position: relative;
     background-color: #09A6FF;
-    background-size: contain;
-    background-blend-mode: multiply;
 }
 
 /* Avatar */
@@ -31,7 +29,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     top: 0;
     width: 300px;
     height: 300px;
-    background-color: lightblue;
+    background-color: #09A6FF;
+    background-size: cover;
+    background-blend-mode: multiply;
 }
 
 /* User real name: first name + last name */
@@ -49,6 +49,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 .user-page .schools {
     position: absolute;
     left: 320px;
+    right: 20px;
     bottom: 20px;
     font-size: 36px;
 }
