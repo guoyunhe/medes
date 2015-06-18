@@ -36,11 +36,21 @@
                 <div class="site-description"><?php bloginfo('description'); ?></div>
             </div>
             <div class="nav-wrap pull-right">
-                <input type="search" placeholder="Search..."/>
-                <span class="click inline button">Schools</span>
-                <span class="click inline button">Workshops</span>
-                <span class="click inline button">People</span>
-                <a href="#page/2" class="click inline button">About</a>
+                <span id="site-search">
+                    <input type="search" placeholder="Search..."/>
+                    <i class="fa fa-search fa-lg"></i>
+                </span>
+
+                <span id="site-menu" class="click inline">
+                    <i class="fa fa-bars fa-lg"></i>
+                    <div class="dropdown">
+                        <span class="click button">Schools</span>
+                        <span class="click button">Workshops</span>
+                        <span class="click button">People</span>
+                        <a href="#page/2" class="click button">About</a>
+                    </div>
+                </span>
+
                 <span id="user-menu" class="click inline button">
                     <?php
                     if (is_user_logged_in()):
