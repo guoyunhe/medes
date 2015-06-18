@@ -375,10 +375,21 @@ function viewUserPopup(userId) {
         jQuery('#user-page-popup .avatar').css('background-image',
                 'url("' + response['avatar_url'] + '")');
         // Display name (first name + last name)
-        jQuery('#user-page-popup .name').text(response['first_name'] + ' ' + response['last_name']);
+        jQuery('#user-page-popup .first-name').text(response.first_name);
+        jQuery('#user-page-popup .last-name').text(response.last_name);
 
         // Schools
-        jQuery('#user-edit-popup .schools span').text('School A/Aalto University/SchoolB');
+        var schools = '';
+        if (response.school_1_short) {
+            schools += response.school_1_short;
+        }
+        if (response.school_2_short) {
+            schools += '/' + response.school_2_short;
+        }
+        if (response.school_3_short) {
+            schools += '/' + response.school_3_short;
+        }
+        jQuery('#user-page-popup .schools').text(schools);
 
         // Links
 

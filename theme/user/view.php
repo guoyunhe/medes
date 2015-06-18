@@ -28,7 +28,10 @@
         <div class="container">
             <div class="header">
                 <div class="avatar"></div>
-                <div class="name"></div>
+                <div class="name">
+                    <div class="first-name"></div>
+                    <div class="last-name"></div>
+                </div>
                 <div class="schools"></div>
             </div>
             <div class="links">

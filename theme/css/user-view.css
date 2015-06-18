@@ -19,7 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 .user-page .header {
     height: 300px;
     position: relative;
-    background-color: #c0c0c0;
+    background-color: #09A6FF;
     background-size: contain;
     background-blend-mode: multiply;
 }
@@ -38,18 +38,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 .user-page .name {
     position: absolute;
     left: 320px;
-    top: 140px;
-    font-size: 24px;
+    top: 20px;
+    width: 400px;
+    font-size: 54px;
     font-weight: bold;
-    text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    font-style: italic;
 }
 
 /* Schools */
 .user-page .schools {
     position: absolute;
     left: 320px;
-    bottom: 220px;
-    font-size: 20px;
+    bottom: 20px;
+    font-size: 36px;
 }
 
 /* Pictures */
