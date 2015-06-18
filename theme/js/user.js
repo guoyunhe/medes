@@ -250,8 +250,9 @@ jQuery(function () {
             dataType: 'json',
             processData: false,
             contentType: false
-        }).done(function(){
-            jQuery('#user-edit-popup .avatar').css('background-image', 'url("' + data.avatar_url + '")');
+        }).done(function(response){
+            jQuery('#user-edit-popup .avatar').css('background-image', 'url("' + response.avatar_url + '")');
+            jQuery('#user-menu .avatar').css('background-image', 'url("' + response.avatar_url + '")');
         });
     });
     
@@ -400,7 +401,7 @@ jQuery(function () {
 // Header user menu
 
 jQuery(function () {
-    jQuery('#site-header .user').click(function () {
+    jQuery('#user-menu').click(function () {
         viewUserPopup();
     });
 });

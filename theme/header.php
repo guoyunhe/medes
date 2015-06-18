@@ -36,35 +36,27 @@
                 <div class="site-description"><?php bloginfo('description'); ?></div>
             </div>
             <div class="nav-wrap pull-right">
-                <div id="top-search-click" class="click inline round">
-                    <i class="fa fa-lg fa-search"></i>
-                    <div class="dropdown">
-                        <input type="search" placeholder="Search..."/>
-                    </div>
-                </div>
-                <div id="top-search-wrap" class="inline">
-                    <input type="search" placeholder="Search..."/>
-                </div>
-                <div id="top-menu-click" class="click inline round">
-                    <i class="fa fa-lg fa-bars"></i>
-                    <div class="dropdown">
-                        <div class="click">Maps</div>
-                        <div class="click">Schools</div>
-                        <div class="click">Workshops</div>
-                        <div class="click">People</div>
-                        <div class="click">About</div>
-                    </div>
-                </div>
-                <div id="top-menu-wrap" class="inline">
-                    <div class="click inline button">Maps</div>
-                    <div class="click inline button">Schools</div>
-                    <div class="click inline button">Workshops</div>
-                    <div class="click inline button">People</div>
-                    <a href="#page/2" class="click inline button">About</a>
-                </div>
-                <span class="user">
-                    <span class="avatar"></span>
-                    <span class="name">User</span>
+                <input type="search" placeholder="Search..."/>
+                <span class="click inline button">Schools</span>
+                <span class="click inline button">Workshops</span>
+                <span class="click inline button">People</span>
+                <a href="#page/2" class="click inline button">About</a>
+                <span id="user-menu" class="click inline button">
+                    <?php
+                    if (is_user_logged_in()):
+                        $user_id = get_current_user_id();
+                        $avatar_url = get_user_meta($user_id, 'avatar_url', true);
+                        $user_name = get_user_meta($user_id, 'first_name', true)
+                                . ' ' . get_user_meta($user_id, 'last_name', true);
+                        ?>
+                        <span class="avatar"
+                              style="background-image: url('<?php echo $avatar_url ?>')"></span>
+                        <span class="name"><?php echo $user_name ?></span>
+                    <?php else: ?>
+                        <span class="avatar" style="display:none;"></span>
+                        <span class="name">Login</span>
+                    <?php endif; ?>
+
                 </span>
             </div>
         </header>
