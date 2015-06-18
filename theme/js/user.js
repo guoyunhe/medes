@@ -275,6 +275,10 @@ jQuery(function () {
     // Living country, city; home country city
     jQuery('#user-edit-location input').change(updateSimpleUserMeta);
     jQuery('#user-edit-location select').change(updateSimpleUserMeta);
+    
+    // User role
+    jQuery('#user-edit-medes select').change(updateSimpleUserMeta);
+    jQuery('#user-edit-medes input').change(updateSimpleUserMeta);
 
     // Photos
     jQuery('#user-edit-popup .add-picture').click(function () {
