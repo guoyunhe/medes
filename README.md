@@ -1,4 +1,4 @@
-# SchoolUnion
+# MEDes
 
-WordPress plugin and theme for school union and international double degree programme.
+WordPress plugin and theme for MEDes project.
 
