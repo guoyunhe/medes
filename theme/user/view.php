@@ -1,5 +1,4 @@
 <?php
-
 /*
  * Copyright (C) 2015 Guo Yunhe <guoyunhebrave@gmail.com>
  *
@@ -20,7 +19,6 @@
 /**
  * Popup to display user page
  */
-
 ?>
 <div id="user-page-popup" class="popup user-page">
     <div class="popup-close"><i class="fa fa-close"></i></div>
@@ -34,19 +32,31 @@
                 </div>
                 <div class="schools"></div>
             </div>
-            <div class="links">
-                <div class="link"><i class="fa fa-facebook"></i></div>
-                <div class="link"><i class="fa fa-twitter"></i></div>
-                <div class="link"><i class="fa fa-linkedin"></i></div>
-                <div class="link"><i class="fa fa-google-plus"></i></div>
-                <div class="link"><i class="fa fa-instagram"></i></div>
-                <div class="link"><i class="fa fa-flickr"></i></div>
-                <div class="link"><i class="fa fa-skype"></i></div>
-                <div class="link"><i class="fa fa-email"></i></div>
+            <div class="row">
+                <div class="left">
+                    <div class="skills"></div>
+                    <div class="links">
+                        <a id="link-facebook" class="link"><i class="fa fa-facebook"></i></a>
+                        <a id="link-twitter" class="link"><i class="fa fa-twitter"></i></a>
+                        <a id="link-linkedin" class="link"><i class="fa fa-linkedin"></i></a>
+                        <a id="link-google" class="link"><i class="fa fa-google-plus"></i></a>
+                        <a id="link-instagram" class="link"><i class="fa fa-instagram"></i></a>
+                        <a id="link-flickr" class="link"><i class="fa fa-flickr"></i></a>
+                        <a id="link-youtube" class="link"><i class="fa fa-youtube"></i></a>
+                        <a id="link-vimeo" class="link"><i class="fa fa-vimeo-square"></i></a>
+                        <a id="link-tumblr" class="link"><i class="fa fa-tumblr"></i></a>
+                        <a id="link-pinterest" class="link"><i class="fa fa-pinterest"></i></a>
+                        <a id="link-website" class="link"><i class="fa fa-chain"></i></a>
+                        <a id="link-email" class="link"><i class="fa fa-envelope"></i></a>
+                    </div>
+                    <div class="experience"></div>
+                </div>
+                <div class="right">
+                    <div class="pictures clearfix"></div>
+                    <div class="tagline"></div>
+                    <div class="description"></div>
+                </div>
             </div>
-            <div class="experience"></div>
-            <div class="skills"></div>
-            <div class="pictures clearfix"></div>
             <button class="edit large">EDIT</button>
         </div><!-- .container -->
     </div><!-- .popup-body -->

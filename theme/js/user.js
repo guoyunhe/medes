@@ -67,7 +67,8 @@ jQuery(function () {
     function ajaxCallback(response) {
         if (response.succeed) {
             closePopup(jQuery('#user-create-popup'));
-            openPopup(jQuery('#user-edit-basic-popup'));
+            editUserPopup();
+            jQuery('#user-menu .name').text(jQuery('#user-create-popup [name="username"]').val());
         } else {
             errorMessage(response['error_message']);
         }
@@ -78,42 +79,20 @@ jQuery(function () {
     }
 });
 
-
 /******************************************************************************
- *                     Edit user basic profile popup                          *
+ *                             User Login Popup                               *
  ******************************************************************************/
-
-// Open popup and initialize
-function editUserBasicPopup() {
-    openPopup(jQuery('#user-edit-basic-popup'));
+function loginUserPopup() {
+    openPopup(jQuery('#user-login-popup'));
 }
 
-// User interaction and AJAX
 jQuery(function () {
-    jQuery('#user-edit-basic-popup .next').click(function () {
+    jQuery('#user-login-popup .next').click(function () {
         var request = {
-            'action': 'edit_user_basic',
-            'first_name': jQuery('#user-edit-basic-popup input[name="first_name"]').val(),
-            'last_name': jQuery('#user-edit-basic-popup input[name="last_name"]').val(),
-            'country': jQuery('#user-edit-basic-popup select[name="country"]').val(),
-            'city': jQuery('#user-edit-basic-popup input[name="city"]').val(),
-            'role': jQuery('#user-edit-basic-popup select[name="role"]').val(),
-            'schools': [
-                {
-                    'year': jQuery('#user-edit-basic-popup select[name="year_1"]').val(),
-                    'school': jQuery('#user-edit-basic-popup select[name="school_1"]').val()
-                },
-                {
-                    'year': jQuery('#user-edit-basic-popup select[name="year_2"]').val(),
-                    'school': jQuery('#user-edit-basic-popup select[name="school_2"]').val()
-                },
-                {
-                    'year': jQuery('#user-edit-basic-popup select[name="year_3"]').val(),
-                    'school': jQuery('#user-edit-basic-popup select[name="school_3"]').val()
-                }
-            ]
+            action: 'login_user',
+            username: jQuery('#user-login-popup [name=username]').val(),
+            password: jQuery('#user-login-popup [name=password]').val()
         };
-
         jQuery.ajax({
             url: ajaxurl,
             data: request,
@@ -121,13 +100,19 @@ jQuery(function () {
             dataType: 'json'
         }).done(function (response) {
             if (response.succeed) {
-                closePopup(jQuery('#user-edit-basic-popup'));
-                editUserPopup();
+                closePopup(jQuery('#user-login-popup'));
+                jQuery('#user-menu .name').text(response.first_name + ' ' + response.last_name);
+                jQuery('#user-menu .avatar').css('background-image', 'url("' + response.avatar_url + '")').show();
+            } else {
+                errorMessage(response.error_message);
             }
         });
-    });
-});
 
+    });
+    function errorMessage(message) {
+        jQuery('#user-create-popup .error-message').html(message);
+    }
+});
 
 /******************************************************************************
  *                     Edit User Full Profile Popup                           *
@@ -167,7 +152,7 @@ function editUserPopup(userId) {
         // First name
         jQuery('#user-edit-popup [name=last_name]').val(response.last_name);
         // Email
-        jQuery('#user-edit-popup [name=user_email]').val(response.email);
+        jQuery('#user-edit-popup [name=user_email]').val(response.user_email);
         // Living country
         jQuery('#user-edit-popup [name=live_country]').val(response.live_country);
         // Living city
@@ -183,50 +168,51 @@ function editUserPopup(userId) {
         jQuery('#user-edit-popup [name=year_2]').val(response.year_2);
         jQuery('#user-edit-popup [name=school_3]').val(response.school_3);
         jQuery('#user-edit-popup [name=year_3]').val(response.year_3);
-        
+
         // Pictures
         jQuery('#user-edit-popup .pictures .picture').remove();
         var pictures = response['pictures'];
-        for (var key in pictures) {
-            if (pictures.hasOwnProperty(key)) {
-                var $picture = jQuery('<div class="picture"><span class="remove"><i class="fa fa-remove"></i></span></div>');
-                $picture.css('background-image', 'url("' + pictures[key].url + '")');
-                $picture.data('uuid', key);
-                jQuery('#user-edit-popup .add-picture').after($picture);
-                $picture.find('.remove').click(function () {
-                    var sendData = {
-                        'action': 'remove_user_picture',
-                        'uuid': key
-                    };
-                    jQuery.ajax({
-                        url: ajaxurl,
-                        data: sendData,
-                        method: 'POST',
-                        dataType: 'json'
-                    });
-                    $picture.remove();
-                });
+
+        for (var pictureKey in pictures) {
+            if (pictures.hasOwnProperty(pictureKey)) {
+                addUserPicture(pictureKey, pictures[pictureKey].url);
             }
         }
-    });
-    
-    // Get full links information for editing, including private links
-    request['action'] = 'get_user_links_edit';
-    jQuery.ajax({
-        url: ajaxurl,
-        data: request,
-        method: 'POST',
-        dataType: 'json'
-    }).done(function (response) {
-        // Links
-        var linkKeys = ['facebook', 'twitter', 'linkedin', 'google', 'openemail'];
-        for(var i = 0; i < linkKeys.length; i++) {
-            var key = linkKeys[i];
-            var link = response[key];
-            var private = response[key + '_private'];
-            jQuery('#user-edit-popup input[name=' + key + ']').val(link);
-            jQuery('#user-edit-popup input[name=' + key + '_private]').prop('checked', private);
+
+        // Skills
+        jQuery('#user-edit-skills .skill').remove();
+        var skills = response.skills;
+        if (skills) {
+            for (var i = 0; i < skills.length; i++) {
+                var skill = skills[i];
+                addUserSkill(skill);
+            }
         }
+
+        // Experience
+        jQuery('#user-edit-experience .experience-item').remove();
+        var experience = response.experience;
+
+        for (var xpKey in experience) {
+            if (experience.hasOwnProperty(xpKey)) {
+                var xp = experience[xpKey];
+                addUserExperience(xpKey, xp.start, xp.end, xp.desc);
+            }
+        }
+
+        // Links
+        var linkKeys = suGetLinkTypes();
+        for (var i = 0; i < linkKeys.length; i++) {
+            var linkKey = linkKeys[i];
+            var link = response[linkKey];
+            var private = response[linkKey + '_private'];
+            jQuery('#user-edit-popup input[name=' + linkKey + ']').val(link);
+            jQuery('#user-edit-popup input[name=' + linkKey + '_private]').prop('checked', private);
+        }
+
+        // Description
+        jQuery('#user-edit-popup [name=tagline]').val(response.tagline);
+        jQuery('#user-edit-popup [name=description]').val(response.description);
     });
 }
 // User interaction
@@ -242,7 +228,6 @@ jQuery(function () {
         var form_data = new FormData();
         form_data.append('action', 'update_user_avatar');
         form_data.append('avatar', file_data);
-        console.log(ajaxurl);
         jQuery.ajax({
             url: ajaxurl,
             data: form_data,
@@ -250,16 +235,21 @@ jQuery(function () {
             dataType: 'json',
             processData: false,
             contentType: false
-        }).done(function(response){
+        }).done(function (response) {
             jQuery('#user-edit-popup .avatar').css('background-image', 'url("' + response.avatar_url + '")');
             jQuery('#user-menu .avatar').css('background-image', 'url("' + response.avatar_url + '")');
         });
     });
-    
+
     function updateSimpleUserMeta() {
         var name = jQuery(this).attr('name');
-        var value = jQuery(this).val();
-        var request = { action: 'edit_user_basic' };
+        var value;
+        if (jQuery(this).attr('type') === 'checkbox') {
+            value = jQuery(this).prop('checked');
+        } else {
+            value = jQuery(this).val();
+        }
+        var request = {action: 'edit_user_basic'};
         request[name] = value;
         jQuery.ajax({
             url: ajaxurl,
@@ -268,14 +258,19 @@ jQuery(function () {
             dataType: 'json'
         });
     }
-    
+
     // First name, last name, email
     jQuery('#user-edit-basic input').change(updateSimpleUserMeta);
-    
+
+    jQuery('#user-edit-basic input').change(function () {
+        jQuery('#user-menu .name').text(jQuery('#user-edit-basic [name="first_name"]').val()
+                + ' ' + jQuery('#user-edit-basic [name="last_name"]').val());
+    });
+
     // Living country, city; home country city
     jQuery('#user-edit-location input').change(updateSimpleUserMeta);
     jQuery('#user-edit-location select').change(updateSimpleUserMeta);
-    
+
     // User role
     jQuery('#user-edit-medes select').change(updateSimpleUserMeta);
     jQuery('#user-edit-medes input').change(updateSimpleUserMeta);
@@ -297,45 +292,56 @@ jQuery(function () {
             dataType: 'json',
             processData: false,
             contentType: false
-        }).done(addPicture);
+        }).done(function (response) {
+            addUserPicture(response.uuid, response.url);
+        });
     });
 
-    function addPicture(data) {
-        var $picture = jQuery('<div class="picture"><span class="remove"><i class="fa fa-remove"></i></span></div>');
-        $picture.data('uuid', data.uuid);
-        $picture.css('background-image', 'url("' + data.url + '")');
-        jQuery('#user-edit-popup .add-picture').after($picture);
-        $picture.find('.remove').click(function () {
-            var sendData = {
-                'action': 'remove_user_picture',
-                'uuid': data.uuid
-            };
-            jQuery.ajax({
-                url: ajaxurl,
-                data: sendData,
-                method: 'POST',
-                dataType: 'json'
-            });
-            $picture.remove();
-        });
-    }
-
     // Links
-    jQuery('#user-edit-links input').change(function () {
-        var name = jQuery(this).attr('name');
-        var value = jQuery(this).val();
-        var request = { action: 'update_user_links' };
-        request[name] = value;
+    jQuery('#user-edit-links input').change(updateSimpleUserMeta);
+
+    // Skills
+    jQuery('#add-skill-button').click(function () {
+        var skill = jQuery('#add-skill-input').val();
+        var request = {
+            'action': 'add_user_skill',
+            'skill': skill
+        };
         jQuery.ajax({
             url: ajaxurl,
             data: request,
             method: 'POST',
             dataType: 'json'
         });
+        addUserSkill(skill);
     });
-    // Experience
 
-    // Description text?
+    // Experience
+    jQuery('#add-xp-button').click(function () {
+        var start = jQuery('#add-xp-start-input').val();
+        var end = jQuery('#add-xp-end-input').val();
+        var desc = jQuery('#add-xp-desc-input').val();
+        var request = {
+            'action': 'add_user_experience',
+            'start': start,
+            'end': end,
+            'desc': desc
+        };
+        jQuery.ajax({
+            url: ajaxurl,
+            data: request,
+            method: 'POST',
+            dataType: 'json'
+        }).done(function (response) {
+            addUserExperience(response.uuid, start, end, desc);
+        });
+    });
+
+
+
+    // Description
+    jQuery('#user-edit-description input').change(updateSimpleUserMeta);
+    jQuery('#user-edit-description textarea').change(updateSimpleUserMeta);
 
     // Finish button
     jQuery('#user-edit-popup .finish').click(function () {
@@ -392,17 +398,51 @@ function viewUserPopup(userId) {
         jQuery('#user-page-popup .schools').text(schools);
 
         // Links
+        var linkKeys = suGetLinkTypes();
+        for (var i = 0; i < linkKeys.length; i++) {
+            var linkKey = linkKeys[i];
+            var link = response[linkKey];
+            if (link) {
+                jQuery('#link-' + linkKey).attr('href', link).show();
+            } else {
+                jQuery('#link-' + linkKey).hide();
+            }
+        }
 
         // Pictures
         jQuery('#user-page-popup .pictures .picture').remove();
         var pictures = response['pictures'];
-        for (var key in pictures) {
-            if (pictures.hasOwnProperty(key)) {
+        for (var pictureKey in pictures) {
+            if (pictures.hasOwnProperty(pictureKey)) {
                 var $picture = jQuery('<div class="picture"></div>');
-                $picture.css('background-image', 'url("' + pictures[key].url + '")');
+                $picture.css('background-image', 'url("' + pictures[pictureKey].url + '")');
                 jQuery('#user-page-popup .pictures').append($picture);
             }
         }
+
+        // Skills
+        jQuery('#user-page-popup .skills .skill').remove();
+        var skills = response.skills;
+        if (skills) {
+            for (var i = 0; i < skills.length; i++) {
+                jQuery('#user-page-popup .skills').append('<div class="skill">' + skills[i] + '</div>');
+            }
+        }
+
+        // Experience
+        jQuery('#user-page-popup .experience .experience-item').remove();
+        var experience = response.experience;
+        for (var xpKey in experience) {
+            if (experience.hasOwnProperty(xpKey)) {
+                var xp = experience[xpKey];
+                var $xp = jQuery('<div class="experience-item">' + xp.start + '-'
+                        + xp.end + ' ' + xp.desc + '</div>');
+                jQuery('#user-page-popup .experience').append($xp);
+            }
+        }
+
+        jQuery('#user-page-popup .tagline').text(response.tagline);
+        jQuery('#user-page-popup .description').text(response.description);
     });
 }
 // User interaction
@@ -413,10 +453,88 @@ jQuery(function () {
     });
 });
 
+
+// Add picture
+function addUserPicture(uuid, url) {
+    var $picture = jQuery('<div class="picture"><span class="remove"><i class="fa fa-remove"></i></span></div>');
+    $picture.css('background-image', 'url("' + url + '")');
+    $picture.data('uuid', uuid);
+    jQuery('#user-edit-popup .add-picture').after($picture);
+    $picture.find('.remove').click(function () {
+        var request = {
+            'action': 'remove_user_picture',
+            'uuid': uuid
+        };
+        jQuery.ajax({
+            url: ajaxurl,
+            data: request,
+            method: 'POST',
+            dataType: 'json'
+        });
+        $picture.remove();
+    });
+}
+
+// Add skill
+function addUserSkill(skill) {
+    var $skill = jQuery('<span class="skill">' + skill + ' <i class="fa fa-remove"></i></span>');
+    $skill.find('i').click(function () {
+        $skill.remove();
+        var request = {
+            'action': 'remove_user_skill',
+            'skill': skill
+        };
+        jQuery.ajax({
+            url: ajaxurl,
+            data: request,
+            method: 'POST',
+            dataType: 'json'
+        });
+    });
+    jQuery('#user-edit-skills .skills').append($skill);
+}
+
+// Add experience
+function addUserExperience(uuid, start, end, desc) {
+    var $xp;
+    if (end) {
+        $xp = jQuery('<div class="experience-item">' + start + '-' + end + ' '
+                + desc + '<span class="remove"><i class="fa fa-remove"></i></span></div>');
+    } else {
+        $xp = jQuery('<div class="experience-item">' + start + ' ' + desc +
+                '<span class="remove"><i class="fa fa-remove"></i></span></div>');
+    }
+    $xp.find('.remove').click(function () {
+        $xp.remove();
+        var request = {
+            'action': 'remove_user_experience',
+            'uuid': uuid
+        };
+        jQuery.ajax({
+            url: ajaxurl,
+            data: request,
+            method: 'POST',
+            dataType: 'json'
+        });
+    });
+    jQuery('#user-edit-experience .experience').append($xp);
+}
+
+
 // Header user menu
 
 jQuery(function () {
     jQuery('#user-menu').click(function () {
-        viewUserPopup();
+        if (jQuery('#user-menu .name').text() === 'Login') {
+            loginUserPopup();
+        } else {
+            viewUserPopup();
+        }
     });
 });
+
+// Link types
+function suGetLinkTypes() {
+    return ['facebook', 'twitter', 'linkedin', 'google', 'instagram', 'flickr',
+        'youtube', 'vimeo', 'tumblr', 'pinterest', 'pinterest', 'website', 'email'];
+}

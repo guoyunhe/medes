@@ -22,13 +22,9 @@ get_header();
 // Load popup modals of user, school and workshop page
 if (su_check_secret_key()) {
     get_template_part('user/create');
-    get_template_part('user/edit-basic');
 }
-
-if (su_check_secret_key() || is_user_logged_in()) {
-    get_template_part('user/edit');
-}
-
+get_template_part('user/login');
+get_template_part('user/edit');
 get_template_part('user/view');
 
 if (is_user_logged_in() && is_admin()) {

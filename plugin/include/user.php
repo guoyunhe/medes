@@ -28,11 +28,11 @@ function su_get_featured_people( $number=6 ) {
         'meta_query' => array(
             'relation' => 'AND',
             array(
-                'key' => 'su_avatar',
+                'key' => 'avatar_url',
                 'compare' => 'EXISTS'
             ),
             array(
-                'key' => 'su_photo',
+                'key' => 'pictures',
                 'compare' => 'EXISTS'
             )
         ),

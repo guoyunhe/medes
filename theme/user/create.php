@@ -26,20 +26,24 @@
     <div class="popup-close"><i class="fa fa-close"></i></div>
     <div class="popup-body">
         <div class="container small">
-            <h3>Welcome to Join MEDes!</h3>
+            <h2>Join MEDes Network</h2>
             <div class="error-message"></div>
-            <input type="hidden" name="secret_key"
-                   value="<?= filter_input(INPUT_GET, 'secret_key'); ?>">
-            <input type="text" name="username" class="block large"
-                   placeholder="Choose a cool username"/>
-            <input type="password" name="password" class="block large"
-                   placeholder="Set password"/>
-            <input type="password" name="password_repeat" class="block large"
-                   placeholder="Confirm password"/>
-            <input type="email" name="email" class="block large"
-                   placeholder="Email address"/>
-            <br><br>
-            <button class="next large">NEXT</button>
+            <p>
+                <input type="text" name="username" placeholder="Choose a cool username"/>
+            </p>
+            <p>
+                <input type="password" name="password" placeholder="Set password"/>
+            </p>
+            <p>
+                <input type="password" name="password_repeat" placeholder="Confirm password"/>
+            </p>
+            <p>
+                <input type="email" name="email" placeholder="Email address"/>
+            </p>
+            <input type="hidden" name="secret_key" value="<?php echo filter_input(INPUT_GET, 'secret_key'); ?>">
+            <p>
+                <button class="next large">Next</button>
+            </p>
         </div>
     </div>
 </div>

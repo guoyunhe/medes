@@ -29,6 +29,6 @@ Text Domain: schoolunion
 @import "css/datamap.css";
 
 /* User popup pages */
+@import "css/user-create.css";
 @import "css/user-view.css";
-@import "css/user-edit-basic.css";
 @import "css/user-edit.css";

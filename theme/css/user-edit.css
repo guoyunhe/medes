@@ -111,6 +111,41 @@ select.year {
     color: red;
 }
 
+/* Experience */
+.experience {
+    max-width: 300px;
+}
+.experience-item {
+    position: relative;
+    padding: 10px 0 10px 40px;
+    background: 19px 0 repeat-y url('../img/line.png'), 15px 15px no-repeat url('../img/dot.png');
+}
+
+#user-edit-experience .experience-item {
+    padding-right: 30px;
+}
+
+.experience-item .remove {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 10px;
+    cursor: pointer;
+}
+
+#user-edit-experience textarea {
+    vertical-align: top;
+}
+
+/* Skills */
+.skill {
+    font-size: 28px;
+    margin-right: 1em;
+}
+.skill i {
+    cursor: pointer;
+}
+
 /* Description */
 
 /* Tagline */

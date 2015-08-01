@@ -16,14 +16,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 /* Header */
-.user-page .header {
+#user-page-popup .header {
     height: 300px;
     position: relative;
     background-color: #09A6FF;
 }
 
 /* Avatar */
-.user-page .avatar {
+#user-page-popup .avatar {
     position: absolute;
     left: 0;
     top: 0;
@@ -35,7 +35,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 }
 
 /* User real name: first name + last name */
-.user-page .name {
+#user-page-popup .name {
     position: absolute;
     left: 320px;
     top: 20px;
@@ -46,7 +46,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 }
 
 /* Schools */
-.user-page .schools {
+#user-page-popup .schools {
     position: absolute;
     left: 320px;
     right: 20px;
@@ -54,12 +54,29 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     font-size: 36px;
 }
 
+/* Two-colum layout */
+#user-page-popup .row {
+    position: relative;
+    overflow: visible;
+}
+
+#user-page-popup .left {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 300px;
+}
+
+#user-page-popup .right {
+    margin-left: 300px;
+}
+
 /* Pictures */
-.user-page .pictures {
+#user-page-popup .pictures {
     margin: 10px 0;
 }
 
-.user-page .picture {
+#user-page-popup .picture {
     position: relative;
     width: 300px;
     height: 300px;
@@ -71,19 +88,29 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /* Links */
 
 .links {
-    margin: 10px 0;
+    margin: 30px 0;
 }
 
 .links .link {
     display: inline-block;
-    width: 30px;
-    height: 30px;
-    font-size: 30px;
-    line-height: 30px;
+    width: 42px;
+    height: 42px;
+    font-size: 42px;
+    line-height: 42px;
     text-align: center;
-    cursor: pointer;
+    color: #0BA6FF;
 }
 
 /* Experience */
 
-/* Skills */
+/* Tagline */
+.tagline {
+    font-size: 28px;
+    font-style: italic;
+    text-align: center;
+    padding: 30px 10px;
+}
+
+.description {
+    padding: 10px;
+}

@@ -19,6 +19,6 @@
 
 function su_get_year_select($selected=null, $name='year', $class='year', $id = '') {
     $start = 1990;
-    $end = date("Y");
+    $end = date("Y") + 5;
     require __DIR__ . '/../view/year-select.php';
 }

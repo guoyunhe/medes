@@ -133,20 +133,65 @@
                     <label><input type="checkbox" name="google_private"> private</label>
                 </p>
                 <p>
+                    <label>Instagram</label>
+                    <input type="text" name="instagram">
+                    <label><input type="checkbox" name="instagram_private"> private</label>
+                </p>
+                <p>
+                    <label>Flickr</label>
+                    <input type="text" name="flickr">
+                    <label><input type="checkbox" name="flickr_private"> private</label>
+                </p>
+                <p>
+                    <label>YouTube</label>
+                    <input type="text" name="youtube">
+                    <label><input type="checkbox" name="youtube_private"> private</label>
+                </p>
+                <p>
+                    <label>Vimeo</label>
+                    <input type="text" name="vimeo">
+                    <label><input type="checkbox" name="vimeo_private"> private</label>
+                </p>
+                <p>
+                    <label>Tumblr</label>
+                    <input type="text" name="tumblr">
+                    <label><input type="checkbox" name="tumblr_private"> private</label>
+                </p>
+                <p>
+                    <label>Pinterest</label>
+                    <input type="text" name="pinterest">
+                    <label><input type="checkbox" name="pinterest_private"> private</label>
+                </p>
+                <p>
+                    <label>Website</label>
+                    <input type="text" name="website">
+                    <label><input type="checkbox" name="website_private"> private</label>
+                </p>
+                <p>
                     <label>Email</label>
-                    <input type="text" name="openemail">
-                    <label><input type="checkbox" name="openemail_private"> private</label>
+                    <input type="text" name="email">
+                    <label><input type="checkbox" name="email_private"> private</label>
                 </p>
             </div>
             
             <div id="user-edit-experience" class="edit-section">
                 <div class="edit-section-title">Experience</div>
-                
+                <div class="experience"></div>
+                <p>
+                    <?php su_get_year_select(null, 'xp_start', 'year', 'add-xp-start-input'); ?>
+                    <?php su_get_year_select(null, 'xp_end', 'year', 'add-xp-end-input'); ?>
+                    <textarea id="add-xp-desc-input" type="text" name="xp_desc"></textarea>
+                    <button id="add-xp-button">Add Experience</button>
+                </p>
             </div>
             
             <div id="user-edit-skills" class="edit-section">
                 <div class="edit-section-title">Skills</div>
-                
+                <div class="skills"></div>
+                <p>
+                    <input id="add-skill-input" type="text" name="skill"/>
+                    <button id="add-skill-button">Add Skill</button>
+                </p>
             </div>
             
             <div id="user-edit-description" class="edit-section">

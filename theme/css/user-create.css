@@ -1,0 +1,15 @@
+#user-create-popup,  #user-login-popup {
+    text-align: center;
+}
+#user-create-popup input, #user-login-popup input {
+    display: block;
+    width: 100%;
+    text-align: center;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    height: 30px;
+}
+
+#user-create-popup button, #user-login-popup button {
+    width: 100%;
+}

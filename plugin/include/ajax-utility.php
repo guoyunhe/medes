@@ -70,6 +70,14 @@ function su_update_usermeta($user_id, $key, $filter=FILTER_DEFAULT) {
     }
 }
 
+function su_get_target_user_id() {
+    $user_id = filter_input(INPUT_POST, 'user_id', FILTER_VALIDATE_INT);
+    if ($user_id === null || $user_id === false) {
+        $user_id = get_current_user_id();
+    }
+    return $user_id;
+}
+
 /**
  * Check if a file is uploaded, and if it is a picture.
  * @param string $key_name

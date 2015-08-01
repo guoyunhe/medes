@@ -61,6 +61,34 @@ function su_create_user() {
     die();
 }
 
+/******************************************************************************
+ **                                Login                                     **
+ ******************************************************************************/
+
+add_action('wp_ajax_login_user', 'su_login_user');
+add_action('wp_ajax_nopriv_login_user', 'su_login_user');
+
+function su_login_user() {
+
+    $username = filter_input(INPUT_POST, 'username');
+    $password = filter_input(INPUT_POST, 'password');
+
+    $creds = [];
+    $creds['user_login'] = $username;
+    $creds['user_password'] = $password;
+    $creds['remember'] = true;
+    $user = wp_signon($creds, false);
+    
+    if(is_wp_error($user)) {
+        $response = ['succeed' => false, 'error_message' => $user->get_error_message()];
+    } else {
+        $response = ['succeed' => true, 'first_name' => $user->first_name,
+                'last_name' => $user->last_name, 'avatar_url' => $user->avatar_url];
+    }
+    echo json_encode($response);
+    die();
+}
+
 /**
  * API edit user basic information
  * 
@@ -106,6 +134,20 @@ function su_edit_user_basic() {
     su_update_usermeta($user_id, 'year_2');
     su_update_usermeta($user_id, 'school_3');
     su_update_usermeta($user_id, 'year_3');
+    
+    $link_keys = su_get_link_types();
+    
+    foreach ($link_keys as $key) {
+        if ($key === 'email') {
+            su_update_usermeta($user_id, $key, FILTER_VALIDATE_EMAIL);
+        } else {
+            su_update_usermeta($user_id, $key, FILTER_VALIDATE_URL);
+        }
+        su_update_usermeta($user_id, $key . '_private', FILTER_VALIDATE_BOOLEAN);
+    }
+    
+    su_update_usermeta($user_id, 'tagline');
+    su_update_usermeta($user_id, 'description');
     
     $response = ['succeed' => true];
 
@@ -177,127 +219,36 @@ function su_get_user_page_data() {
         'avatar_url' => $user->avatar_url,
         'pictures' => json_decode($user->pictures, true),
         'experience' => json_decode($user->experience, true),
+        'skills' => json_decode($user->skills, true),
+        'tagline' => $user->tagline,
+        'description' => $user->description,
     ];
 
     // Private data: links
-    $link_keys = ['facebook', 'twitter', 'linkedin', 'google', 'openemail'];
+    $link_keys = su_get_link_types();
 
     foreach ($link_keys as $key) {
-        $link = get_user_meta($user_id, $key, true);
-        $private = get_user_meta($user_id, $key . '_private', true);
+        $link = $user->$key;
+        $key_private = $key . '_private';
+        $private = $user->$key_private;
         if (!empty($link) && (empty($private) || $user_id === get_current_user_id())) {
             $response[$key] = $link;
         }
+        $response[$key . '_private'] = $private;
     }
     
-    // Private data: email
+    // Private data: user_email
     if($user_id === get_current_user_id()) {
-        $response['email'] = $user->user_email;
+        $response['user_email'] = $user->user_email;
     }
 
     echo json_encode($response);
     die();
 }
 
-/**
- * API: Update first name and last name
- * 
- * [Request]
- * 
- * first_name: string
- * last_name: string
- * 
- * [Response]
- * 
- * succeed: boolean
- */
-
-add_action('wp_ajax_update_real_name', 'su_update_real_name');
-add_action('wp_ajax_nopriv_update_real_name', 'su_update_real_name');
-
-function su_update_real_name() {
-    su_check_login();
-    $user_id = get_current_user_id();
-
-    $first_name = filter_input(INPUT_POST, 'first_name');
-    $last_name = filter_input(INPUT_POST, 'last_name');
-
-    if ($first_name !== false && $last_name !== false) {
-        update_user_meta($user_id, 'first_name', $first_name);
-        update_user_meta($user_id, 'last_name', $last_name);
-        $response = ['succeed' => true];
-    } else {
-        $response = ['succeed' => false];
-    }
-
-    echo json_encode($response);
-    die();
-}
-
-/**
- * API: Update country and city
- * 
- * [Request]
- * 
- * country: string
- * city: string
- * 
- * [Response]
- * 
- * succeed: boolean
- */
-
-add_action('wp_ajax_update_user_location', 'su_update_user_location');
-add_action('wp_ajax_nopriv_update_user_location', 'su_update_user_location');
-
-function su_update_user_location() {
-    su_check_login();
-    $user_id = get_current_user_id();
-
-    $country = filter_input(INPUT_POST, 'country');
-    $city = filter_input(INPUT_POST, 'city');
-
-    if ($country !== false && $city !== false) {
-        update_user_meta($user_id, 'country', $country);
-        update_user_meta($user_id, 'city', $city);
-        $response = ['succeed' => true];
-    } else {
-        $response = ['succeed' => false];
-    }
-
-    echo json_encode($response);
-    die();
-}
-
-/**
- * API: Update user role
- * 
- * [Request]
- * 
- * role: string
- * 
- * [Response]
- * 
- * succeed: boolean
- */
-
-add_action('wp_ajax_update_user_role', 'su_update_user_role');
-add_action('wp_ajax_nopriv_update_user_role', 'su_update_user_role');
-
-function su_update_user_role() {
-    $role = filter_input(INPUT_POST, 'role');
-    if ($role !== false) {
-        update_user_meta($user_id, 'role', $role);
-    }
-}
-
-function su_update_user_schools($user_id) {
-    $schools = filter_input(INPUT_POST, 'schools', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
-    if ($schools !== false) {
-        update_user_meta($user_id, 'schools', json_encode($schools, JSON_UNESCAPED_UNICODE));
-    }
-}
-
+/******************************************************************************
+ **                                 Avatar                                   **
+ ******************************************************************************/
 
 /* API to upload avatar picture */
 
@@ -342,6 +293,10 @@ function su_update_user_avatar() {
     echo json_encode($response);
     die();
 }
+
+/******************************************************************************
+ **                                Pictures                                  **
+ ******************************************************************************/
 
 /* API to upload user pictures */
 
@@ -403,103 +358,157 @@ function su_remove_user_picture() {
     die();
 }
 
+function su_get_link_types () {
+    return ['facebook', 'twitter', 'linkedin', 'google', 'instagram', 'flickr',
+        'youtube', 'vimeo', 'tumblr', 'pinterest', 'pinterest', 'website', 'email'];
+}
 
 /******************************************************************************
- *                                   Links                                    *
+ **                                 Skills                                   **
  ******************************************************************************/
 
-/**
- * Request:
- * action: 'update_user_links'
- * facebook: string
- * facebook_private: boolean
- * twitter: string
- * twitter_private: boolean
- * google: string
- * google_private:boolean
- * 
- * Response:
- * succeed: boolean
- */
-add_action('wp_ajax_update_user_links', 'su_update_user_links');
-add_action('wp_ajax_nopriv_update_user_links', 'su_update_user_links');
+// Add skill tag
+add_action('wp_ajax_add_user_skill', 'su_add_user_skill');
+add_action('wp_ajax_nopriv_add_user_skill', 'su_add_user_skill');
 
-function su_update_user_links () {
+function su_add_user_skill() {
     su_check_login();
-    $user_id = get_current_user_id();
+    su_can_edit_user();
+    $user_id = su_get_target_user_id();
+
+    $skills = json_decode(get_user_meta($user_id, 'skills', true), true);
     
-    $link_keys = ['facebook', 'twitter', 'linkedin', 'google', 'openemail'];
+    if (!is_array($skills)) {
+        $skills = [];
+    }
     
-    foreach ($link_keys as $key) {
-        $link = filter_input(INPUT_POST, $key, FILTER_VALIDATE_URL);
-        $link_private = filter_input(INPUT_POST, $key . '_private', FILTER_VALIDATE_BOOLEAN);
-        
-        if ($link !== null) {
-            if ($link) {
-                update_user_meta($user_id, $key, $link);
-            } else {
-                update_user_meta($user_id, $key, '');
-            }
-        }
-        
-        if ($link_private !== null) {
-            if ($link_private) {
-                update_user_meta($user_id, $key . '_private', $link_private);
-            } else {
-                update_user_meta($user_id, $key . '_private', true);
-            }
-        }
+    $skill = filter_input(INPUT_POST, 'skill');
+    
+    if (empty($skill)) {
+        $response = ['succeed' => false];
+        echo json_encode($response);
+        die();
+    }
+    
+    if (in_array($skill, $skills)) {
+        $response = ['succeed' => true, 'exist' => true];
+        echo json_encode($response);
+        die();
     }
 
+    $skills[] = $skill;
+    $skills_array = array_values($skills);
+    update_user_meta($user_id, 'skills', json_encode($skills_array, JSON_UNESCAPED_UNICODE));
+    $response = ['succeed' => true, 'skills' => $skills];
+    echo json_encode($response);
     die();
 }
 
-/**
- * Request:
- * action: 'get_user_links_edit'
- * facebook: string
- * facebook_private: boolean
- * twitter: string
- * twitter_private: boolean
- * google: string
- * google_private:boolean
- * 
- * Response:
- * succeed: boolean
- */
-add_action('wp_ajax_get_user_links_edit', 'su_get_user_links_edit');
-add_action('wp_ajax_nopriv_get_user_links_edit', 'su_get_user_links_edit');
+// Remove skill tag
+add_action('wp_ajax_remove_user_skill', 'su_remove_user_skill');
+add_action('wp_ajax_nopriv_remove_user_skill', 'su_remove_user_skill');
 
-function su_get_user_links_edit () {
+function su_remove_user_skill() {
+    su_check_login();
     su_can_edit_user();
-    
-    $user_id = filter_input(INPUT_POST, 'user_id', FILTER_VALIDATE_INT);
-    
-    if (empty($user_id)) {
-        $user_id = get_current_user_id();
-    }
-    
-    $response = [
-        'succeed' => true,
-    ];
-    
-    $link_keys = ['facebook', 'twitter', 'linkedin', 'google', 'openemail'];
+    $user_id = su_get_target_user_id();
 
-    foreach ($link_keys as $key) {
-        $link = get_user_meta($user_id, $key, true);
-        $private = get_user_meta($user_id, $key . '_private', true);
-        $response[$key] = $link;
-        $response[$key.'_private'] = boolval($private);
+    $skills = json_decode(get_user_meta($user_id, 'skills', true), true);
+    
+    if (!is_array($skills)) {
+        $skills = [];
     }
     
+    $skill = filter_input(INPUT_POST, 'skill');
+    
+    if (empty($skill)) {
+        $response = ['succeed' => false];
+        echo json_encode($response);
+        die();
+    }
+    
+    if (!in_array($skill, $skills)) {
+        $response = ['succeed' => true, 'exist' => false];
+        echo json_encode($response);
+        die();
+    }
+    
+    $key = array_search($skill, $skills);
+    unset($skills[$key]);
+    $skills_array = array_values($skills);
+    update_user_meta($user_id, 'skills', json_encode($skills_array, JSON_UNESCAPED_UNICODE));
+    $response = ['succeed' => true];
     echo json_encode($response);
     die();
 }
 
 
 /******************************************************************************
- *                              User Experience                               *
+ **                               Experience                                 **
  ******************************************************************************/
-/**
- * Add user experience
- */
+
+// Add experience
+add_action('wp_ajax_add_user_experience', 'su_add_user_experience');
+add_action('wp_ajax_nopriv_add_user_experience', 'su_add_user_experience');
+
+function su_add_user_experience() {
+    su_check_login();
+    su_can_edit_user();
+    $user_id = su_get_target_user_id();
+
+    $uuid = uniqid();
+    
+    $experience = json_decode(get_user_meta($user_id, 'experience', true), true);
+    
+    if (!is_array($experience)) {
+        $experience = [];
+    }
+    
+    $start = filter_input(INPUT_POST, 'start', FILTER_VALIDATE_INT);
+    $end = filter_input(INPUT_POST, 'end', FILTER_VALIDATE_INT);
+    $desc = filter_input(INPUT_POST, 'desc');
+    
+    if (empty($start) || empty($desc)) {
+        $response = ['succeed' => false];
+        echo json_encode($response);
+        die();
+    }
+    
+    $experience[$uuid] = ['start' => $start, 'end' => $end, 'desc' => $desc];
+    update_user_meta($user_id, 'experience', json_encode($experience, JSON_UNESCAPED_UNICODE));
+    
+    $response = ['succeed' => true];
+    echo json_encode($response);
+    die();
+}
+
+// Remove experience
+add_action('wp_ajax_remove_user_experience', 'su_remove_user_experience');
+add_action('wp_ajax_nopriv_remove_user_experience', 'su_remove_user_experience');
+
+function su_remove_user_experience() {
+    su_check_login();
+    su_can_edit_user();
+    $user_id = su_get_target_user_id();
+    
+    $experience = json_decode(get_user_meta($user_id, 'experience', true), true);
+    
+    if (!is_array($experience)) {
+        $experience = [];
+    }
+    
+    $uuid = filter_input(INPUT_POST, 'uuid');
+    
+    if (empty($uuid)) {
+        $response = ['succeed' => false];
+        echo json_encode($response);
+        die();
+    }
+    
+    unset($experience[$uuid]);
+    update_user_meta($user_id, 'experience', json_encode($experience, JSON_UNESCAPED_UNICODE));
+    
+    $response = ['succeed' => true];
+    echo json_encode($response);
+    die();
+}

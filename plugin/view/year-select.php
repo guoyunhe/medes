@@ -19,7 +19,7 @@
 
 ?>
 <select name="<?= $name ?>" class="<?= $class ?>" id="<?= $id ?>">
-    <?php for ($year = $start; $year < $end; $year++): ?>
+    <?php for ($year = $start; $year <= $end; $year++): ?>
         <option><?php echo $year ?></option>
     <?php endfor; ?>
 </select>
