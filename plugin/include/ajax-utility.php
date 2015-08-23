@@ -17,6 +17,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+function su_add_api($api) {
+    add_action('wp_ajax_' . $api, 'su_' . $api);
+    add_action('wp_ajax_nopriv_' . $api, 'su_' . $api);
+}
 
 /**
  * Check if the user logged in. If not, send error message and end progress
@@ -58,6 +62,12 @@ function su_can_edit_user() {
     die();
 }
 
+/**
+ * A shorthand of filter input and update user meta of the same key.
+ * @param int $user_id ID of user to be modified.
+ * @param string $key The same key of both POST and user meta.
+ * @param int $filter Optional. Filter data type of POST.
+ */
 function su_update_usermeta($user_id, $key, $filter=FILTER_DEFAULT) {
     $value = filter_input(INPUT_POST, $key, $filter);
     if ($value === null) {
@@ -67,6 +77,26 @@ function su_update_usermeta($user_id, $key, $filter=FILTER_DEFAULT) {
         update_user_meta($user_id, $key, '');
     } else {
         update_user_meta($user_id, $key, $value);
+    }
+}
+
+/**
+ * A shorthand of filter input and update post meta of the same key.
+ * @param int $post_id
+ * @param string $key
+ * @param int $filter
+ */
+function su_update_post_meta($post_id, $key, $filter=FILTER_DEFAULT) {
+    $value = filter_input(INPUT_POST, $key, $filter);
+    
+    if ($value === null) { // When the key is not found in POST request
+        return;
+    }
+
+    if ($value === false) { // When the key is set empty or invalid
+        update_post_meta($post_id, $key, '');
+    } else { // When the key is set valid and not empty
+        update_post_meta($post_id, $key, $value);
     }
 }
 

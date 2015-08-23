@@ -38,7 +38,7 @@
                 <p>
                     <label>Username</label>
                     <input type="text" name="username" disabled="disabled"/>
-                    <span>[Cannot change]</span>
+                    <span>[can't be changed]</span>
                 </p>
                 <p>
                     <label>First name</label>
@@ -175,7 +175,7 @@
             </div>
             
             <div id="user-edit-experience" class="edit-section">
-                <div class="edit-section-title">Experience</div>
+                <div class="edit-section-title">Work Experience</div>
                 <div class="experience"></div>
                 <p>
                     <?php su_get_year_select(null, 'xp_start', 'year', 'add-xp-start-input'); ?>

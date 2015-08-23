@@ -46,13 +46,16 @@ add_action('after_setup_theme', 'schoolunion_setup');
 /**
  * JavaScript & CSS
  */
+
+add_action('wp_enqueue_scripts', 'schoolunion_scripts');
+
 function schoolunion_scripts() {
+    su_load_bower_components();
     $liburl = get_stylesheet_directory_uri() . '/lib';
     $jsurl = get_stylesheet_directory_uri() . '/js';
 
     // Third party libraries
     wp_enqueue_style('normalize', $liburl . '/normalize/normalize.css');
-    wp_enqueue_style('font-awesome', $liburl . '/font-awesome/css/font-awesome.min.css');
     wp_enqueue_script('jquery');
     wp_enqueue_script('tweenlite', $liburl . '/gsap/TweenLite.min.js');
     wp_enqueue_script('easepack', $liburl . '/gsap/EasePack.min.js');
@@ -77,7 +80,10 @@ function schoolunion_scripts() {
     wp_enqueue_style('theme-main-style', get_stylesheet_uri());
 }
 
-add_action('wp_enqueue_scripts', 'schoolunion_scripts');
+function su_load_bower_components() {
+    $bower_dir = get_stylesheet_directory_uri() . '/bower_components';
+    wp_enqueue_style('font-awesome', $bower_dir . '/font-awesome/css/font-awesome.css');
+}
 
 /**
  * Menu

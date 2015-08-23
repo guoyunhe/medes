@@ -11,24 +11,24 @@ Tags: education
 Text Domain: schoolunion
 */
 
-@import "css/basic.css";
-@import "css/form.css";
+@import "css/style.css";
 @import "css/layout.css";
 
 /* UI components */
-@import "css/click.css";
-@import "css/dropdown.css";
-@import "css/popup.css";
+@import "css/components/form.css";
+@import "css/components/click.css";
+@import "css/components/dropdown.css";
+@import "css/components/popup.css";
 
-/* Part/page*/
-@import "css/header.css";
-@import "css/footer.css";
-@import "css/dot-cloud.css";
-@import "css/intro.css";
-@import "css/featured-people.css";
-@import "css/datamap.css";
+/* Views */
+@import "css/views/header.css";
+@import "css/views/footer.css";
+@import "css/views/dot-cloud.css";
+@import "css/views/intro.css";
+@import "css/views/featured-people.css";
+@import "css/views/datamap.css";
 
 /* User popup pages */
-@import "css/user-create.css";
-@import "css/user-view.css";
-@import "css/user-edit.css";
+@import "css/views/user/create.css";
+@import "css/views/user/view.css";
+@import "css/views/user/edit.css";

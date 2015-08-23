@@ -18,16 +18,13 @@
  */
 
 /**
- * Plugin Name: School Union
- * Plugin URI: http://URI_Of_Page_Describing_Plugin_and_Updates
- * Description: A brief description of the plugin.
- * Version: The plugin's version number. Example: 1.0.0
- * Author: Name of the plugin author
- * Author URI: http://URI_Of_The_Plugin_Author
- * Text Domain: Optional. Plugin's text domain for localization. Example: mytextdomain
- * Domain Path: Optional. Plugin's relative directory path to .mo files. Example: /locale/
- * Network: Optional. Whether the plugin can only be activated network wide. Example: true
- * License: A short license name. Example: GPL2
+ * Plugin Name: MEDes
+ * Plugin URI: https://github.com/guoyunhe/medes
+ * Description: Master of European Design
+ * Version: 0.1.0
+ * Author: Guo Yunhe
+ * Author URI: http://guoyunhe.me/
+ * License: GPLv3
  */
 
 defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
@@ -48,8 +45,11 @@ require_once 'hook/workshop.php';
 
 // require api functions
 require_once 'api/user.php';
+require_once 'api/school.php';
+require_once 'api/workshop.php';
 require_once 'api/page.php';
 
+// TODO Move this to theme
 /**
  * Define AJAX URL for front end, not only admin side.
  */

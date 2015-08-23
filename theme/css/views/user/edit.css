@@ -118,7 +118,8 @@ select.year {
 .experience-item {
     position: relative;
     padding: 10px 0 10px 40px;
-    background: 19px 0 repeat-y url('../img/line.png'), 15px 15px no-repeat url('../img/dot.png');
+    background: 19px 0 repeat-y url('../../../img/line.png'),
+        15px 15px no-repeat url('../../../img/dot.png');
 }
 
 #user-edit-experience .experience-item {
