@@ -55,14 +55,8 @@ function schoolunion_scripts() {
     $jsurl = get_stylesheet_directory_uri() . '/js';
 
     // Third party libraries
-    wp_enqueue_style('normalize', $liburl . '/normalize/normalize.css');
     wp_enqueue_script('jquery');
-    wp_enqueue_script('tweenlite', $liburl . '/gsap/TweenLite.min.js');
-    wp_enqueue_script('easepack', $liburl . '/gsap/EasePack.min.js');
     wp_enqueue_script('raf', $liburl . '/raf/rAF.js');
-    wp_enqueue_script('d3', $liburl . '/d3/d3.min.js');
-    wp_enqueue_script('topojson', $liburl . '/topojson/topojson.min.js');
-    wp_enqueue_script('datamaps', $liburl . '/datamaps/datamaps.world.min.js');
 
     // Theme JavaScript
     wp_enqueue_script('su-main-script', $jsurl . '/main.js');
@@ -82,7 +76,16 @@ function schoolunion_scripts() {
 
 function su_load_bower_components() {
     $bower_dir = get_stylesheet_directory_uri() . '/bower_components';
+    wp_enqueue_style('normalize', $bower_dir . '/normalize-css/normalize.css');
     wp_enqueue_style('font-awesome', $bower_dir . '/font-awesome/css/font-awesome.css');
+    
+    wp_enqueue_script('d3', $bower_dir . '/d3/d3.min.js');
+    wp_enqueue_script('topojson', $bower_dir . '/topojson/topojson.js');
+    wp_enqueue_script('datamaps', $bower_dir . '/datamaps/dist/datamaps.all.min.js');
+    
+    $gsap_dir = $bower_dir . '/gsap/src/minified';
+    wp_enqueue_script('gsap-tweenlite', $gsap_dir . '/TweenLite.min.js');
+    wp_enqueue_script('gsap-easepack', $gsap_dir . '/easing/EasePack.min.js');
 }
 
 /**
