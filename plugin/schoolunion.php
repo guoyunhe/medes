@@ -48,18 +48,3 @@ require_once 'api/user.php';
 require_once 'api/school.php';
 require_once 'api/workshop.php';
 require_once 'api/page.php';
-
-// TODO Move this to theme
-/**
- * Define AJAX URL for front end, not only admin side.
- */
-
-add_action('wp_head', 'su_ajaxurl');
-
-function su_ajaxurl() {
-    ?>
-    <script type="text/javascript">
-    var ajaxurl = '<?php echo admin_url('admin-ajax.php'); ?>';
-    </script>
-    <?php
-}

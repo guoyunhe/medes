@@ -25,6 +25,9 @@
         <link rel="profile" href="http://gmpg.org/xfn/11">
         <link rel="pingback" href="<?php bloginfo('pingback_url'); ?>">
         <?php wp_head(); ?>
+        <script type="text/javascript">
+            var ajaxurl = '<?php echo admin_url('admin-ajax.php'); ?>';
+        </script>
     </head>
 
     <body <?php body_class(); ?>>
