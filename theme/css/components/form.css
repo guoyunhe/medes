@@ -25,47 +25,56 @@ input[type="email"],
 input[type="number"],
 input[type="search"],
 select {
-    box-sizing: content-box;
-    -moz-box-sizing: content-box;
-    padding: 4px;
+    padding: 0 4px;
     background: none;
     border: none;
     border-bottom: 1px solid white;
-    height: 20px;
-    line-height: 20px;
+    height: 31px;
+    line-height: 31px;
     font-size: 14px;
     color: white;
 }
 
-input[type="text"].large,
-input[type="password"].large,
-input[type="email"].large,
-input[type="number"].large,
-input[type="search"].large,
+input[type="text"].small,
+input[type="password"].small,
+input[type="email"].small,
+input[type="number"].small,
+input[type="search"].small,
 select.large {
-    height: 30px;
+    height: 21px;
+    line-height: 21px;
 }
 
 input.block,
 button.block,
 select.block {
     display: block;
+    width: -moz-available;
+    width: fill-available;
+}
+
+input.center, select.center {
+    text-align: center;
 }
 
 input[type="button"],
 input[type="submit"],
 input[type="reset"],
 button {
+    padding: 0 4px;
     border: 1px solid white;
     background-color: transparent;
     color: white;
+    height: 32px;
+    line-height: 30px;
 }
 
-input[type="button"].large,
-input[type="submit"].large,
-input[type="reset"].large,
-button.large {
-    height: 30px;
+input[type="button"].small,
+input[type="submit"].small,
+input[type="reset"].small,
+button.small {
+    height: 22px;
+    line-height: 22px;
 }
 
 textarea {
