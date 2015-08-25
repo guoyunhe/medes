@@ -103,6 +103,13 @@ jQuery(function () {
                 closePopup(jQuery('#user-login-popup'));
                 jQuery('#user-menu .name').text(response.first_name + ' ' + response.last_name);
                 jQuery('#user-menu .avatar').css('background-image', 'url("' + response.avatar_url + '")').show();
+                is_admin = response.is_admin;
+                if(is_admin) {
+                    jQuery('#admin-menu').show();
+                    jQuery('#admin-menu .click').show();
+                } else {
+                    jQuery('#admin-menu').hide();
+                }
             } else {
                 errorMessage(response.error_message);
             }

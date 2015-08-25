@@ -83,7 +83,8 @@ function su_login_user() {
         $response = ['succeed' => false, 'error_message' => $user->get_error_message()];
     } else {
         $response = ['succeed' => true, 'first_name' => $user->first_name,
-                'last_name' => $user->last_name, 'avatar_url' => $user->avatar_url];
+                'last_name' => $user->last_name, 'avatar_url' => $user->avatar_url,
+            'is_admin' => user_can($user, 'manage_options')];
     }
     echo json_encode($response);
     die();

@@ -27,9 +27,9 @@
  * 
  */
 
-add_action('init', 'su_create_workshop');
+add_action('init', 'su_register_workshop');
 
-function su_create_workshop() {
+function su_register_workshop() {
     $workshop_post_type_args = [
         'labels' => ['name' => 'Workshops', 'singular_name' => 'Workshop'],
         'supports' => ['title', 'editor', 'thumbnail', 'excerpt', 'revisions',

@@ -24,11 +24,11 @@
         <title><?php wp_title(); ?></title>
         <link rel="profile" href="http://gmpg.org/xfn/11">
         <link rel="pingback" href="<?php bloginfo('pingback_url'); ?>">
-        <?php wp_head(); ?>
         <script type="text/javascript">
             var ajaxurl = '<?php echo admin_url('admin-ajax.php'); ?>';
-            var is_admin = <?php echo current_user_can('manage_options'); ?>;
+            var is_admin = <?php echo current_user_can('manage_options')?'true':'false'; ?>;
         </script>
+        <?php wp_head(); ?>
     </head>
 
     <body <?php body_class(); ?>>
@@ -72,21 +72,23 @@
                     <?php endif; ?>
                 </span>
 
-                <span id="admin-menu" class="click inline">
+                <?php $isadmin = current_user_can('manage_options');
+                        $islogin = is_user_logged_in();?>
+                <span id="admin-menu" class="click inline"
+                      <?php echo $islogin?'':'style="display:none"'; ?>>
                     <i class="fa fa-cog fa-lg"></i>
                     <div class="dropdown">
-                        <?php $isadmin = current_user_can('manage_options'); ?>
                         <span id="create-school-click" class="click button"
-                              <?php echo $isadmin?'':'style="display:none"';?>>
+                              <?php echo $isadmin?'':'style="display:none"'; ?>>
                             <i class="fa fa-plus fa-fw"></i> Create school
                         </span>
                         <span id="create-workshop-click" class="click button"
-                              <?php echo $isadmin?'':'style="display:none"';?>>
+                              <?php echo $isadmin?'':'style="display:none"'; ?>>
                             <i class="fa fa-plus fa-fw"></i> Create workshop
                         </span>
                         <a id="dashboard-click" class="click button"
                            href="<?php echo admin_url(); ?>"
-                           <?php echo $isadmin?'':'style="display:none"';?>>
+                           <?php echo $isadmin?'':'style="display:none"'; ?>>
                             <i class="fa fa-tachometer fa-fw"></i> Dashboard
                         </a>
                         <a id="logout-click" class="click button"

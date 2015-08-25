@@ -27,9 +27,9 @@
  * 
  */
 
-add_action('init', 'su_create_school');
+add_action('init', 'su_register_school');
 
-function su_create_school() {
+function su_register_school() {
     $school_post_type_args = [
         'labels' => ['name' => 'Schools', 'singular_name' => 'School'],
         'supports' => ['title', 'editor', 'thumbnail', 'excerpt', 'revisions',
