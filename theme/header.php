@@ -69,7 +69,25 @@
                         <span class="avatar" style="display:none;"></span>
                         <span class="name">Login</span>
                     <?php endif; ?>
+                </span>
 
+                <span id="admin-menu" class="click inline">
+                    <i class="fa fa-cog fa-lg"></i>
+                    <div class="dropdown">
+                        <span id="create-school-click" class="click button">
+                            <i class="fa fa-plus fa-fw"></i> Create school
+                        </span>
+                        <span id="create-workshop-click" class="click button">
+                            <i class="fa fa-plus fa-fw"></i> Create workshop
+                        </span>
+                        <a id="dashboard-click" class="click button"
+                           href="<?php echo admin_url(); ?>">
+                            <i class="fa fa-tachometer fa-fw"></i> Dashboard
+                        </a>
+                        <span id="logout-click" class="click button">
+                            <i class="fa fa-sign-out fa-fw"></i> Logout
+                        </span>
+                    </div>
                 </span>
             </div>
         </header>
