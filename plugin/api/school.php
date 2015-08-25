@@ -204,7 +204,7 @@ function su_remove_school_picture() {
 // Helper functions
 
 function su_ajax_check_admin() {
-    if(!is_admin()) {
+    if(!current_user_can('manage_options')) {
         $response = [
             'succeed' => false,
             'error_message' => 'This action is only allowed by admins.'

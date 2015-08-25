@@ -27,6 +27,7 @@
         <?php wp_head(); ?>
         <script type="text/javascript">
             var ajaxurl = '<?php echo admin_url('admin-ajax.php'); ?>';
+            var is_admin = <?php echo current_user_can('manage_options'); ?>;
         </script>
     </head>
 
@@ -74,19 +75,24 @@
                 <span id="admin-menu" class="click inline">
                     <i class="fa fa-cog fa-lg"></i>
                     <div class="dropdown">
-                        <span id="create-school-click" class="click button">
+                        <?php $isadmin = current_user_can('manage_options'); ?>
+                        <span id="create-school-click" class="click button"
+                              <?php echo $isadmin?'':'style="display:none"';?>>
                             <i class="fa fa-plus fa-fw"></i> Create school
                         </span>
-                        <span id="create-workshop-click" class="click button">
+                        <span id="create-workshop-click" class="click button"
+                              <?php echo $isadmin?'':'style="display:none"';?>>
                             <i class="fa fa-plus fa-fw"></i> Create workshop
                         </span>
                         <a id="dashboard-click" class="click button"
-                           href="<?php echo admin_url(); ?>">
+                           href="<?php echo admin_url(); ?>"
+                           <?php echo $isadmin?'':'style="display:none"';?>>
                             <i class="fa fa-tachometer fa-fw"></i> Dashboard
                         </a>
-                        <span id="logout-click" class="click button">
+                        <a id="logout-click" class="click button"
+                           href="<?php echo wp_logout_url( home_url() ); ?>">
                             <i class="fa fa-sign-out fa-fw"></i> Logout
-                        </span>
+                        </a>
                     </div>
                 </span>
             </div>
