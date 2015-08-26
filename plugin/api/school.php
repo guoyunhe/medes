@@ -36,10 +36,10 @@ function su_create_school() {
         'post_type' => 'school'
     ];
     
-    $id = wp_insert_post( $post );
+    $post_id = wp_insert_post( $post );
 
-    if ($id > 0) {
-        $response = ['succeed' => true, 'id' => $id];
+    if ($post_id > 0) {
+        $response = ['succeed' => true, 'post_id' => $post_id];
     } else {
         $response = ['succeed' => false, 'error_message' => 'School creating failed'];
     }
@@ -91,12 +91,14 @@ function su_view_school() {
     
     $response = [
         'succeed' => true,
-        'post_title' => get_post_meta($post_id, 'post_title'),
-        'short_name' => get_post_meta($post_id, 'short_name'),
-        'post_content' => get_post_meta($post_id, 'post_content'),
-        'country' => get_post_meta($post_id, 'country'),
-        'city' => get_post_meta($post_id, 'city'),
+        'post_title' => get_post_meta($post_id, 'post_title', true),
+        'short_name' => get_post_meta($post_id, 'short_name', true),
+        'post_content' => get_post_meta($post_id, 'post_content', true),
+        'country' => get_post_meta($post_id, 'country', true),
+        'city' => get_post_meta($post_id, 'city', true),
     ];
+    $response['main_picture'] = su_get_post_main_picture($post_id);
+    $response['pictures'] = su_get_post_pictures($post_id);
     echo json_encode($response);
     die();
 }
@@ -113,23 +115,23 @@ su_add_api('edit_school_main_pictrue');
 function su_edit_school_main_picture() {
     su_ajax_check_admin(); // Check permission
     
-    su_check_picture('picture'); // Valid picture file
-    $result = su_save_file('picture'); // Save picture file in WordPress
+    su_check_picture('main_picture'); // Valid picture file
+    $result = su_save_file('main_picture'); // Save picture file in WordPress
     su_resize_picture($result['file'], 1024, 1024); // Resize picture
     
     $post_id = filter_input(INPUT_POST, 'post_id', FILTER_VALIDATE_INT);
     
-    $picture = su_get_post_picture($post_id);
+    $main_picture = su_get_post_main_picture($post_id);
     
-    if(!empty($picture) && isset($picture['file'])) {
-        su_remove_file($picture['file']);
+    if(!empty($main_picture) && isset($main_picture['file'])) {
+        su_remove_file($main_picture['file']);
     }
     
-    $new_picture = [
+    $new_main_picture = [
         'url' => $result['url'],
         'file' => $result['file']
     ];
-    su_set_post_picture($post_id, $new_picture);
+    su_set_post_main_picture($post_id, $new_main_picture);
 
     $response = ['succeed' => true, 'url' => $result['url']];
     echo json_encode($response);
@@ -214,10 +216,10 @@ function su_ajax_check_admin() {
     }
 }
 
-function su_get_post_picture($post_id) {
+function su_get_post_main_picture($post_id) {
     // The first true make get_post_meta() return single value, not array.
     // The second true make json_decode() return PHP array, not PHP object.
-    $picture = json_decode(get_post_meta($post_id, 'picture', true), true);
+    $picture = json_decode(get_post_meta($post_id, 'main_picture', true), true);
     
     if (!is_array($picture)) {
         $picture = [];
@@ -226,9 +228,9 @@ function su_get_post_picture($post_id) {
     return $picture;
 }
 
-function su_set_post_picture($post_id, $picture) {
+function su_set_post_main_picture($post_id, $picture) {
     $json_string = json_encode($picture, JSON_UNESCAPED_UNICODE);
-    update_post_meta($post_id, 'picture', $json_string);
+    update_post_meta($post_id, 'main_picture', $json_string);
 }
 
 /**

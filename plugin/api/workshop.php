@@ -119,7 +119,7 @@ function su_edit_workshop_main_picture() {
     
     $post_id = filter_input(INPUT_POST, 'post_id', FILTER_VALIDATE_INT);
     
-    $picture = su_get_post_picture($post_id);
+    $picture = su_get_post_main_picture($post_id);
     
     if(!empty($picture) && isset($picture['file'])) {
         su_remove_file($picture['file']);
@@ -129,7 +129,7 @@ function su_edit_workshop_main_picture() {
         'url' => $result['url'],
         'file' => $result['file']
     ];
-    su_set_post_picture($post_id, $new_picture);
+    su_set_post_main_picture($post_id, $new_picture);
 
     $response = ['succeed' => true, 'url' => $result['url']];
     echo json_encode($response);

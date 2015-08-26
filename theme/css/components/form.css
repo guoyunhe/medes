@@ -25,6 +25,8 @@ input[type="email"],
 input[type="number"],
 input[type="search"],
 select {
+    box-sizing: content-box;
+    -moz-box-sizing: content-box;
     padding: 0 4px;
     background: none;
     border: none;
