@@ -14,36 +14,15 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+/* 
+    Created on : 2015-8-26, 23:10:55
+    Author     : Guo Yunhe <guoyunhebrave@gmail.com>
+*/
 
-#datamap-container {
-    margin: auto;
+.pane {
+    display: none;
 }
 
-#datamap {
-    position: relative;
-}
-
-.datamaps-hoverover {
-    color: black;
-}
-
-.card {
-    width: 130px;
-    height: 130px;
-    padding: 10px;
-    float: left;
-    font-size: 2.5em;
-}
-
-.map-grid.tabs {
-    position: absolute;
-    right: 10px;
-    bottom: 10px;
-    z-index: 1;
-}
-
-.map-grid.tabs .click {
-    height: 50px;
-    font-size: 30px;
-    line-height: 30px;
+.pane.active {
+    display: block;
 }

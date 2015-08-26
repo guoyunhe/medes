@@ -18,6 +18,7 @@ Text Domain: schoolunion
 @import "css/components/form.css";
 @import "css/components/click.css";
 @import "css/components/dropdown.css";
+@import "css/components/tabpane.css";
 @import "css/components/popup.css";
 
 /* Views */
@@ -26,7 +27,7 @@ Text Domain: schoolunion
 @import "css/views/dot-cloud.css";
 @import "css/views/intro.css";
 @import "css/views/featured-people.css";
-@import "css/views/datamap.css";
+@import "css/views/map-list.css";
 
 /* User popup pages */
 @import "css/views/user/create.css";

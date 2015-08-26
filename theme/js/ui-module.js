@@ -39,21 +39,17 @@ ClickModule = {
     }
 };
 
-TabPaneModule = {
-    init: function() {
-        this.bindEvent();
-    },
-    bindEvent: function() {
-        jQuery('.tabs').each(function(){
-            $tabGroup = jQuery(this);
-            $tabs = $tabGroup.children('.click.tab');
-            $tabs.click(function(){
-                $tabs.removeClass('active');
-                jQuery(this).addClass('active');
-                $target = jQuery(jQuery(this).data('target'));
-                $target.siblings('.pane').removeClass('active');
-                $target.addClass('active');
-            });
+jQuery(function () {
+    jQuery('.tabs').each(function () {
+        var tabGroup = jQuery(this);
+        var tabs = tabGroup.children('.click.tab');
+        tabs.click(function () {
+            tabs.removeClass('active');
+            jQuery(this).addClass('active');
+            target = jQuery(jQuery(this).data('target'));
+            console.log(target.siblings());
+            target.siblings().removeClass('active');
+            target.addClass('active');
         });
-    }
-};
+    });
+});

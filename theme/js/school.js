@@ -39,6 +39,7 @@ jQuery(function () {
                 jQuery('#school-edit-popup [name="post_title"]').val(request.post_title);
                 jQuery('#school-edit-popup').data('post-id', response.post_id);
                 openPopup(jQuery('#school-edit-popup'));
+                // TODO: add it to school list
             } else {
                 errorMessage(response.error_message);
             }

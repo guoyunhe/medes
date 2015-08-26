@@ -17,7 +17,6 @@
 
 jQuery(function(){
     ClickModule.init();
-    TabPaneModule.init();
     SiteHeaderFusion.init();
     DotCloud.init();
     FeaturedPeople.init();
