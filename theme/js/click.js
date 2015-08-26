@@ -16,28 +16,26 @@
  */
 
 
-ClickModule = {
-    init: function(){
-        jQuery('.click').click(function (event) {
-            event.stopPropagation();
-            if (jQuery(this).hasClass('button')) {
-                jQuery('.click:not(.tab)').removeClass('active');
-                return;
-            }
-            if (jQuery(this).hasClass('active')) {
-                jQuery(this).removeClass('active');
-                return;
-            } else {
-                jQuery('.click:not(.tab)').removeClass('active');
-                jQuery(this).addClass('active');
-                return;
-            }
-        });
-        jQuery(document).click(function () {
+jQuery(function () {
+    jQuery('.click').click(function (event) {
+        event.stopPropagation();
+        if (jQuery(this).hasClass('button')) {
             jQuery('.click:not(.tab)').removeClass('active');
-        });
-    }
-};
+            return;
+        }
+        if (jQuery(this).hasClass('active')) {
+            jQuery(this).removeClass('active');
+            return;
+        } else {
+            jQuery('.click:not(.tab)').removeClass('active');
+            jQuery(this).addClass('active');
+            return;
+        }
+    });
+    jQuery(document).click(function () {
+        jQuery('.click:not(.tab)').removeClass('active');
+    });
+});
 
 jQuery(function () {
     jQuery('.tabs').each(function () {

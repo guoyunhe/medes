@@ -16,7 +16,6 @@
  */
 
 jQuery(function(){
-    ClickModule.init();
     SiteHeaderFusion.init();
     DotCloud.init();
     FeaturedPeople.init();
