@@ -22,4 +22,30 @@ jQuery(function () {
         openPopup(jQuery('#school-create-popup'));
     });
     
+    jQuery('#school-create-popup .next').click(function () {
+        var request = {
+            'action': 'create_school',
+            'post_title': jQuery('#school-create-popup [name="post_title"]').val()
+        };
+        jQuery.ajax({
+            url: ajaxurl,
+            data: request,
+            method: 'POST',
+            dataType: 'json'
+        }).done(function(response){
+            if (response.succeed) {
+                closePopup(jQuery('#school-create-popup'));
+                openPopup(jQuery('#school-edit-popup'));
+                
+                // TODO fill data in school edit popup
+                
+            } else {
+                errorMessage(response.error_message);
+            }
+        });
+    });
+    
+    function errorMessage(message) {
+        jQuery('#school-create-popup .error-message').html(message);
+    }
 });

@@ -27,11 +27,11 @@ su_add_api('create_school');
 function su_create_school() {
     su_ajax_check_admin(); // Check permission
 
-    $name = filter_input(INPUT_POST, 'name');
+    $post_title = filter_input(INPUT_POST, 'post_title');
     
     $post = [
-        'post_title' => $name,
-        'post_content' => '',
+        'post_title' => $post_title,
+        'post_content' => ' ',
         'post_status' => 'publish',
         'post_type' => 'school'
     ];
