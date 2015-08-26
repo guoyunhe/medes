@@ -36,10 +36,9 @@ jQuery(function () {
         }).done(function(response){
             if (response.succeed) {
                 closePopup(jQuery('#school-create-popup'));
+                jQuery('#school-edit-popup [name="post_title"]').val(request.post_title);
+                jQuery('#school-edit-popup').data('post-id', response.post_id);
                 openPopup(jQuery('#school-edit-popup'));
-                
-                // TODO fill data in school edit popup
-                initSchoolEditPopup(response.post_id);
             } else {
                 errorMessage(response.error_message);
             }
@@ -55,7 +54,7 @@ jQuery(function () {
     
     // Initialize
     function initSchoolEditPopup(postId) {
-        jQuery('#school-create-popup').data('post-id', postId);
+        jQuery('#school-edit-popup').data('post-id', postId);
         
         // Fetch school information
         var request = {
@@ -74,17 +73,17 @@ jQuery(function () {
                         'url(' + response.main_picture.url + ')');
                 // Basic information
                 // Post title
-                jQuery('#school-create-popup [name="post_title"]').val(response.post_title);
-                jQuery('#school-create-popup [name="short_name"]').val(response.short_name);
-                jQuery('#school-create-popup [name="country"]').val(response.country);
-                jQuery('#school-create-popup [name="city"]').val(response.city);
+                jQuery('#school-edit-popup [name="post_title"]').val(response.post_title);
+                jQuery('#school-edit-popup [name="short_name"]').val(response.short_name);
+                jQuery('#school-edit-popup [name="country"]').val(response.country);
+                jQuery('#school-edit-popup [name="city"]').val(response.city);
                 // Staff
-                jQuery('#school-create-popup [name="coordinator_name"]').val(response.coordinator_name);
-                jQuery('#school-create-popup [name="coordinator_email"]').val(response.coordinator_email);
-                jQuery('#school-create-popup [name="tutor_name"]').val(response.tutor_name);
-                jQuery('#school-create-popup [name="tutor_email"]').val(response.tutor_email);
+                jQuery('#school-edit-popup [name="coordinator_name"]').val(response.coordinator_name);
+                jQuery('#school-edit-popup [name="coordinator_email"]').val(response.coordinator_email);
+                jQuery('#school-edit-popup [name="tutor_name"]').val(response.tutor_name);
+                jQuery('#school-edit-popup [name="tutor_email"]').val(response.tutor_email);
                 // Description
-                jQuery('#school-create-popup [name="post_content"]').val(response.post_content);
+                jQuery('#school-edit-popup [name="post_content"]').val(response.post_content);
                 // Pictures
                 // TODO...
             }
