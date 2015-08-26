@@ -83,19 +83,19 @@ su_add_api('view_school');
 function su_view_school() {
     $post_id = filter_input(INPUT_POST, 'post_id', FILTER_VALIDATE_INT);
     
-    su_update_post_meta($post_id, 'post_title');
-    su_update_post_meta($post_id, 'short_name');
-    su_update_post_meta($post_id, 'post_content');
-    su_update_post_meta($post_id, 'country');
-    su_update_post_meta($post_id, 'city');
+    $post = get_post($post_id);
     
     $response = [
         'succeed' => true,
-        'post_title' => get_post_meta($post_id, 'post_title', true),
-        'short_name' => get_post_meta($post_id, 'short_name', true),
-        'post_content' => get_post_meta($post_id, 'post_content', true),
-        'country' => get_post_meta($post_id, 'country', true),
-        'city' => get_post_meta($post_id, 'city', true),
+        'post_title' => $post->post_title,
+        'short_name' => $post->short_name,
+        'post_content' => $post->post_content,
+        'country' => $post->country,
+        'city' => $post->city,
+        'coordinator_name' => $post->coordinator_name,
+        'coordinator_email' => $post->coordinator_email,
+        'tutor_name' => $post->tutor_name,
+        'tutor_email' => $post->tutor_email,
     ];
     $response['main_picture'] = su_get_post_main_picture($post_id);
     $response['pictures'] = su_get_post_pictures($post_id);
