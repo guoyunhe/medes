@@ -82,20 +82,19 @@ su_add_api('view_school');
 
 function su_view_school() {
     $post_id = filter_input(INPUT_POST, 'post_id', FILTER_VALIDATE_INT);
-    
-    $post = get_post($post_id);
-    
+        
     $response = [
         'succeed' => true,
-        'post_title' => $post->post_title,
-        'short_name' => $post->short_name,
-        'post_content' => $post->post_content,
-        'country' => $post->country,
-        'city' => $post->city,
-        'coordinator_name' => $post->coordinator_name,
-        'coordinator_email' => $post->coordinator_email,
-        'tutor_name' => $post->tutor_name,
-        'tutor_email' => $post->tutor_email,
+        'ID' => $post_id,
+        'post_title' => get_the_title($post_id),
+        'short_name' => get_post_meta($post_id, 'short_name', true),
+        'post_content' => get_post_meta($post_id, 'post_content', true),
+        'country' => get_post_meta($post_id, 'country', true),
+        'city' => get_post_meta($post_id, 'city', true),
+        'coordinator_name' => get_post_meta($post_id, 'coordinator_name', true),
+        'coordinator_email' => get_post_meta($post_id, 'coordinator_email', true),
+        'tutor_name' => get_post_meta($post_id, 'tutor_name', true),
+        'tutor_email' => get_post_meta($post_id, 'tutor_email', true),
     ];
     $response['main_picture'] = su_get_post_main_picture($post_id);
     $response['pictures'] = su_get_post_pictures($post_id);
@@ -110,7 +109,7 @@ function su_view_school() {
  * Response returns the url of the uploaded picture.
  */
 
-su_add_api('edit_school_main_pictrue');
+su_add_api('edit_school_main_picture');
 
 function su_edit_school_main_picture() {
     su_ajax_check_admin(); // Check permission

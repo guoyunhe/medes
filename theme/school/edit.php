@@ -19,7 +19,7 @@
 
 ?>
 <!-- Popup for editing school page -->
-<div id="school-edit-popup" class="popup school edit" style="display:block">
+<div id="school-edit-popup" class="popup school edit">
     <div class="popup-close"><i class="fa fa-close"></i></div>
     <div class="popup-body">
         <div class="container">

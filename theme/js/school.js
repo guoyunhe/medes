@@ -55,12 +55,12 @@ jQuery(function () {
     
     // Initialize
     function initSchoolEditPopup(postId) {
-        jQuery('#school-edit-popup').data('post-id', postId);
+        jQuery('#school-edit-popup').data('postId', postId);
         
         // Fetch school information
         var request = {
             'action': 'view_school',
-            'post_id': jQuery('#school-create-popup').data('post-id')
+            'post_id': postId
         };
         jQuery.ajax({
             url: ajaxurl,
@@ -99,7 +99,7 @@ jQuery(function () {
     jQuery('#school-edit-popup .main-picture input').change(function () {
         var file_data = jQuery(this).prop('files')[0];
         var request = new FormData();
-        request.append('action', 'edit_school_main_pictrue');
+        request.append('action', 'edit_school_main_picture');
         request.append('main_picture', file_data);
         jQuery.ajax({
             url: ajaxurl,
@@ -109,7 +109,16 @@ jQuery(function () {
             processData: false,
             contentType: false
         }).done(function (response) {
-            jQuery('#school-edit-popup .main-picture').css('background-image', 'url(' + response.main_picture.url + ')');
+            jQuery('#school-edit-popup .main-picture').css('background-image', 'url(' + response.url + ')');
         });
+    });
+    
+    // View popup
+    
+    // School list
+    jQuery('school').click(function(){
+        var postId = jQuery(this).data('postId');
+        openPopup(jQuery('#school-edit-popup'));
+        initSchoolEditPopup(postId);
     });
 });

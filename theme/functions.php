@@ -113,3 +113,20 @@ function schoolunion_title($title) {
 }
 
 add_filter('wp_title', 'schoolunion_title', 10, 2);
+
+// Get school list
+function su_get_school_list() {
+    $schools = [];
+    $query = new WP_Query("post_type=school");
+    while ($query->have_posts()) {
+        $query->the_post();
+        $schools[] = get_post();
+    }
+    return $schools;
+}
+
+function su_text_to_color($string, $type = 'hex') {
+    $hash = md5($string);
+    $hex = '#' . substr($hash, 0, 6);
+    return $hex;
+}

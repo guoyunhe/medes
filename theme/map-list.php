@@ -58,10 +58,17 @@
                 <div class="popup-close"><i class="fa fa-close"></i></div>
             </div>
         </div>
-        <div id="school-pane" class="pane active">
-            
+        <div id="school-pane" class="pane clearfix">
+            <?php
+            $schools = su_get_school_list();
+            foreach ($schools as $school): ?>
+                <school class="card" data-post-id="<?php echo $school->ID;?>"
+                        style="background-color:<?php echo su_text_to_color($school->post_title) ?>">
+                    <?php echo $school->post_title;?>
+                </school>
+            <?php endforeach; ?>
         </div>
-        <div id="workshop-pane" class="pane active">
+        <div id="workshop-pane" class="pane clearfix">
             
         </div>
     </div>
