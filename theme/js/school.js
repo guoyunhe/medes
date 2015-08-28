@@ -114,8 +114,9 @@ jQuery(function () {
         });
     });
     
-    // Edit name (post_title)
-    jQuery('#school-edit-basic input, #school-edit-basic select, #school-edit-staff input').change(updatePostMeta);
+    // Edit basic information, staff and description 
+    jQuery('#school-edit-basic input, #school-edit-basic select, #school-edit-staff input, ' + 
+            '#school-edit-description textarea').change(updatePostMeta);
     
     function updatePostMeta() {
         var name = jQuery(this).attr('name');

@@ -92,7 +92,7 @@ function su_view_school() {
         'ID' => $post_id,
         'post_title' => get_the_title($post_id),
         'short_name' => get_post_meta($post_id, 'short_name', true),
-        'post_content' => get_post_meta($post_id, 'post_content', true),
+        'post_content' => get_post_field('post_content', $post_id, 'raw'),
         'country' => get_post_meta($post_id, 'country', true),
         'city' => get_post_meta($post_id, 'city', true),
         'coordinator_name' => get_post_meta($post_id, 'coordinator_name', true),
