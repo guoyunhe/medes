@@ -65,6 +65,10 @@ function su_edit_school() {
     su_update_post_meta($post_id, 'post_content');
     su_update_post_meta($post_id, 'country');
     su_update_post_meta($post_id, 'city');
+    su_update_post_meta($post_id, 'coordinator_name');
+    su_update_post_meta($post_id, 'coordinator_email');
+    su_update_post_meta($post_id, 'tutor_name');
+    su_update_post_meta($post_id, 'tutor_email');
     
     $response = [
         'succeed' => true,

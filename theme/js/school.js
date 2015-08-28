@@ -114,6 +114,30 @@ jQuery(function () {
         });
     });
     
+    // Edit name (post_title)
+    jQuery('#school-edit-basic input, #school-edit-basic select, #school-edit-staff input').change(updatePostMeta);
+    
+    function updatePostMeta() {
+        var name = jQuery(this).attr('name');
+        var value;
+        if (jQuery(this).attr('type') === 'checkbox') {
+            value = jQuery(this).prop('checked');
+        } else {
+            value = jQuery(this).val();
+        }
+        var request = {
+            action: 'edit_school',
+            'post_id': jQuery('#school-edit-popup').data('postId')
+        };
+        request[name] = value;
+        jQuery.ajax({
+            url: ajaxurl,
+            data: request,
+            method: 'POST',
+            dataType: 'json'
+        });
+    }
+    
     // View popup
     
     // School list

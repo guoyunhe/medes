@@ -96,7 +96,13 @@ function su_update_post_meta($post_id, $key, $filter=FILTER_DEFAULT) {
     if ($value === false) { // When the key is set empty or invalid
         update_post_meta($post_id, $key, '');
     } else { // When the key is set valid and not empty
-        update_post_meta($post_id, $key, $value);
+        if ($key === 'post_title' || $key === 'post_content') {
+            $post = ['ID' => $post_id];
+            $post[$key] = $value;
+            wp_update_post($post);
+        } else {
+            update_post_meta($post_id, $key, $value);
+        }
     }
 }
 
