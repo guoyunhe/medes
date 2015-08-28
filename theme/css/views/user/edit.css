@@ -79,7 +79,7 @@ select.year {
 }
 
 /* Pictures */
-#user-edit-pictures .picture {
+.edit .picture {
     position: relative;
     width: 300px;
     height: 300px;

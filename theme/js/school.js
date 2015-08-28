@@ -22,7 +22,8 @@ jQuery(function () {
         openPopup(jQuery('#school-create-popup'));
     });
     
-    // Create school and open edit popup
+    
+    // Create school and open "Edit School" popup
     jQuery('#school-create-popup .next').click(function () {
         var request = {
             'action': 'create_school',
@@ -49,11 +50,9 @@ jQuery(function () {
             jQuery('#school-create-popup .error-message').html(message);
         }
     });
-
-
-    // Edit popup
     
-    // Initialize
+    
+    // Initialize "Edit School" popup
     function initSchoolEditPopup(postId) {
         jQuery('#school-edit-popup').data('postId', postId);
         
@@ -86,11 +85,20 @@ jQuery(function () {
                 // Description
                 jQuery('#school-edit-popup [name="post_content"]').val(response.post_content);
                 // Pictures
-                // TODO...
+                jQuery('#user-edit-popup .pictures .picture').remove();
+                var pictures = response['pictures'];
+                for (var pictureKey in pictures) {
+                    if (pictures.hasOwnProperty(pictureKey)) {
+                        addSchoolPicture(postId, pictureKey, pictures[pictureKey].url);
+                    }
+                }
             }
         });
     }
     
+    
+    // Edit interaction in "Edit School" popup
+
     // Edit main picture
     jQuery('#school-edit-popup .main-picture button').click(function () {
         jQuery('#school-edit-popup .main-picture input').click();
@@ -113,6 +121,7 @@ jQuery(function () {
             jQuery('#school-edit-popup .main-picture').css('background-image', 'url(' + response.url + ')');
         });
     });
+    
     
     // Edit basic information, staff and description 
     jQuery('#school-edit-basic input, #school-edit-basic select, #school-edit-staff input, ' + 
@@ -138,6 +147,53 @@ jQuery(function () {
             dataType: 'json'
         });
     }
+    
+    
+    // Edit pictures
+    jQuery('#school-edit-popup .add-picture').click(function () {
+        jQuery('#school-edit-popup .add-picture input')[0].click();
+    });
+
+    jQuery('#school-edit-popup .add-picture input').change(function () {
+        var file_data = jQuery(this).prop('files')[0];
+        var postId = jQuery('#school-edit-popup').data('postId');
+        var request = new FormData();
+        request.append('action', 'add_school_picture');
+        request.append('post_id', postId);
+        request.append('picture', file_data);
+        jQuery.ajax({
+            url: ajaxurl,
+            data: request,
+            method: 'POST',
+            dataType: 'json',
+            processData: false,
+            contentType: false
+        }).done(function (response) {
+            addSchoolPicture(postId, response.uuid, response.url);
+        });
+    });
+
+    function addSchoolPicture(postId, uuid, url) {
+        var $picture = jQuery('<div class="picture"><span class="remove"><i class="fa fa-remove"></i></span></div>');
+        $picture.css('background-image', 'url("' + url + '")');
+        $picture.data('uuid', uuid);
+        jQuery('#school-edit-popup .add-picture').after($picture);
+        $picture.find('.remove').click(function () {
+            var request = {
+                'action': 'remove_school_picture',
+                'post_id': postId,
+                'uuid': uuid
+            };
+            jQuery.ajax({
+                url: ajaxurl,
+                data: request,
+                method: 'POST',
+                dataType: 'json'
+            });
+            $picture.remove();
+        });
+    }
+    
     
     // View popup
     
