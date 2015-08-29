@@ -86,12 +86,17 @@ h1.white-heading {
     top: 0;
     width: 100px;
     height: 100px;
+    background-blend-mode: multiply;
+    background-size: cover;
+    background-position: center center;
 }
 
-.featured-person .project-photo {
-    display: block;
-    width: 100%;
-    height: auto;
+.featured-person .picture {
+    width: 500px;
+    height: 500px;
+    background-blend-mode: multiply;
+    background-size: cover;
+    background-position: center center;
 }
 
 .featured-person .tagline {
@@ -103,7 +108,7 @@ h1.white-heading {
     padding: 10px;
     line-height: 45px;
     font-size: 32px;
-    background-color: gold;
+    text-align: left;
 }
 
 .featured-person .tags {

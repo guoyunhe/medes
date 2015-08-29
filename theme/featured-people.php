@@ -23,19 +23,40 @@
             <?php
             $featured_people = su_get_featured_people();
             foreach ($featured_people as $featured_person) {
+                $id = $featured_person->ID;
+                $name = $featured_person->first_name . ' ' . $featured_person->last_name;
+                $color = su_text_to_color($name);
+                $avatar = $featured_person->avatar_url;
+                $pictures = array_values(json_decode(get_user_meta($id, 'pictures', true), true));
+                $picture = $pictures[0]['url'];
+                $tagline = get_user_meta($id, 'tagline', true);
+                $skills = json_decode(get_user_meta($id, 'skills', true), true);
                 ?>
                 <div class="featured-person"
                      data-user-id="<?php echo $featured_person->ID ?>">
-                    <div class="name">
+                    <div class="name" style="background-color:<?php echo $color; ?>">
                         <?php
                         echo $featured_person->first_name
                         . ' ' . $featured_person->last_name;
                         ?>
                     </div>
-                    <img class="avatar" src="<?php echo $featured_person->su_avatar; ?>"/>
-                    <img class="project-photo" src="example.jpg"/>
-                    <div class="tagline">The future belongs to those who make it.</div>
-                    <div class="tags">#Illustration #FastPrototyping #HumanCentredDesign</div>
+                    <div class="avatar" style="background-image:url('<?php echo $avatar; ?>');
+                         background-color:<?php echo $color; ?>;"></div>
+                    <div class="picture" style="background-image:url('<?php echo $picture; ?>')"></div>
+                    <div class="tagline" style="background-color:<?php echo $color; ?>">
+                        <?php echo $tagline; ?>
+                    </div>
+                    <div class="tags">
+                            <?php
+                            if (!empty($skills)) {
+                                foreach ($skills as $skill) {
+                                    ?>
+                                    <span class="tag">#<?php echo $skill; ?></span>
+                                    <?php
+                                }
+                            }
+                            ?>
+                    </div>
                 </div>
                 <?php
             }
