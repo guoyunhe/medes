@@ -17,7 +17,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-function su_get_school_select($selected_value, $name = 'school', $class = 'school', $id = '') {
+function su_get_school_select($selected_value = null, $name = 'school', $class = 'school', $id = '') {
     $query = new WP_Query("post_type=school");
     while ($query->have_posts()) {
         $query->the_post();

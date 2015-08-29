@@ -68,6 +68,7 @@ function schoolunion_scripts() {
     wp_enqueue_script('su-click-script', $jsurl . '/click.js');
     wp_enqueue_script('su-user-script', $jsurl . '/user.js');
     wp_enqueue_script('su-school-script', $jsurl . '/school.js');
+    wp_enqueue_script('su-workshop-script', $jsurl . '/workshop.js');
     wp_enqueue_script('su-popup-script', $jsurl . '/popup.js');
     wp_enqueue_script('su-static-page-script', $jsurl . '/page.js');
 
