@@ -423,7 +423,7 @@ function viewUserPopup(userId) {
             if (pictures.hasOwnProperty(pictureKey)) {
                 var $picture = jQuery('<div class="picture"></div>');
                 $picture.css('background-image', 'url("' + pictures[pictureKey].url + '")');
-                jQuery('#user-page-popup .pictures').append($picture);
+                jQuery('#user-page-popup .pictures').prepend($picture);
             }
         }
 

@@ -242,7 +242,9 @@ jQuery(function () {
                 var pictures = response['pictures'];
                 for (var pictureKey in pictures) {
                     if (pictures.hasOwnProperty(pictureKey)) {
-                        // addSchoolPicture(postId, pictureKey, pictures[pictureKey].url);
+                        var $picture = jQuery('<div class="picture"></div>');
+                        $picture.css('background-image', 'url("' + pictures[pictureKey].url + '")');
+                        jQuery('#school-view-popup .pictures').prepend($picture);
                     }
                 }
             }
