@@ -77,6 +77,7 @@ jQuery(function () {
                 jQuery('#school-edit-popup [name="short_name"]').val(response.short_name);
                 jQuery('#school-edit-popup [name="country"]').val(response.country);
                 jQuery('#school-edit-popup [name="city"]').val(response.city);
+                jQuery('#school-edit-popup [name="website"]').val(response.website);
                 // Staff
                 jQuery('#school-edit-popup [name="coordinator_name"]').val(response.coordinator_name);
                 jQuery('#school-edit-popup [name="coordinator_email"]').val(response.coordinator_email);

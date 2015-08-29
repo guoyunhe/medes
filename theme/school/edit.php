@@ -48,6 +48,10 @@
                     <label>City</label>
                     <input type="text" name="city"/>
                 </p>
+                <p>
+                    <label>Website</label>
+                    <input type="text" name="website"/>
+                </p>
             </div>
             
             <div id="school-edit-staff" class="edit-section">
