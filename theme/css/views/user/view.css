@@ -15,43 +15,63 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+.view {
+    font-size: 18px;
+}
+
 /* Header */
 .view .header {
-    height: 300px;
+    height: 200px;
     position: relative;
     background-color: #09A6FF;
 }
 
-/* Avatar */
-#user-page-popup .avatar {
+.school.view .header {
+    background-color: #F5AA00;
+}
+
+.workshop.view .header {
+    background-color: #C94832;
+}
+
+/* Avatar or main picture */
+.view .avatar {
     position: absolute;
     left: 0;
     top: 0;
     width: 300px;
-    height: 300px;
+    height: 200px;
     background-color: #09A6FF;
     background-size: cover;
     background-blend-mode: multiply;
 }
 
-/* User real name: first name + last name */
-#user-page-popup .name {
+.school.view .avatar {
+    background-color: #F5AA00;
+}
+
+.workshop.view .avatar {
+    background-color: #C94832;
+}
+
+/* Name/title, user name or post title */
+.view .name {
     position: absolute;
     left: 320px;
     top: 20px;
     width: 400px;
-    font-size: 54px;
+    font-size: 42px;
     font-weight: bold;
     font-style: italic;
 }
 
-/* Schools */
-#user-page-popup .schools {
+/* Subtitle, school, city and country, year, etc. */
+.view .subtitle {
     position: absolute;
     left: 320px;
     right: 20px;
     bottom: 20px;
-    font-size: 36px;
+    font-size: 28px;
 }
 
 /* Two-colum layout */
@@ -83,6 +103,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     float: left;
     background-color: rgba(255,255,255,0.3);
     background-size: cover;
+}
+
+/* School website */
+.school.view .website,
+.school.view .staff {
+    color: #F5AA00;
+}
+
+.school.view .website a {
+    color: inherit;
 }
 
 /* Links */

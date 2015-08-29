@@ -26,7 +26,7 @@
             <div class="header">
                 <div class="main-picture avatar"></div>
                 <div class="name"></div>
-                <div class="location"></div>
+                <div class="subtitle location"></div>
             </div>
             <div class="row">
                 <div class="left">

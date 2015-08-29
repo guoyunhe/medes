@@ -20,7 +20,7 @@
  * Popup to display user page
  */
 ?>
-<div id="user-page-popup" class="popup user-page">
+<div id="user-page-popup" class="popup user view user-page">
     <div class="popup-close"><i class="fa fa-close"></i></div>
     <div class="popup-body">
         <div class="container">
@@ -30,7 +30,7 @@
                     <div class="first-name"></div>
                     <div class="last-name"></div>
                 </div>
-                <div class="schools"></div>
+                <div class="subtitle schools"></div>
             </div>
             <div class="row">
                 <div class="left">

@@ -195,6 +195,14 @@ jQuery(function () {
         });
     }
     
+    // "View Result" button
+    jQuery('#school-edit-popup .finish').click(function(){
+        var postId = parseInt(jQuery('#school-edit-popup').data('postId'));
+        closePopup(jQuery('#school-edit-popup'));
+        openPopup(jQuery('#school-view-popup'));
+        initSchoolViewPopup(postId);
+    });
+    
     
     // View popup
     
