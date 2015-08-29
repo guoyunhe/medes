@@ -92,10 +92,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 }
 
 /* Pictures */
-.view .pictures {
-    margin: 10px 0;
-}
-
 .view .picture {
     position: relative;
     width: 300px;
@@ -106,12 +102,23 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 }
 
 /* School and workshop website */
-.school.view .website {
-    color: #F5AA00;
+.view .website {
     margin: 20px 0;
 }
 
-.school.view .website a {
+.school.view .website {
+    color: #F5AA00;
+}
+
+.workshop.view .website {
+    color: #C94832;
+}
+
+.view .website a {
+    color: inherit;
+}
+
+.view .website a:visited {
     color: inherit;
 }
 
