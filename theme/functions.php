@@ -125,6 +125,17 @@ function su_get_school_list() {
     return $schools;
 }
 
+// Get workshop list
+function su_get_workshop_list() {
+    $workshops = [];
+    $query = new WP_Query("post_type=workshop");
+    while ($query->have_posts()) {
+        $query->the_post();
+        $workshops[] = get_post();
+    }
+    return $workshops;
+}
+
 function su_text_to_color($string, $type = 'hex') {
     $hash = md5($string);
     $hex = '#' . substr($hash, 0, 6);

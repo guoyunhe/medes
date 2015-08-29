@@ -69,7 +69,14 @@
             <?php endforeach; ?>
         </div>
         <div id="workshop-pane" class="pane clearfix">
-            
+            <?php
+            $workshops = su_get_workshop_list();
+            foreach ($workshops as $workshop): ?>
+                <workshop class="card" data-post-id="<?php echo $workshop->ID;?>"
+                        style="background-color:<?php echo su_text_to_color($workshop->post_title) ?>">
+                    <?php echo $workshop->post_title;?>
+                </workshop>
+            <?php endforeach; ?>
         </div>
     </div>
 </div>
