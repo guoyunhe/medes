@@ -92,11 +92,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 }
 
 /* Pictures */
-#user-page-popup .pictures {
+.view .pictures {
     margin: 10px 0;
 }
 
-#user-page-popup .picture {
+.view .picture {
     position: relative;
     width: 300px;
     height: 300px;
@@ -105,20 +105,26 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     background-size: cover;
 }
 
-/* School website */
-.school.view .website,
-.school.view .staff {
+/* School and workshop website */
+.school.view .website {
     color: #F5AA00;
+    margin: 20px 0;
 }
 
 .school.view .website a {
     color: inherit;
 }
 
-/* Links */
+/* School staff */
+.school.view .staff {
+    color: #F5AA00;
+    margin: 20px 0;
+}
+
+/* User links */
 
 .links {
-    margin: 30px 0;
+    margin: 20px 0;
 }
 
 .links .link {
@@ -141,6 +147,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     padding: 30px 10px;
 }
 
+/* School and Workshop Description */
+
 .description {
-    padding: 10px;
+    margin: 20px 0;
 }

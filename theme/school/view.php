@@ -30,7 +30,7 @@
             </div>
             <div class="row">
                 <div class="left">
-                    <div class="website"><i class="fa fa-link"></i> <a></a></div>
+                    <div class="website"><i class="fa fa-globe"></i> <a></a></div>
                     <div class="staff">
                         <h3>STUDY COORDINATOR</h3>
                         <div class="coordinator-name"></div>
