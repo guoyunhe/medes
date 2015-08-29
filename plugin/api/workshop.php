@@ -27,21 +27,21 @@ su_add_api('create_workshop');
 function su_create_workshop() {
     su_ajax_check_admin(); // Check permission
 
-    $name = filter_input(INPUT_POST, 'name');
+    $post_title = filter_input(INPUT_POST, 'post_title');
     
     $post = [
-        'post_title' => $name,
-        'post_content' => '',
+        'post_title' => $post_title,
+        'post_content' => ' ',
         'post_status' => 'publish',
         'post_type' => 'workshop'
     ];
     
-    $id = wp_insert_post( $post );
+    $post_id = wp_insert_post( $post );
 
-    if ($id > 0) {
-        $response = ['succeed' => true, 'id' => $id];
+    if ($post_id > 0) {
+        $response = ['succeed' => true, 'post_id' => $post_id];
     } else {
-        $response = ['succeed' => false, 'error_message' => 'School creating failed'];
+        $response = ['succeed' => false, 'error_message' => 'Workshop creating failed'];
     }
 
     echo json_encode($response);
@@ -61,10 +61,10 @@ function su_edit_workshop() {
     $post_id = filter_input(INPUT_POST, 'post_id', FILTER_VALIDATE_INT);
     
     su_update_post_meta($post_id, 'post_title');
-    su_update_post_meta($post_id, 'short_name');
     su_update_post_meta($post_id, 'post_content');
-    su_update_post_meta($post_id, 'country');
-    su_update_post_meta($post_id, 'city');
+    su_update_post_meta($post_id, 'year');
+    su_update_post_meta($post_id, 'school');
+    su_update_post_meta($post_id, 'website');
     
     $response = [
         'succeed' => true,
@@ -82,21 +82,21 @@ su_add_api('view_workshop');
 
 function su_view_workshop() {
     $post_id = filter_input(INPUT_POST, 'post_id', FILTER_VALIDATE_INT);
-    
-    su_update_post_meta($post_id, 'post_title');
-    su_update_post_meta($post_id, 'short_name');
-    su_update_post_meta($post_id, 'post_content');
-    su_update_post_meta($post_id, 'country');
-    su_update_post_meta($post_id, 'city');
-    
+        
     $response = [
         'succeed' => true,
-        'post_title' => get_post_meta($post_id, 'post_title'),
-        'short_name' => get_post_meta($post_id, 'short_name'),
-        'post_content' => get_post_meta($post_id, 'post_content'),
-        'country' => get_post_meta($post_id, 'country'),
-        'city' => get_post_meta($post_id, 'city'),
+        'ID' => $post_id,
+        'post_title' => get_the_title($post_id),
+        'post_content' => get_post_field('post_content', $post_id, 'raw'),
+        'post_content_display' => get_post_field('post_content', $post_id, 'display'),
+        'year' => get_post_meta($post_id, 'year', true),
+        'school' => get_post_meta($post_id, 'school', true),
+        'school_name' => get_the_title(get_post_meta($post_id, 'school', true)),
+        'school_short_name' => get_post_meta(get_post_meta($post_id, 'school', true), 'short_name', true),
+        'website' => get_post_meta($post_id, 'website', true),
     ];
+    $response['main_picture'] = su_get_post_main_picture($post_id);
+    $response['pictures'] = su_get_post_pictures($post_id);
     echo json_encode($response);
     die();
 }
@@ -108,28 +108,28 @@ function su_view_workshop() {
  * Response returns the url of the uploaded picture.
  */
 
-su_add_api('edit_workshop_main_pictrue');
+su_add_api('edit_workshop_main_picture');
 
 function su_edit_workshop_main_picture() {
     su_ajax_check_admin(); // Check permission
     
-    su_check_picture('picture'); // Valid picture file
-    $result = su_save_file('picture'); // Save picture file in WordPress
+    su_check_picture('main_picture'); // Valid picture file
+    $result = su_save_file('main_picture'); // Save picture file in WordPress
     su_resize_picture($result['file'], 1024, 1024); // Resize picture
     
     $post_id = filter_input(INPUT_POST, 'post_id', FILTER_VALIDATE_INT);
     
-    $picture = su_get_post_main_picture($post_id);
+    $main_picture = su_get_post_main_picture($post_id);
     
-    if(!empty($picture) && isset($picture['file'])) {
-        su_remove_file($picture['file']);
+    if(!empty($main_picture) && isset($main_picture['file'])) {
+        su_remove_file($main_picture['file']);
     }
     
-    $new_picture = [
+    $new_main_picture = [
         'url' => $result['url'],
         'file' => $result['file']
     ];
-    su_set_post_main_picture($post_id, $new_picture);
+    su_set_post_main_picture($post_id, $new_main_picture);
 
     $response = ['succeed' => true, 'url' => $result['url']];
     echo json_encode($response);
