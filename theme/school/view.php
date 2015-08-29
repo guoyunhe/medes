@@ -17,3 +17,35 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+?>
+<!-- Popup for viewing school page -->
+<div id="school-view-popup" class="popup school view">
+    <div class="popup-close"><i class="fa fa-close"></i></div>
+    <div class="popup-body">
+        <div class="container">
+            <div class="header">
+                <div class="main-picture avatar"></div>
+                <div class="name"></div>
+                <div class="location"></div>
+            </div>
+            <div class="row">
+                <div class="left">
+                    <div class="website"><i class="fa fa-link"></i> <a></a></div>
+                    <div class="staff">
+                        <h3>STUDY COORDINATOR</h3>
+                        <div class="coordinator-name"></div>
+                        <div class="coordinator-email"></div>
+                        <h3>TUTOR</h3>
+                        <div class="tutor-name"></div>
+                        <div class="tutor-email"></div>
+                    </div>
+                    <div class="description"></div>
+                </div><!-- .left -->
+                <div class="right">
+                    <div class="pictures clearfix"></div>
+                </div>
+            </div><!-- .row -->
+            <button class="edit large">EDIT</button>
+        </div><!-- .container -->
+    </div><!-- .popup-body -->
+</div><!-- #school-view-popup -->

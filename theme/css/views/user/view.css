@@ -16,7 +16,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 /* Header */
-#user-page-popup .header {
+.view .header {
     height: 300px;
     position: relative;
     background-color: #09A6FF;
@@ -55,19 +55,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 }
 
 /* Two-colum layout */
-#user-page-popup .row {
+.row {
     position: relative;
     overflow: visible;
 }
 
-#user-page-popup .left {
+.row .left {
     position: absolute;
     left: 0;
     top: 0;
     width: 300px;
 }
 
-#user-page-popup .right {
+.row .right {
     margin-left: 300px;
 }
 

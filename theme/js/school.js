@@ -86,7 +86,7 @@ jQuery(function () {
                 // Description
                 jQuery('#school-edit-popup [name="post_content"]').val(response.post_content);
                 // Pictures
-                jQuery('#user-edit-popup .pictures .picture').remove();
+                jQuery('#school-edit-popup .pictures .picture').remove();
                 var pictures = response['pictures'];
                 for (var pictureKey in pictures) {
                     if (pictures.hasOwnProperty(pictureKey)) {
@@ -198,10 +198,67 @@ jQuery(function () {
     
     // View popup
     
+    // Initialize view popup
+    function initSchoolViewPopup(postId) {
+        jQuery('#school-view-popup').data('postId', postId);
+        
+        // Fetch school information
+        var request = {
+            'action': 'view_school',
+            'post_id': postId
+        };
+        jQuery.ajax({
+            url: ajaxurl,
+            data: request,
+            method: 'POST',
+            dataType: 'json'
+        }).done(function(response){
+            if (response.succeed) {
+                // Main picture
+                jQuery('#school-view-popup .main-picture').css('background-image',
+                        'url(' + response.main_picture.url + ')');
+                // Basic information
+                // Post title
+                jQuery('#school-view-popup .name').text(response.post_title);
+                jQuery('#school-view-popup .location').text(response.city + ', ' + response.country);
+                jQuery('#school-view-popup .website a').text(response.website).attr('href', response.website);
+                // Staff
+                jQuery('#school-view-popup .coordinator-name').text(response.coordinator_name);
+                jQuery('#school-view-popup .coordinator-email').text(response.coordinator_email);
+                jQuery('#school-view-popup .tutor-name').text(response.tutor_name);
+                jQuery('#school-view-popup .tutor-email').text(response.tutor_email);
+                // Description
+                jQuery('#school-view-popup .description').text(response.post_content);
+                // Pictures
+                jQuery('#school-view-popup .pictures .picture').remove();
+                var pictures = response['pictures'];
+                for (var pictureKey in pictures) {
+                    if (pictures.hasOwnProperty(pictureKey)) {
+                        // addSchoolPicture(postId, pictureKey, pictures[pictureKey].url);
+                    }
+                }
+            }
+        });
+        
+        if(is_admin) {
+            jQuery('#school-view-popup .edit').show();
+        } else {
+            jQuery('#school-view-popup .edit').hide();
+        }
+    }
+    
+    // Edit button
+    jQuery('#school-view-popup .edit').click(function(){
+        var postId = parseInt(jQuery('#school-view-popup').data('postId'));
+        closePopup(jQuery('#school-view-popup'));
+        openPopup(jQuery('#school-edit-popup'));
+        initSchoolEditPopup(postId);
+    });
+    
     // School list
     jQuery('school').click(function(){
         var postId = parseInt(jQuery(this).data('postId'));
-        openPopup(jQuery('#school-edit-popup'));
-        initSchoolEditPopup(postId);
+        openPopup(jQuery('#school-view-popup'));
+        initSchoolViewPopup(postId);
     });
 });
