@@ -196,13 +196,9 @@
             
             <div id="user-edit-description" class="edit-section">
                 <div class="edit-section-title">Description</div>
+                <p>Description of your design philosophy</p>
                 <p>
-                    <label>Tagline</label>
-                    <input type="text" name="tagline"/>
-                </p>
-                <p>
-                    <label>Description</label>
-                    <textarea name="description"></textarea>
+                    <textarea name="tagline"></textarea>
                 </p>
             </div>
             

@@ -54,7 +54,6 @@
                 <div class="right">
                     <div class="pictures clearfix"></div>
                     <div class="tagline"></div>
-                    <div class="description"></div>
                 </div>
             </div>
             <button class="edit large">EDIT</button>

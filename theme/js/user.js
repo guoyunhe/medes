@@ -217,9 +217,8 @@ function editUserPopup(userId) {
             jQuery('#user-edit-popup input[name=' + linkKey + '_private]').prop('checked', private);
         }
 
-        // Description
+        // Tagline
         jQuery('#user-edit-popup [name=tagline]').val(response.tagline);
-        jQuery('#user-edit-popup [name=description]').val(response.description);
     });
 }
 // User interaction
@@ -347,7 +346,6 @@ jQuery(function () {
 
 
     // Description
-    jQuery('#user-edit-description input').change(updateSimpleUserMeta);
     jQuery('#user-edit-description textarea').change(updateSimpleUserMeta);
 
     // Finish button
@@ -449,7 +447,6 @@ function viewUserPopup(userId) {
         }
 
         jQuery('#user-page-popup .tagline').text(response.tagline);
-        jQuery('#user-page-popup .description').text(response.description);
     });
 }
 // User interaction
