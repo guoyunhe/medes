@@ -17,3 +17,21 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+?>
+<!-- Workshop create popup -->
+<div id="workshop-create-popup" class="popup">
+    <div class="popup-close"><i class="fa fa-close"></i></div>
+    <div class="popup-body">
+        <div class="container small">
+            <h2>Create A New Workshop</h2>
+            <div class="error-message"></div>
+            <p>
+                <input type="text" name="post_title" class="block center"
+                       placeholder="Name of the worshop"/>
+            </p>
+            <p>
+                <button class="next block">Next</button>
+            </p>
+        </div>
+    </div>
+</div>
