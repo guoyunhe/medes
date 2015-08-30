@@ -16,8 +16,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #map-list {
-    max-width: 1200px;
-    margin: 30px auto;
+    margin: 30px 0;
 }
 
 /* Tabs People/School/Workshop */
@@ -28,30 +27,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     text-align: center;
 }
 
-/* Old */
-
-
-#datamap {
+/* Map view */
+.map-view {
     position: relative;
 }
 
-.datamaps-hoverover {
+.hoverinfo {
     color: black;
-}
-
-
-
-.map-grid.tabs {
-    position: absolute;
-    right: 10px;
-    bottom: 10px;
-    z-index: 1;
-}
-
-.map-grid.tabs .click {
-    height: 50px;
-    font-size: 30px;
-    line-height: 30px;
 }
 
 /* List view */

@@ -17,16 +17,23 @@
 
 
 jQuery(function () {
-    var datamapObj;
-    jQuery('#datamap').height(jQuery('#datamap').width() * 0.5);
-    datamapObj = new Datamap({
+    jQuery('#datamap').height(jQuery('#datamap').width() * 0.45);
+    
+    var fills = {defaultFill: "#eeeeee"};
+    var data = {};
+    var threeToTwo = {};
+    
+    for (var key in countries) {
+        var threeLetter = countries[key]['three_letter'];
+        var color = countries[key]['color'];
+        fills[threeLetter] = color;
+        data[threeLetter] = {fillKey: threeLetter, twoLetter: key};
+        threeToTwo[threeLetter] = key;
+    }
+    
+    var datamap = new Datamap({
         element: document.getElementById("datamap"),
-        scope: 'world',
-        fills: {
-            defaultFill: "#eeeeee",
-            activeFill: "#99ddee",
-            CHN: '#ff0000'
-        },
+        fills: fills,
         geographyConfig: {
             borderWidth: 0.2,
             borderColor: '#000000',
@@ -39,21 +46,32 @@ jQuery(function () {
             highlightBorderColor: 'rgba(250, 15, 160, 0.2)',
             highlightBorderWidth: 2
         },
-        data: {
-            CHN: {fillKey: 'activeFill'},
-            FIN: {fillKey: 'activeFill'},
-            JPN: {fillKey: 'activeFill'},
-            DEU: {fillKey: 'activeFill'},
-            FRA: {fillKey: 'activeFill'},
-            ITA: {fillKey: 'activeFill'},
-            USA: {fillKey: 'activeFill'}
+        data: data,
+        done: function (datamap) {
+            datamap.svg.selectAll('.datamaps-subunit').on('click', function (geography) {
+                var country = threeToTwo[geography.id];
+                if (typeof country === 'undefined') {
+                    return;
+                }
+                openPopup(jQuery('#city-list'));
+                jQuery('#city-list city').remove();
+                var cities = countries[country]['cities'];
+                var colors = d3.scale.category10();
+                for (var i = 0; i < cities.length; i++) {
+                    var city = cities[i];
+                    var cityElement = jQuery('<city></city>');
+                    cityElement.addClass('card');
+                    cityElement.css('background-color', colors(Math.random() * 10));
+                    cityElement.text(city);
+                    cityElement.click(function () {
+                        closePopup(jQuery('#city-list'));
+                        openPopup(jQuery('#people-list'));
+                        jQuery('#people-list person').remove();
+                        // TODO AJAX
+                    });
+                    jQuery('#city-list .popup-body').append(cityElement);
+                }
+            });
         }
-    });
-
-    // Click on map
-    jQuery('.datamaps-subunit').click(function () {
-        // TODO Query city, people or school in this country, and determin if
-        // open popup
-        openPopup(jQuery('#city-list'));
     });
 });

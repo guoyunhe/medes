@@ -19,7 +19,7 @@
 
 ?>
 <!-- Map and list view of people, schools, workshops -->
-<div id="map-list" class="container">
+<div id="map-list">
     <div class="tabs clearfix">
         <span id="people-map-click" class="click tab active" data-target="#people-pane">
             People
@@ -33,29 +33,26 @@
     </div>
     <div class="panes">
         <div id="people-pane" class="pane active">
-            <div class="map-grid tabs">
-                <div class="click tab active" data-target="#datamap"><i class="fa fa-globe"></i></div>
-                <div class="click tab" data-target="#grid"><i class="fa fa-th"></i></div>
-            </div>
-            <div class="panes">
-                <div id="datamap" class="pane active"></div>
-                <div id="grid" class="pane clearfix">
-                    <div class="card city" style="background-color: aquamarine;">Finland</div>
-                    <div class="card city" style="background-color: antiquewhite;">Germany</div>
-                    <div class="card city" style="background-color: buttonface;">China</div>
-                    <div class="card city" style="background-color: darkorange;">Itali</div>
-                    <div class="card city" style="background-color: mistyrose;">Japan</div>
+            <div class="map-view">
+                <div id="datamap"></div>
+                <div id="city-list" class="popup hover">
+                    <div class="popup-close"><i class="fa fa-close"></i></div>
+                    <div class="popup-body">
+                        
+                    </div>
+                </div>
+                <div id="people-list" class="popup hover">
+                    <div class="popup-close"><i class="fa fa-close"></i></div>
+                    <div class="popup-body">
+                        
+                    </div>
                 </div>
             </div>
-            
-            <div id="city-list" class="popup hover">
-                <h1>Cites in Country</h1>
-                <div class="card city" style="background-color: aquamarine;">City Name 1</div>
-                <div class="card city" style="background-color: antiquewhite;">City Name 2</div>
-                <div class="card city" style="background-color: buttonface;">City Name 3</div>
-                <div class="card city" style="background-color: darkorange;">City Name 4</div>
-                <div class="card city" style="background-color: mistyrose;">City Name 5</div>
-                <div class="popup-close"><i class="fa fa-close"></i></div>
+            <div class="list-view">
+                
+            </div>
+            <div class="swap">
+                
             </div>
         </div>
         <div id="school-pane" class="pane clearfix">
