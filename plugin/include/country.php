@@ -562,9 +562,11 @@ function su_get_user_country_city_list() {
             continue;
         }
         if (!isset($countries[$country])) {
+            $name = su_get_country_name($country);
             $countries[$country] = [
-                'name' => su_get_country_name($country),
+                'name' => $name,
                 'three_letter' => su_get_country_three_letter($country),
+                'color' => su_text_to_color($name),
                 'cities' => [],
             ];
         }

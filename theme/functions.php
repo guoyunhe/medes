@@ -136,9 +136,3 @@ function su_get_workshop_list() {
     }
     return $workshops;
 }
-
-function su_text_to_color($string, $type = 'hex') {
-    $hash = md5($string);
-    $hex = '#' . substr($hash, 0, 6);
-    return $hex;
-}

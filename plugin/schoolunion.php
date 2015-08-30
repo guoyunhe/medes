@@ -34,6 +34,7 @@ require_once 'include/user.php';
 require_once 'include/school.php';
 require_once 'include/country.php';
 require_once 'include/year.php';
+require_once 'include/color.php';
 require_once 'include/security.php';
 require_once 'include/ajax-utility.php';
 
