@@ -74,4 +74,10 @@ jQuery(function () {
             });
         }
     });
+    
+    // People list view
+    // bind click event and open popup
+    jQuery('#list-view person').click(function () {
+        viewUserPopup(jQuery(this).data('user-id'));
+    });
 });

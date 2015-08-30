@@ -21,14 +21,38 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 /* Tabs People/School/Workshop */
 
-#map-list .tabs .click {
+#map-list > .tabs .click {
     width: 33.3333%;
+    height: 50px;
+    line-height: 42px;
     float: left;
     text-align: center;
+    font-size: 22px;
+    opacity: 0.8;
+}
+
+#map-list > .tabs .click.active {
+    opacity: 1;
+    font-weight: bold;
+}
+
+/* Tabs of people map and list */
+
+#people-pane {
+    position: relative;
+}
+
+#people-pane .tabs {
+    position: absolute;
+    right: 10px;
+    top: 20px;
+    border-radius: 3px;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.3);
+    background: #2A2D2F;
 }
 
 /* Map view */
-.map-view {
+#map-view {
     position: relative;
 }
 

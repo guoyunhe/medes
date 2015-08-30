@@ -45,7 +45,6 @@ jQuery(function () {
             tabs.removeClass('active');
             jQuery(this).addClass('active');
             target = jQuery(jQuery(this).data('target'));
-            console.log(target.siblings());
             target.siblings().removeClass('active');
             target.addClass('active');
         });

@@ -136,3 +136,9 @@ function su_get_workshop_list() {
     }
     return $workshops;
 }
+
+// Get user list
+function su_get_user_list() {
+    $users = get_users();
+    return $users;
+}

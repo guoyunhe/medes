@@ -20,6 +20,7 @@
 ?>
 <!-- Map and list view of people, schools, workshops -->
 <div id="map-list">
+    <h1 class="white-heading">Explore the MEDes Network</h1>
     <div class="tabs clearfix">
         <span id="people-map-click" class="click tab active" data-target="#people-pane">
             People
@@ -33,26 +34,41 @@
     </div>
     <div class="panes">
         <div id="people-pane" class="pane active">
-            <div class="map-view">
-                <div id="datamap"></div>
-                <div id="city-list" class="popup hover">
-                    <div class="popup-close"><i class="fa fa-close"></i></div>
-                    <div class="popup-body">
-                        
+            <div class="panes">
+                <div id="map-view" class="pane active">
+                    <div id="datamap"></div>
+                    <div id="city-list" class="popup hover">
+                        <div class="popup-close"><i class="fa fa-close"></i></div>
+                        <div class="popup-body">
+
+                        </div>
+                    </div>
+                    <div id="people-list" class="popup hover">
+                        <div class="popup-close"><i class="fa fa-close"></i></div>
+                        <div class="popup-body">
+
+                        </div>
                     </div>
                 </div>
-                <div id="people-list" class="popup hover">
-                    <div class="popup-close"><i class="fa fa-close"></i></div>
-                    <div class="popup-body">
-                        
-                    </div>
+                <div id="list-view" class="list-view pane clearfix">
+                    <?php
+                    $users = su_get_user_list();
+                    foreach ($users as $user):
+                        $avatar = get_user_meta($user->ID, 'avatar_url', true);
+                        $name = get_user_meta($user->ID, 'first_name', true) . ' ' .
+                                get_user_meta($user->ID, 'last_name', true);
+                        ?>
+                        <person class="card" data-user-id="<?php echo $user->ID; ?>"
+                                style="background-color:<?php echo su_text_to_color($name) ?>;
+                                background-image:url('<?php echo $avatar; ?>')">
+                                    <?php echo $name; ?>
+                        </person>
+                    <?php endforeach; ?>
                 </div>
             </div>
-            <div class="list-view">
-                
-            </div>
-            <div class="swap">
-                
+            <div class="swap tabs">
+                <div class="click tab active" data-target="#map-view"><i class="fa fa-globe fa-fw fa-lg"></i></div>
+                <div class="click tab" data-target="#list-view"><i class="fa fa-th fa-fw fa-lg"></i></div>
             </div>
         </div>
         <div id="school-pane" class="pane clearfix">
