@@ -80,24 +80,32 @@
                         <option value="tutor">Tutor</option>
                     </select>
                 </p>
-                <p>
-                    <label>1<sup>st</sup> year</label>
-                    <?php su_get_year_select(null, 'year_1'); ?>
-                    <label>School</label>
-                    <?php su_get_school_select(null, 'school_1'); ?>
-                </p>
-                <p>
-                    <label>2<sup>nd</sup> year</label>
-                    <?php su_get_year_select(null, 'year_2'); ?>
-                    <label>School</label>
-                    <?php su_get_school_select(null, 'school_2'); ?>
-                </p>
-                <p>
-                    <label>3<sup>rd</sup> year</label>
-                    <?php su_get_year_select(null, 'year_3'); ?>
-                    <label>School</label>
-                    <?php su_get_school_select(null, 'school_3'); ?>
-                </p>
+                <div class="schools">
+                    <p>
+                        <label>1<sup>st</sup> year</label>
+                        <?php su_get_year_select(null, 'year_1'); ?>
+                        <label>School</label>
+                        <?php su_get_school_select(null, 'school_1'); ?>
+                    </p>
+                    <p>
+                        <label>2<sup>nd</sup> year</label>
+                        <?php su_get_year_select(null, 'year_2'); ?>
+                        <label>School</label>
+                        <?php su_get_school_select(null, 'school_2'); ?>
+                    </p>
+                    <p>
+                        <label>3<sup>rd</sup> year</label>
+                        <?php su_get_year_select(null, 'year_3'); ?>
+                        <label>School</label>
+                        <?php su_get_school_select(null, 'school_3'); ?>
+                    </p>
+                </div>
+                <div class="school">
+                    <p>
+                        <label>School</label>
+                        <?php su_get_school_select(null, 'school'); ?>
+                    </p>
+                </div>
             </div>
             
             <div id="user-edit-pictures" class="edit-section">

@@ -169,13 +169,24 @@ function editUserPopup(userId) {
         jQuery('#user-edit-popup [name=home_country]').val(response.home_country);
         // Home city
         jQuery('#user-edit-popup [name=home_city]').val(response.home_city);
+        // Role
+        jQuery('#user-edit-popup [name=role]').val(response.role);
         // Schools
+        jQuery('#user-edit-popup [name=school]').val(response.school);
         jQuery('#user-edit-popup [name=school_1]').val(response.school_1);
         jQuery('#user-edit-popup [name=year_1]').val(response.year_1);
         jQuery('#user-edit-popup [name=school_2]').val(response.school_2);
         jQuery('#user-edit-popup [name=year_2]').val(response.year_2);
         jQuery('#user-edit-popup [name=school_3]').val(response.school_3);
         jQuery('#user-edit-popup [name=year_3]').val(response.year_3);
+        
+        if (response.role === 'tutor' || response.role === 'teacher') {
+            jQuery('#user-edit-popup div.schools').hide();
+            jQuery('#user-edit-popup div.school').show();
+        } else {
+            jQuery('#user-edit-popup div.school').hide();
+            jQuery('#user-edit-popup div.schools').show();
+        }
 
         // Pictures
         jQuery('#user-edit-popup .pictures .picture').remove();
@@ -281,6 +292,15 @@ jQuery(function () {
     // User role
     jQuery('#user-edit-medes select').change(updateSimpleUserMeta);
     jQuery('#user-edit-medes input').change(updateSimpleUserMeta);
+    jQuery('#user-edit-medes select[name="role"]').change(function () {
+        if (jQuery(this).val() === 'tutor' || jQuery(this).val() === 'teacher') {
+            jQuery('#user-edit-popup div.schools').hide();
+            jQuery('#user-edit-popup div.school').show();
+        } else {
+            jQuery('#user-edit-popup div.school').hide();
+            jQuery('#user-edit-popup div.schools').show();
+        }
+    });
 
     // Photos
     jQuery('#user-edit-popup .add-picture').click(function () {
@@ -391,17 +411,21 @@ function viewUserPopup(userId) {
         jQuery('#user-page-popup .last-name').text(response.last_name);
 
         // Schools
-        var schools = '';
-        if (response.school_1_short) {
-            schools += response.school_1_short;
+        if (response.role === 'tutor' || response.role === 'teacher') {
+            subtitle = response.school_name;
+        } else {
+            var subtitle = '';
+            if (response.school_1_short) {
+                subtitle += response.school_1_short;
+            }
+            if (response.school_2_short) {
+                subtitle += '/' + response.school_2_short;
+            }
+            if (response.school_3_short) {
+                subtitle += '/' + response.school_3_short;
+            }
         }
-        if (response.school_2_short) {
-            schools += '/' + response.school_2_short;
-        }
-        if (response.school_3_short) {
-            schools += '/' + response.school_3_short;
-        }
-        jQuery('#user-page-popup .schools').text(schools);
+        jQuery('#user-page-popup .subtitle').text(subtitle);
 
         // Links
         var linkKeys = suGetLinkTypes();

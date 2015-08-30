@@ -129,6 +129,8 @@ function su_edit_user_basic() {
     
     su_update_usermeta($user_id, 'role');
     
+    su_update_usermeta($user_id, 'school');
+    
     su_update_usermeta($user_id, 'school_1');
     su_update_usermeta($user_id, 'year_1');
     su_update_usermeta($user_id, 'school_2');
@@ -209,14 +211,17 @@ function su_get_user_page_data() {
         'home_country' => $user->home_country,
         'home_city' => $user->home_city,
         'role' => $user->role,
+        'school' => $user->school,
+        'school_name' => get_the_title($user->school),
+        'school_short' => get_post_meta($user->school, 'short_name', true),
         'school_1' => $user->school_1,
-        'school_1_short' => get_the_title($user->school_1),
+        'school_1_short' => get_post_meta($user->school_1, 'short_name', true),
         'year_1' => $user->year_1,
         'school_2' => $user->school_2,
-        'school_2_short' => get_the_title($user->school_2),
+        'school_2_short' => get_post_meta($user->school_2, 'short_name', true),
         'year_2' => $user->year_2,
         'school_3' => $user->school_3,
-        'school_3_short' => get_the_title($user->school_3),
+        'school_3_short' => get_post_meta($user->school_3, 'short_name', true),
         'year_3' => $user->year_3,
         'avatar_url' => $user->avatar_url,
         'pictures' => json_decode($user->pictures, true),
