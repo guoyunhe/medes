@@ -551,14 +551,14 @@ function su_get_country_select($selected = false, $name='country', $class='', $i
 
 function su_get_user_country_city_list() {
     $args = [];
-    $users = get_users( $args );
+    $users = get_users();
     
     $countries = [];
     
     foreach ($users as $user) {
-        $country = $user->live_country;
-        $city = $user->live_city;
-        if(empty($country) || empty(su_get_country_name($country)) || !empty($city)) {
+        $country = get_user_meta($user->ID, 'live_country', true);
+        $city = get_user_meta($user->ID, 'live_city', true);
+        if(empty($country) || empty(su_get_country_name($country)) || empty($city)) {
             continue;
         }
         if (!isset($countries[$country])) {

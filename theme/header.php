@@ -28,6 +28,7 @@
             var ajaxurl = '<?php echo admin_url('admin-ajax.php'); ?>';
             var is_admin = <?php echo current_user_can('manage_options')?'true':'false'; ?>;
             var user_id = <?php echo get_current_user_id(); ?>;
+            var countries = <?php echo json_encode(su_get_user_country_city_list()); ?>;
         </script>
         <?php wp_head(); ?>
     </head>
