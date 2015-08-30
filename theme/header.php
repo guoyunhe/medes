@@ -27,6 +27,7 @@
         <script type="text/javascript">
             var ajaxurl = '<?php echo admin_url('admin-ajax.php'); ?>';
             var is_admin = <?php echo current_user_can('manage_options')?'true':'false'; ?>;
+            var user_id = <?php echo get_current_user_id(); ?>;
         </script>
         <?php wp_head(); ?>
     </head>

@@ -100,6 +100,7 @@ jQuery(function () {
             dataType: 'json'
         }).done(function (response) {
             if (response.succeed) {
+                user_id = response.ID;
                 closePopup(jQuery('#user-login-popup'));
                 jQuery('#user-menu .name').text(response.first_name + ' ' + response.last_name);
                 jQuery('#user-menu .avatar').css('background-image', 'url("' + response.avatar_url + '")').show();
@@ -448,6 +449,12 @@ function viewUserPopup(userId) {
 
         jQuery('#user-page-popup .tagline').text(response.tagline);
     });
+    
+    if (userId === user_id || typeof userId === 'undefined') {
+        jQuery('#user-page-popup .edit').show();
+    } else {
+        jQuery('#user-page-popup .edit').hide();
+    }
 }
 // User interaction
 jQuery(function () {

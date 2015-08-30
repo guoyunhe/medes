@@ -200,6 +200,7 @@ function su_get_user_page_data() {
 
     $response = [
         'succeed' => true,
+        'ID' => $user_id,
         'username' => $user->user_login,
         'first_name' => $user->first_name,
         'last_name' => $user->last_name,
