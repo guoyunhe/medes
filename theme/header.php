@@ -34,8 +34,7 @@
     <body <?php body_class(); ?>>
         <header id="site-header">
             <div class="site-title-group pull-left">
-                <!-- Site logo feature provided by Jetpack plugin -->
-                <?php if (function_exists('jetpack_the_site_logo')) jetpack_the_site_logo(); ?>
+                <div class="site-logo"></div>
                 <div class="site-name"><?php bloginfo('name'); ?></div>
                 <div class="site-description"><?php bloginfo('description'); ?></div>
             </div>
