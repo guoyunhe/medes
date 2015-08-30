@@ -519,3 +519,18 @@ function su_remove_user_experience() {
     echo json_encode($response);
     die();
 }
+
+
+/**
+ * Get user countries and citys API.
+ */
+
+su_add_api('list_user_country_city');
+
+function su_list_user_country_city() {
+
+    $countries = su_get_user_country_city_list();
+
+    echo json_encode($countries);
+    die();
+}

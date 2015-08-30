@@ -261,7 +261,6 @@ function su_get_country_array() {
         "AE" => "United Arab Emirates",
         "GB" => "United Kingdom",
         "US" => "United States",
-        "ZZ" => "Unknown or Invalid Region",
         "UY" => "Uruguay",
         "UZ" => "Uzbekistan",
         "VU" => "Vanuatu",
@@ -550,24 +549,28 @@ function su_get_country_select($selected = false, $name='country', $class='', $i
     require __DIR__ . '/../view/country-select.php';
 }
 
-/**
- * Get an array of countries that have users
- * 
- * Result format:
- * ['US' => 'United States', 'FI' => 'Finland', ...]
- * 
- * @return array An array of countries that have users
- */
-function su_get_exist_country_array() {
-    return ['FI' => 'Finland'];
-}
-
-/**
- * Get HTML select element of all countries in the world
- * 
- * @param string $selected Selected country code, eg. 'US', 'FI', 'CN'
- */
-function su_get_exist_country_select($selected = 0) {
-    $country_array = su_get_exist_country_array();
-    require __DIR__ . '/../view/country-select.php';
+function su_get_user_country_city_list() {
+    $args = [];
+    $users = get_users( $args );
+    
+    $countries = [];
+    
+    foreach ($users as $user) {
+        $country = $user->live_country;
+        $city = $user->live_city;
+        if(empty($country) || empty(su_get_country_name($country)) || !empty($city)) {
+            continue;
+        }
+        if (!isset($countries[$country])) {
+            $countries[$country] = [
+                'name' => su_get_country_name($country),
+                'three_letter' => su_get_country_three_letter($country),
+                'cities' => [],
+            ];
+        }
+        if (!in_array($city, $countries[$country]['cities'])) {
+            $countries[$country]['cities'][] = $city;
+        }
+    }
+    return $countries;
 }
