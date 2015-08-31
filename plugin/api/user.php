@@ -265,38 +265,21 @@ add_action('wp_ajax_nopriv_update_user_avatar', 'su_update_user_avatar');
 function su_update_user_avatar() {
     su_check_login();
     su_check_picture('avatar');
-    if (!isset($_FILES['avatar'])) {
-        echo 'no upload file';
-        die();
-    }
     
     $user_id = get_current_user_id();
     
-    $uploadedfile = $_FILES['avatar'];
-    $upload_overrides = array('test_form' => false);
-    $upload_result = wp_handle_upload($uploadedfile, $upload_overrides);
-    
-    if (!isset($upload_result['file'])) {
-        echo 'file save failed';
-        die();
-    }
-    
-    $avatar_file = get_user_meta($user_id, 'avatar_file', true);
-    if ($avatar_file !== '' && file_exists($avatar_file)) {
-        unlink(get_user_meta($user_id, 'avatar_file', true));
-    }
-    update_user_meta($user_id, 'avatar_url', $upload_result['url']);
-    update_user_meta($user_id, 'avatar_file', $upload_result['file']);
-    $image = wp_get_image_editor($upload_result['file']);
-    if (is_wp_error($image)) {
-        echo 'cannot crop picture';
-        die();
-    }
-    
-    $image->resize(300, 300, true);
-    $image->save($upload_result['file']);
+    $result = su_save_file('avatar');
+    su_resize_picture($result['file'], 1024, 1024);
 
-    $response = ['avatar_url' => $upload_result['url']];
+    $avatar_file = get_user_meta($user_id, 'avatar_file', true);
+    su_remove_file($avatar_file);
+    
+    update_user_meta($user_id, 'avatar_url', $result['url']);
+    update_user_meta($user_id, 'avatar_file', $result['file']);
+    
+    
+
+    $response = ['avatar_url' => $result['url']];
     echo json_encode($response);
     die();
 }
