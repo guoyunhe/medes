@@ -44,6 +44,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     top: 0;
     right: 0;
     bottom: 0;
+    z-index: 50;
 }
 
 .popup-close {

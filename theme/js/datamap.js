@@ -67,7 +67,32 @@ jQuery(function () {
                         closePopup(jQuery('#city-list'));
                         openPopup(jQuery('#people-list'));
                         jQuery('#people-list person').remove();
-                        // TODO AJAX
+                        var request = {
+                            'action': 'filter_user',
+                            'live_country': country,
+                            'live_city': city
+                        };
+                        jQuery.ajax({
+                            url: ajaxurl,
+                            data: request,
+                            method: 'POST',
+                            dataType: 'json'
+                        }).done(function (response) {
+                            var colors2 = d3.scale.category10();
+                            for(var j = 0; j < response.length; j++) {
+                                var person = response[j];
+                                var personElement = jQuery('<person></person>');
+                                personElement.addClass('card');
+                                personElement.css('background-image', 'url("'+person.avatar+'")');
+                                personElement.css('background-color', colors2(Math.random() * 10));
+                                personElement.data('userId', person.ID);
+                                personElement.text(person.first_name + ' ' + person.last_name);
+                                personElement.click(function(){
+                                    viewUserPopup(person.ID);
+                                });
+                                jQuery('#people-list .popup-body').append(personElement);
+                            }
+                        });
                     });
                     jQuery('#city-list .popup-body').append(cityElement);
                 }

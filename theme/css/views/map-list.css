@@ -48,12 +48,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     top: 20px;
     border-radius: 3px;
     box-shadow: 0 1px 5px rgba(0,0,0,0.3);
-    background: #2A2D2F;
+    background: #0f0f0f;
 }
 
 /* Map view */
 #map-view {
     position: relative;
+}
+
+#datamap {
+    background-color: #2F2F2F;
 }
 
 .hoverinfo {
