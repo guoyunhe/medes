@@ -534,3 +534,56 @@ function su_list_user_country_city() {
     echo json_encode($countries);
     die();
 }
+
+/**
+ * Get user countries and citys API.
+ */
+
+su_add_api('filter_user');
+
+function su_filter_user() {
+    $live_country = filter_input(INPUT_POST, 'live_country');
+    $live_city = filter_input(INPUT_POST, 'live_city');
+    $search = filter_input(INPUT_POST, 'search');
+    
+    $args = [];
+    
+    if (!empty($search)) {
+        $args['search'] = $search;
+    }
+    
+    $meta_query = ['relation' => 'AND'];
+    
+    if (!empty($live_country)) {
+        $meta_query[] = [
+            'key' => 'live_country',
+            'value' => $live_country,
+            'compare' => '=',
+        ];
+        if (!empty($live_city)) {
+            $meta_query[] = [
+                'key' => 'live_city',
+                'value' => $live_city,
+                'compare' => 'LIKE',
+            ];
+        }
+        $args['meta_query'] = $meta_query;
+    }
+    
+    $users = get_users( $args );
+    
+    $response = [];
+    
+    foreach ($users as $user) {
+        $array = [
+            'ID' => $user->ID,
+            'avatar' => get_user_meta($user->ID, 'avatar_url', true),
+            'first_name' => get_user_meta($user->ID, 'first_name', true),
+            'last_name' => get_user_meta($user->ID, 'last_name', true),
+        ];
+        $response[] = $array;
+    }
+
+    echo json_encode($response);
+    die();
+}
