@@ -53,26 +53,14 @@ fused with page content */
 /* Logo - JetPack feature, size large (1024x1024px) */
 
 .site-logo {
-    width: 40px;
+    display: block;
+    width: 125px;
     height: 40px;
     float: left;
     background-image: url("../../img/logo.png");
     background-size: contain;
     background-position: center;
 }
-
-.site-name {
-    margin-left: 50px;
-    font-size: 1.3rem;
-    font-weight: bold;
-}
-
-.site-description {
-    margin-left: 50px;
-    font-size: 12px;
-    overflow: hidden;
-}
-
 
 /* Navigation icon */
 

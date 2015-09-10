@@ -39,9 +39,7 @@
     <body <?php body_class(); ?>>
         <header id="site-header">
             <div class="site-title-group pull-left">
-                <div class="site-logo"></div>
-                <div class="site-name"><?php bloginfo('name'); ?></div>
-                <div class="site-description"><?php bloginfo('description'); ?></div>
+                <a class="site-logo" href="#"></a>
             </div>
             <div class="nav-wrap pull-right">
                 <span id="site-search">
