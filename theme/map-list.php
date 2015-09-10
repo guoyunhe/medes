@@ -35,7 +35,7 @@
     <div class="panes">
         <div id="people-pane" class="pane active">
             <div class="panes">
-                <div id="map-view" class="pane active">
+                <div id="map-view" class="pane">
                     <div id="datamap"></div>
                     <div id="city-list" class="popup hover">
                         <div class="popup-close"><i class="fa fa-close"></i></div>
@@ -50,7 +50,7 @@
                         </div>
                     </div>
                 </div>
-                <div id="list-view" class="list-view pane clearfix">
+                <div id="list-view" class="list-view pane active clearfix">
                     <?php
                     $users = su_get_user_list();
                     foreach ($users as $user):
@@ -66,7 +66,7 @@
                     <?php endforeach; ?>
                 </div>
             </div>
-            <div class="swap tabs">
+            <div class="swap tabs" style="display:none">
                 <div class="click tab active" data-target="#map-view"><i class="fa fa-globe fa-fw fa-lg"></i></div>
                 <div class="click tab" data-target="#list-view"><i class="fa fa-th fa-fw fa-lg"></i></div>
             </div>
