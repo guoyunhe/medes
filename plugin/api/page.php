@@ -51,7 +51,7 @@ function su_get_page_data() {
         $response = ['succeed' => false, 'error_message' => 'Page doesn\'t exist!'];
     } else {
         $response = ['succeed' => true, 'page_title' => $page->post_title,
-            'page_content' => $page->post_content];
+            'page_content' => get_post_field('post_content', $page_id, 'display')];
     }
 
     echo json_encode($response);

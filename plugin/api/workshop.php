@@ -61,6 +61,7 @@ function su_edit_workshop() {
     $post_id = filter_input(INPUT_POST, 'post_id', FILTER_VALIDATE_INT);
     
     su_update_post_meta($post_id, 'post_title');
+    su_update_post_meta($post_id, 'color');
     su_update_post_meta($post_id, 'post_content');
     su_update_post_meta($post_id, 'year');
     su_update_post_meta($post_id, 'school');
@@ -87,6 +88,7 @@ function su_view_workshop() {
         'succeed' => true,
         'ID' => $post_id,
         'post_title' => get_the_title($post_id),
+        'color' => get_post_meta($post_id, 'color', true),
         'post_content' => get_post_field('post_content', $post_id, 'raw'),
         'post_content_display' => get_post_field('post_content', $post_id, 'display'),
         'year' => get_post_meta($post_id, 'year', true),

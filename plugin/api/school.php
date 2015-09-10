@@ -62,6 +62,7 @@ function su_edit_school() {
     
     su_update_post_meta($post_id, 'post_title');
     su_update_post_meta($post_id, 'short_name');
+    su_update_post_meta($post_id, 'color');
     su_update_post_meta($post_id, 'post_content');
     su_update_post_meta($post_id, 'country');
     su_update_post_meta($post_id, 'city');
@@ -93,8 +94,11 @@ function su_view_school() {
         'ID' => $post_id,
         'post_title' => get_the_title($post_id),
         'short_name' => get_post_meta($post_id, 'short_name', true),
+        'color' => get_post_meta($post_id, 'color', true),
         'post_content' => get_post_field('post_content', $post_id, 'raw'),
+        'post_content_display' => get_post_field('post_content', $post_id, 'display'),
         'country' => get_post_meta($post_id, 'country', true),
+        'country_name' => su_get_country_name(get_post_meta($post_id, 'country', true)),
         'city' => get_post_meta($post_id, 'city', true),
         'website' => get_post_meta($post_id, 'website', true),
         'coordinator_name' => get_post_meta($post_id, 'coordinator_name', true),
