@@ -206,6 +206,7 @@ function su_get_user_page_data() {
         'username' => $user->user_login,
         'first_name' => $user->first_name,
         'last_name' => $user->last_name,
+        'color' => su_text_to_color($user->first_name.' '.$user->last_name),
         'live_country' => $user->live_country,
         'live_city' => $user->live_city,
         'home_country' => $user->home_country,

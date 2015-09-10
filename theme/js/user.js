@@ -409,6 +409,11 @@ function viewUserPopup(userId) {
         // Display name (first name + last name)
         jQuery('#user-page-popup .first-name').text(response.first_name);
         jQuery('#user-page-popup .last-name').text(response.last_name);
+        
+        // Colors
+        jQuery('#user-page-popup .header').css('background-color', response.color);
+        jQuery('#user-page-popup .avatar').css('background-color', response.color);
+        jQuery('#user-page-popup .links a').css('color', response.color);
 
         // Schools
         if (response.role === 'tutor' || response.role === 'teacher') {
