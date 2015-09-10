@@ -34,9 +34,10 @@ DotCloud = {
     },
 
     initHeader: function () {
-        this.width = window.innerWidth;
-        this.height = window.innerHeight * 2;
         this.largeHeader = document.getElementById('dot-cloud');
+        this.width = jQuery('#dot-cloud').width();
+        this.height = window.innerHeight * 2;
+        
         this.canvas = document.getElementById('demo-canvas');
         this.target = {x: this.width/2, y: this.height/2};
 
