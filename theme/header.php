@@ -30,6 +30,9 @@
             var user_id = <?php echo get_current_user_id(); ?>;
             var countries = <?php echo json_encode(su_get_user_country_city_list()); ?>;
         </script>
+        <!-- Adobe Typekit fonts -->
+        <script type="text/javascript" src="//use.typekit.net/ycn2dal.js"></script>
+        <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
         <?php wp_head(); ?>
     </head>
 

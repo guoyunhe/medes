@@ -71,15 +71,11 @@ get_template_part('page');
         <h1>
             The best design school is not one school.
         </h1>
-        <p>
-            The MEDes is a unique network of seven leading European design schools.
-            During the five year programme, students are integrated into three design
-            education systems and join a strong international community. These diverse
-            experiences provide them with different approaches to design, multi-national
-            perspectives and sensitivity to cultural differences. The MEDes course
-            encourage and enables students to develop- their creativity and imagination,
-            their design research and investigation skills, and their professional
-            executive practice.
+        <p class="short">
+            The MEDes is a unique network of seven leading European design schools. During the five year programme, students are integrated into three design...
+        </p>
+        <p class="long">
+            The MEDes is a unique network of seven leading European design schools. During the five year programme, students are integrated into three design education systems and join a strong international community. These diverse experiences provide them with different approaches to design, multi-national perspectives and sensitivity to cultural differences. The MEDes course encourages and enables students to develop their creativity and imagination, their design research and investigative skills, and their professional executive practice.
         </p>
         <p>
             <a href="#" style="color:white; float: right;"><i class="fa fa-lg fa-plus-circle"></i></a>

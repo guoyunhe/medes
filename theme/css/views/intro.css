@@ -29,3 +29,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #front-page-intro h1 {
     font-size: 64px;
 }
+
+#front-page-intro .short {
+    
+}
+
+#front-page-intro .long {
+    display: none;
+}

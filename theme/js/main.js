@@ -20,3 +20,14 @@ jQuery(function(){
     DotCloud.init();
     FeaturedPeople.init();
 });
+
+/* Introduction */
+
+jQuery(function () {
+    jQuery('#front-page-intro a').click(function (e) {
+        e.preventDefault();
+        jQuery('#front-page-intro .short').hide();
+        jQuery('#front-page-intro .long').show();
+        jQuery('#front-page-intro a').hide();
+    });
+});
