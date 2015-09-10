@@ -43,6 +43,11 @@
                     <input type="text" name="short_name"/>
                 </p>
                 <p>
+                    <label>Color</label>
+                    <input type="text" name="color"/>
+                    Format: #ffec57
+                </p>
+                <p>
                     <label>Country</label> 
                     <?php su_get_country_select(null,'country'); ?>
                     <label>City</label>

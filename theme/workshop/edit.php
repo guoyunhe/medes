@@ -39,6 +39,11 @@
                     <input type="text" name="post_title"/>
                 </p>
                 <p>
+                    <label>Color</label>
+                    <input type="text" name="color"/>
+                    Format: #ffec57
+                </p>
+                <p>
                     <label>Year</label> 
                     <?php su_get_year_select(); ?>
                     <label>School</label>

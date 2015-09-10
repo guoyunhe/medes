@@ -78,7 +78,7 @@
                 $main_picture = json_decode(get_post_meta($school->ID, 'main_picture', true), true);
                 ?>
                 <school class="card" data-post-id="<?php echo $school->ID;?>"
-                        style="background-color:<?php echo su_text_to_color($school->post_title) ?>;
+                        style="background-color:<?php echo get_post_meta($school->ID, 'color', true) ?>;
                         background-image:url('<?php echo $main_picture['url']; ?>')">
                     <?php echo $school->post_title;?>
                 </school>
@@ -91,7 +91,7 @@
                 $main_picture = json_decode(get_post_meta($workshop->ID, 'main_picture', true), true);
                 ?>
                 <workshop class="card" data-post-id="<?php echo $workshop->ID;?>"
-                        style="background-color:<?php echo su_text_to_color($workshop->post_title) ?>;
+                        style="background-color:<?php echo get_post_meta($workshop->ID, 'color', true) ?>;
                         background-image:url('<?php echo $main_picture['url']; ?>')">
                     <?php echo $workshop->post_title;?>
                 </workshop>

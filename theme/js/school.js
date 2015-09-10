@@ -75,6 +75,7 @@ jQuery(function () {
                 // Post title
                 jQuery('#school-edit-popup [name="post_title"]').val(response.post_title);
                 jQuery('#school-edit-popup [name="short_name"]').val(response.short_name);
+                jQuery('#school-edit-popup [name="color"]').val(response.color);
                 jQuery('#school-edit-popup [name="country"]').val(response.country);
                 jQuery('#school-edit-popup [name="city"]').val(response.city);
                 jQuery('#school-edit-popup [name="website"]').val(response.website);
@@ -235,6 +236,11 @@ jQuery(function () {
                 jQuery('#school-view-popup .coordinator-email').text(response.coordinator_email);
                 jQuery('#school-view-popup .tutor-name').text(response.tutor_name);
                 jQuery('#school-view-popup .tutor-email').text(response.tutor_email);
+                // Color
+                jQuery('#school-view-popup .header').css('background-color', response.color);
+                jQuery('#school-view-popup .main-picture').css('background-color', response.color);
+                jQuery('#school-view-popup .website').css('color', response.color);
+                jQuery('#school-view-popup .staff').css('color', response.color);
                 // Description
                 jQuery('#school-view-popup .description').text(response.post_content);
                 // Pictures

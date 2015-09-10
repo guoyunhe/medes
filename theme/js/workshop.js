@@ -74,6 +74,7 @@ jQuery(function () {
                 // Basic information
                 // Post title
                 jQuery('#workshop-edit-popup [name="post_title"]').val(response.post_title);
+                jQuery('#workshop-edit-popup [name="color"]').val(response.color);
                 jQuery('#workshop-edit-popup [name="year"]').val(response.year);
                 jQuery('#workshop-edit-popup [name="school"]').val(response.school);
                 jQuery('#workshop-edit-popup [name="website"]').val(response.website);
@@ -224,6 +225,10 @@ jQuery(function () {
                 jQuery('#workshop-view-popup .name').text(response.post_title);
                 jQuery('#workshop-view-popup .subtitle').text(response.year + ', ' + response.school_name);
                 jQuery('#workshop-view-popup .website a').text(response.website).attr('href', response.website);
+                // Color
+                jQuery('#workshop-view-popup .header').css('background-color', response.color);
+                jQuery('#workshop-view-popup .main-picture').css('background-color', response.color);
+                jQuery('#workshop-view-popup .website').css('color', response.color);
                 // Description
                 jQuery('#workshop-view-popup .description').html(response.post_content_display);
                 // Pictures

@@ -531,7 +531,11 @@ function su_get_country_three_letter_array() {
 
 function su_get_country_name($two_letter) {
     $countrys = su_get_country_array();
-    return $countrys[$two_letter];
+    if(!empty($two_letter) && isset($countrys[$two_letter])) {
+        return $countrys[$two_letter];
+    } else {
+        return '';
+    }
 }
 
 function su_get_country_three_letter($two_letter) {
