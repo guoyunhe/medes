@@ -35,12 +35,12 @@ DotCloud = {
 
     initHeader: function () {
         this.width = window.innerWidth;
-        this.height = window.innerHeight;
+        this.height = window.innerHeight * 2;
         this.largeHeader = document.getElementById('dot-cloud');
         this.canvas = document.getElementById('demo-canvas');
         this.target = {x: this.width/2, y: this.height/2};
 
-        this.largeHeader.style.height = this.height+'px';
+        this.largeHeader.style.height = this.height / 2 + 'px';
 
         this.canvas.width = this.width;
         this.canvas.height = this.height;
@@ -97,7 +97,6 @@ DotCloud = {
     addListeners: function () {
         window.addEventListener('mousemove', this.mouseMove);
         window.addEventListener('scroll', this.scrollCheck);
-        window.addEventListener('resize', this.resize);
     },
 
     mouseMove: function (e) {
@@ -121,14 +120,6 @@ DotCloud = {
         } else {
             DotCloud.animateHeader = true;
         }
-    },
-
-    resize: function() {
-        DotCloud.width = window.innerWidth;
-        DotCloud.height = window.innerHeight;
-        DotCloud.largeHeader.style.height = DotCloud.height+'px';
-        DotCloud.canvas.width = DotCloud.width;
-        DotCloud.canvas.height = DotCloud.height;
     },
 
     // animation
@@ -182,7 +173,7 @@ DotCloud = {
             this.ctx.beginPath();
             this.ctx.moveTo(p.x, p.y);
             this.ctx.lineTo(p.closest[i].x, p.closest[i].y);
-            this.ctx.strokeStyle = 'rgba(156,217,249,'+ p.active+')';
+            this.ctx.strokeStyle = 'rgba(255,255,255,'+ p.active+')';
             this.ctx.stroke();
         }
     },
@@ -201,7 +192,7 @@ DotCloud = {
             if(!_this.active) return;
             DotCloud.ctx.beginPath();
             DotCloud.ctx.arc(_this.pos.x, _this.pos.y, _this.radius, 0, 2 * Math.PI, false);
-            DotCloud.ctx.fillStyle = 'rgba(156,217,249,'+ _this.active+')';
+            DotCloud.ctx.fillStyle = 'rgba(255,255,255,'+ _this.active+')';
             DotCloud.ctx.fill();
         };
     },

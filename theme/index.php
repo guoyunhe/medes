@@ -39,7 +39,6 @@ get_template_part('workshop/view');
 get_template_part('page');
 
 ?>
-
 <div id="dot-cloud">
     <canvas id="demo-canvas"></canvas>
     <div class="main-title">

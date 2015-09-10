@@ -18,10 +18,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #dot-cloud {
     position: relative;
     width: 100%;
-    overflow: hidden;
     background-size: cover;
     background-position: center center;
-    z-index: 1;
+    z-index: -1000;
 }
 
 .main-title {
