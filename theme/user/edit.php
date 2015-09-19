@@ -24,16 +24,6 @@
     <div class="popup-close"><i class="fa fa-close"></i></div>
     <div class="popup-body">
         <div class="container">
-            
-            <div class="edit-section">
-                <div class="edit-section-title">Avatar</div>
-                <div class="avatar">
-                    <div class="spinner"><i class="fa fa-spinner fa-pulse"></i></div>
-                    <input type="file" name="avatar"/>
-                    <button><i class="fa fa-camera"></i> Edit</button>
-                </div>
-            </div>
-            
             <div id="user-edit-basic" class="edit-section">
                 <div class="edit-section-title">Basic Information</div>
                 <p>
@@ -105,6 +95,18 @@
                         <label>School</label>
                         <?php su_get_school_select(null, 'school'); ?>
                     </p>
+                </div>
+            </div>
+            
+            <div class="edit-section">
+                <div class="edit-section-title">Show your face!</div>
+                
+                <p>The time has come to show your face. Upload your profile picture</p>
+                
+                <div class="avatar">
+                    <div class="spinner"><i class="fa fa-spinner fa-pulse"></i></div>
+                    <input type="file" name="avatar"/>
+                    <button><i class="fa fa-camera"></i> Add</button>
                 </div>
             </div>
             
