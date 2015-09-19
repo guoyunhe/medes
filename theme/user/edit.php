@@ -109,7 +109,10 @@
             </div>
             
             <div id="user-edit-pictures" class="edit-section">
-                <div class="edit-section-title">Pictures</div>
+                <div class="edit-section-title">Your awesome work</div>
+                
+                <p>Upload your greatest project photos here.</p>
+                
                 <div class="pictures clearfix">
                     <div class="add-picture">
                         <i class="fa fa-camera"></i>
