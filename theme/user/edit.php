@@ -28,6 +28,7 @@
             <div class="edit-section">
                 <div class="edit-section-title">Avatar</div>
                 <div class="avatar">
+                    <div class="spinner"><i class="fa fa-spinner fa-pulse"></i></div>
                     <input type="file" name="avatar"/>
                     <button><i class="fa fa-camera"></i> Edit</button>
                 </div>
@@ -115,6 +116,7 @@
                 
                 <div class="pictures clearfix">
                     <div class="add-picture">
+                        <div class="spinner"><i class="fa fa-spinner fa-pulse"></i></div>
                         <i class="fa fa-camera"></i>
                         <input type="file" name="picture"/>
                     </div>

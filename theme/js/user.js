@@ -246,6 +246,8 @@ jQuery(function () {
         var form_data = new FormData();
         form_data.append('action', 'update_user_avatar');
         form_data.append('avatar', file_data);
+        
+        jQuery('#user-edit-popup .avatar .spinner').show();
         jQuery.ajax({
             url: ajaxurl,
             data: form_data,
@@ -254,6 +256,7 @@ jQuery(function () {
             processData: false,
             contentType: false
         }).done(function (response) {
+            jQuery('#user-edit-popup .avatar .spinner').hide();
             jQuery('#user-edit-popup .avatar').css('background-image', 'url("' + response.avatar_url + '")');
             jQuery('#user-menu .avatar').css('background-image', 'url("' + response.avatar_url + '")');
         });
@@ -312,6 +315,8 @@ jQuery(function () {
         var form_data = new FormData();
         form_data.append('action', 'upload_user_picture');
         form_data.append('picture', file_data);
+        jQuery('#user-edit-popup .add-picture .spinner').show();
+        jQuery('#user-edit-popup .add-picture .fa-camera').hide();
         jQuery.ajax({
             url: ajaxurl,
             data: form_data,
@@ -320,6 +325,8 @@ jQuery(function () {
             processData: false,
             contentType: false
         }).done(function (response) {
+            jQuery('#user-edit-popup .add-picture .spinner').hide();
+            jQuery('#user-edit-popup .add-picture .fa-camera').show();
             addUserPicture(response.uuid, response.url);
         });
     });
