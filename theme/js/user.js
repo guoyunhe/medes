@@ -280,17 +280,14 @@ jQuery(function () {
         });
     }
 
-    // First name, last name, email
+    // First name, last name, email, living country, city
     jQuery('#user-edit-basic input').change(updateSimpleUserMeta);
+    jQuery('#user-edit-basic select').change(updateSimpleUserMeta);
 
     jQuery('#user-edit-basic input').change(function () {
         jQuery('#user-menu .name').text(jQuery('#user-edit-basic [name="first_name"]').val()
                 + ' ' + jQuery('#user-edit-basic [name="last_name"]').val());
     });
-
-    // Living country, city; home country city
-    jQuery('#user-edit-location input').change(updateSimpleUserMeta);
-    jQuery('#user-edit-location select').change(updateSimpleUserMeta);
 
     // User role
     jQuery('#user-edit-medes select').change(updateSimpleUserMeta);

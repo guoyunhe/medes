@@ -25,11 +25,10 @@
     <div class="popup-body">
         <div class="container">
             <div id="user-edit-basic" class="edit-section">
-                <div class="edit-section-title">Basic Information</div>
+                <div class="edit-section-title">Your data</div>
                 <p>
                     <label>Username</label>
                     <input type="text" name="username" disabled="disabled"/>
-                    <span>[can't be changed]</span>
                 </p>
                 <p>
                     <label>First name</label>
@@ -41,23 +40,12 @@
                     <label>Email</label>
                     <input type="email" name="user_email"/>
                 </p>
-            </div>
-            
-            <div id="user-edit-location" class="edit-section">
-                <div class="edit-section-title">Location</div>
                 <p>Where are you living?</p>
                 <p>
                     <label>Country</label> 
                     <?php su_get_country_select(null,'live_country'); ?>
                     <label>City</label>
                     <input type="text" name="live_city"/>
-                </p>
-                <p>Your hometown</p>
-                <p>
-                    <label>Country</label>
-                    <?php su_get_country_select(null, 'home_country'); ?>
-                    <label>City</label>
-                    <input type="text" name="home_city"/>
                 </p>
             </div>
             
