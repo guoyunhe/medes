@@ -183,8 +183,12 @@
             </div>
             
             <div id="user-edit-experience" class="edit-section">
-                <div class="edit-section-title">Work Experience</div>
+                <div class="edit-section-title">Your timeline</div>
+                
+                <p>Every MEDes journey is unique. Share your experiences and where they led you.</p>
+                
                 <div class="experience"></div>
+                
                 <p>
                     <label>From</label>
                     <?php su_get_year_select(null, 'xp_start', 'year', 'add-xp-start-input'); ?>
@@ -224,7 +228,10 @@
             </div>
             
             <div id="user-edit-skills" class="edit-section">
-                <div class="edit-section-title">Skills</div>
+                <div class="edit-section-title">Show us what you got!</div>
+                
+                <p>List three areas of design that you worked within.</p>
+                
                 <div class="skills"></div>
                 <p>
                     <input id="add-skill-input" type="text" name="skill"/>
@@ -233,8 +240,8 @@
             </div>
             
             <div id="user-edit-description" class="edit-section">
-                <div class="edit-section-title">Description</div>
-                <p>Description of your design philosophy</p>
+                <div class="edit-section-title">One thought on design...</div>
+                <p>Include a sentence that describes your design - your design philosophy.</p>
                 <p>
                     <textarea name="tagline" cols="50" rows="3"></textarea>
                 </p>
