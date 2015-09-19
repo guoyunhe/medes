@@ -77,27 +77,26 @@
                     <label>Your role</label>
                     <select name="role">
                         <option value="student" selected>Student</option>
-                        <option value="teacher">Teacher</option>
                         <option value="tutor">Tutor</option>
                     </select>
                 </p>
                 <div class="schools">
                     <p>
-                        <label>1<sup>st</sup> year</label>
+                        <label>Year</label>
                         <?php su_get_year_select(null, 'year_1'); ?>
-                        <label>School</label>
+                        <label class="school-label">Home School</label>
                         <?php su_get_school_select(null, 'school_1'); ?>
                     </p>
                     <p>
-                        <label>2<sup>nd</sup> year</label>
+                        <label>Year</label>
                         <?php su_get_year_select(null, 'year_2'); ?>
-                        <label>School</label>
+                        <label class="school-label">1<sub>st</sub> Exchange</label>
                         <?php su_get_school_select(null, 'school_2'); ?>
                     </p>
                     <p>
-                        <label>3<sup>rd</sup> year</label>
+                        <label>Year</label>
                         <?php su_get_year_select(null, 'year_3'); ?>
-                        <label>School</label>
+                        <label class="school-label">2<sub>nd</sub> Exchange</label>
                         <?php su_get_school_select(null, 'school_3'); ?>
                     </p>
                 </div>
@@ -214,6 +213,8 @@
                         <option value="11">November</option>
                         <option value="12">December</option>
                     </select>
+                </p>
+                <p>
                     <label>To</label>
                     <?php su_get_year_select(null, 'xp_end', 'year', 'add-xp-end-input'); ?>
                     <select name="xp_end_month" id="add-xp-end-month-input">
@@ -230,7 +231,13 @@
                         <option value="11">November</option>
                         <option value="12">December</option>
                     </select>
-                    <textarea id="add-xp-desc-input" type="text" name="xp_desc"></textarea>
+                </p>
+                <p>
+                    <label class="blank"></label>
+                    <textarea id="add-xp-desc-input" rows="3" cols="50" type="text" name="xp_desc"></textarea>
+                </p>
+                <p>
+                    <label class="blank"></label>
                     <button id="add-xp-button">Add Experience</button>
                 </p>
             </div>

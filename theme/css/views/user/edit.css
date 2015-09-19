@@ -79,6 +79,10 @@ select.year {
     width: 60px;
 }
 
+label.school-label {
+    width: 120px;
+}
+
 /* Pictures */
 .edit .picture {
     position: relative;
@@ -210,11 +214,21 @@ button.finish, button.edit {
     
     #user-edit-experience select {
         display: inline-block;
-        width: 120px;
+        width: 100px;
+        margin: 0;
     }
     
     #user-edit-experience label {
         display: inline-block;
         width: 60px;
+        margin: 0;
+    }
+    
+    #user-edit-experience textarea {
+        margin: 0;
+    }
+    
+    #user-edit-experience label.blank {
+        display: none;
     }
 }
