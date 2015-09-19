@@ -119,7 +119,20 @@
             </div>
             
             <div id="user-edit-links" class="edit-section">
-                <div class="edit-section-title">Links</div>
+                <div class="edit-section-title">More links more likes</div>
+                
+                <p>Give people the chance to connect with you. Then check the contacts that you want to be visible only to MEDes.</p>
+                
+                <p>
+                    <label>Website</label>
+                    <input type="text" name="website">
+                    <label><input type="checkbox" name="website_private"> private</label>
+                </p>
+                <p>
+                    <label>Email</label>
+                    <input type="text" name="email">
+                    <label><input type="checkbox" name="email_private"> private</label>
+                </p>
                 <p>
                     <label>Facebook</label>
                     <input type="text" name="facebook">
@@ -169,16 +182,6 @@
                     <label>Pinterest</label>
                     <input type="text" name="pinterest">
                     <label><input type="checkbox" name="pinterest_private"> private</label>
-                </p>
-                <p>
-                    <label>Website</label>
-                    <input type="text" name="website">
-                    <label><input type="checkbox" name="website_private"> private</label>
-                </p>
-                <p>
-                    <label>Email</label>
-                    <input type="text" name="email">
-                    <label><input type="checkbox" name="email_private"> private</label>
                 </p>
             </div>
             
