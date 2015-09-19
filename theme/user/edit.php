@@ -186,8 +186,38 @@
                 <div class="edit-section-title">Work Experience</div>
                 <div class="experience"></div>
                 <p>
+                    <label>From</label>
                     <?php su_get_year_select(null, 'xp_start', 'year', 'add-xp-start-input'); ?>
+                    <select name="xp_start_month" id="add-xp-start-month-input">
+                        <option value="01">January</option>
+                        <option value="02">February</option>
+                        <option value="03">March</option>
+                        <option value="04">April</option>
+                        <option value="05">May</option>
+                        <option value="06">June</option>
+                        <option value="07">July</option>
+                        <option value="08">August</option>
+                        <option value="09">September</option>
+                        <option value="10">October</option>
+                        <option value="11">November</option>
+                        <option value="12">December</option>
+                    </select>
+                    <label>To</label>
                     <?php su_get_year_select(null, 'xp_end', 'year', 'add-xp-end-input'); ?>
+                    <select name="xp_end_month" id="add-xp-end-month-input">
+                        <option value="01">January</option>
+                        <option value="02">February</option>
+                        <option value="03">March</option>
+                        <option value="04">April</option>
+                        <option value="05">May</option>
+                        <option value="06">June</option>
+                        <option value="07">July</option>
+                        <option value="08">August</option>
+                        <option value="09">September</option>
+                        <option value="10">October</option>
+                        <option value="11">November</option>
+                        <option value="12">December</option>
+                    </select>
                     <textarea id="add-xp-desc-input" type="text" name="xp_desc"></textarea>
                     <button id="add-xp-button">Add Experience</button>
                 </p>
@@ -206,7 +236,7 @@
                 <div class="edit-section-title">Description</div>
                 <p>Description of your design philosophy</p>
                 <p>
-                    <textarea name="tagline"></textarea>
+                    <textarea name="tagline" cols="50" rows="3"></textarea>
                 </p>
             </div>
             

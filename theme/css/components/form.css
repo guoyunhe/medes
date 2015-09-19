@@ -59,6 +59,10 @@ input.center, select.center {
     text-align: center;
 }
 
+input:disabled {
+    border: none;
+}
+
 input[type="button"],
 input[type="submit"],
 input[type="reset"],

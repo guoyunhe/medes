@@ -19,6 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     position: relative;
     padding: 60px 0 40px 200px;
     border-top: 1px solid white;
+    margin-bottom: 30px;
 }
 
 .edit-section:last-child {
@@ -36,22 +37,22 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     font-style: italic;
 }
 
-.edit-section label {
+.edit label {
     display: inline-block;
     text-align: right;
     width: 80px;
 }
 
-.edit-section input[type=text],
-.edit-section input[type=email],
-.edit-section input[type=password],
-.edit-section select {
+.edit input[type=text],
+.edit input[type=email],
+.edit input[type=password],
+.edit select {
     display: inline-block;
     width: 200px;
 }
 
 /* Avatar */
-.popup.edit .avatar {
+.edit .avatar {
     position: relative;
     width: 300px;
     height: 300px;
@@ -60,7 +61,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 }
 
 /* Avatar edit button */
-.avatar button {
+.edit .avatar button {
     position: absolute;
     right: 10px;
     bottom: 10px;
@@ -141,26 +142,12 @@ select.year {
 
 /* Skills */
 .skill {
-    font-size: 28px;
     margin-right: 1em;
 }
+
 .skill i {
+    color: red;
     cursor: pointer;
-}
-
-/* Description */
-
-/* Tagline */
-#user-edit-description input {
-    width: 400px;
-    max-width: 100%;
-}
-
-/* Textarea */
-#user-edit-description textarea {
-    vertical-align: top;
-    width: 400px;
-    max-width: 100%;
 }
 
 /* "View Result" and "Edit" button */
@@ -169,4 +156,48 @@ button.finish, button.edit {
     position: fixed;
     top: 8px;
     right: 60px;
+}
+
+@media screen and (max-width: 400px) {
+    .edit-section {
+        padding-left: 0;
+    }
+    
+    .edit label {
+        display: block;
+        text-align: left;
+        width: auto;
+        margin-top: 1em;
+    }
+
+    .edit input[type=text],
+    .edit input[type=email],
+    .edit input[type=password],
+    .edit select,
+    .edit textarea {
+        display: block;
+        width: available;
+        width: -moz-available;
+        width: -webkit-fill-available;
+        margin-bottom: 1em;
+    }
+    
+    .edit .avatar, .edit .picture, .add-picture {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .add-picture {
+        line-height: 150px;
+    }
+    
+    #user-edit-experience select {
+        display: inline-block;
+        width: 120px;
+    }
+    
+    #user-edit-experience label {
+        display: inline-block;
+        width: 60px;
+    }
 }
