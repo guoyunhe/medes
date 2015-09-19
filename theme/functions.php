@@ -85,6 +85,9 @@ function su_load_bower_components() {
     wp_enqueue_script('topojson', $bower_dir . '/topojson/topojson.js');
     wp_enqueue_script('datamaps', $bower_dir . '/datamaps/dist/datamaps.all.min.js');
     
+    wp_enqueue_style('flickity-css', $bower_dir . '/flickity/dist/flickity.min.css');
+    wp_enqueue_script('flickity-js', $bower_dir . '/flickity/dist/flickity.pkgd.min.js');
+    
     $gsap_dir = $bower_dir . '/gsap/src/minified';
     wp_enqueue_script('gsap-tweenlite', $gsap_dir . '/TweenLite.min.js');
     wp_enqueue_script('gsap-easepack', $gsap_dir . '/easing/EasePack.min.js');
