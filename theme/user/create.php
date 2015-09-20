@@ -32,15 +32,16 @@
                 <input type="text" name="username" placeholder="Choose a cool username"/>
             </p>
             <p>
-                <input type="password" name="password" placeholder="Set password"/>
+                <input type="password" name="password" placeholder="Choose your password"/>
             </p>
             <p>
-                <input type="password" name="password_repeat" placeholder="Confirm password"/>
+                <input type="password" name="password_repeat" placeholder="Confirm your password"/>
             </p>
             <p>
-                <input type="email" name="email" placeholder="Email address"/>
+                <input type="email" name="email" placeholder="Enter your email"/>
             </p>
             <input type="hidden" name="secret_key" value="<?php echo filter_input(INPUT_GET, 'secret_key'); ?>">
+            <br>
             <p>
                 <button class="next large">Next</button>
             </p>
