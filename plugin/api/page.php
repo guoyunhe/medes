@@ -43,16 +43,23 @@ add_action('wp_ajax_get_page_data', 'su_get_page_data');
 add_action('wp_ajax_nopriv_get_page_data', 'su_get_page_data');
 
 function su_get_page_data() {
-    $page_id = filter_input(INPUT_POST, 'page_id', FILTER_VALIDATE_INT);
+    $slug = filter_input(INPUT_POST, 'page_slug');
+    $pages = get_posts(
+            array(
+                'name' => $slug,
+                'post_type' => 'page'
+            )
+    );
 
-    $page = get_post($page_id);
-
-    if ($page === null) {
-        $response = ['succeed' => false, 'error_message' => 'Page doesn\'t exist!'];
+    if ($pages) {
+        $page = $pages[0];
+        $page_id = $page->ID;
     } else {
-        $response = ['succeed' => true, 'page_title' => $page->post_title,
-            'page_content' => get_post_field('post_content', $page_id, 'display')];
+        $response = ['succeed' => false, 'error_message' => 'Page doesn\'t exist!'];
+        die();
     }
+    $response = ['succeed' => true, 'page_title' => $page->post_title,
+        'page_content' => get_post_field('post_content', $page_id, 'display')];
 
     echo json_encode($response);
     die();

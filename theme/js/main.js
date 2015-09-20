@@ -30,4 +30,16 @@ jQuery(function () {
         jQuery('#front-page-intro .long').show();
         jQuery('#front-page-intro a').hide();
     });
+    
+    jQuery('#school-menu-item').click(function () {
+        jQuery('#school-map-click').click();
+    });
+    
+    jQuery('#workshop-menu-item').click(function () {
+        jQuery('#workshop-map-click').click();
+    });
+    
+    jQuery('#people-menu-item').click(function () {
+        jQuery('#people-map-click').click();
+    });
 });

@@ -46,10 +46,6 @@ get_template_part('page');
             <span class="number">350</span>
             <span class="thin">Medestrians</span>
         </div>
-        <div class="statistics country">
-            <span class="number">6</span>
-            <span class="thin">Countries</span>
-        </div>
         <div class="statistics school">
             <span class="number">7</span>
             <span class="thin">Schools</span>

@@ -104,6 +104,7 @@ jQuery(function () {
                 closePopup(jQuery('#user-login-popup'));
                 jQuery('#user-menu .name').text(response.first_name + ' ' + response.last_name);
                 jQuery('#user-menu .avatar').css('background-image', 'url("' + response.avatar_url + '")').show();
+                jQuery('#user-menu .dropdown').css('display', '');
                 is_admin = response.is_admin;
                 if(is_admin) {
                     jQuery('#admin-menu').show();
@@ -118,7 +119,7 @@ jQuery(function () {
 
     });
     function errorMessage(message) {
-        jQuery('#user-create-popup .error-message').html(message);
+        jQuery('#user-login-popup .error-message').html(message);
     }
 });
 
@@ -619,9 +620,15 @@ jQuery(function () {
     jQuery('#user-menu').click(function () {
         if (jQuery('#user-menu .name').text() === 'Login') {
             loginUserPopup();
-        } else {
-            viewUserPopup();
         }
+    });
+    
+    jQuery('#view-my-profile').click(function () {
+        viewUserPopup();
+    });
+    
+    jQuery('#edit-my-profile').click(function () {
+        editUserPopup();
     });
 });
 

@@ -50,14 +50,26 @@
                 <span id="site-menu" class="click inline">
                     <i class="fa fa-bars fa-lg"></i>
                     <div class="dropdown">
-                        <span class="click button">Schools</span>
-                        <span class="click button">Workshops</span>
-                        <span class="click button">People</span>
-                        <a href="#page/2" class="click button">About</a>
+                        <a id="school-menu-item" href="#map-list" class="click button">Schools</a>
+                        <a id="workshop-menu-item" href="#map-list" class="click button">Workshops</a>
+                        <a id="people-menu-item" href="#map-list" class="click button">People</a>
+                        <a href="#page/about" class="click button">About</a>
+                        <a href="#page/download" class="click button">
+                            <i class="fa fa-fw fa-download"></i> Download
+                        </a>
+                        <a href="https://facebook.com/" class="click button">
+                            <i class="fa fa-fw fa-facebook"></i> Facebook
+                        </a>
+                        <a href="https://twitter.com/" class="click button">
+                            <i class="fa fa-fw fa-twitter"></i> Twitter
+                        </a>
+                        <a href="https://linkedin.com/" class="click button">
+                            <i class="fa fa-fw fa-linkedin"></i> LinkedIn
+                        </a>
                     </div>
                 </span>
 
-                <span id="user-menu" class="click inline button">
+                <span id="user-menu" class="click inline">
                     <?php
                     if (is_user_logged_in()):
                         $user_id = get_current_user_id();
@@ -68,9 +80,33 @@
                         <span class="avatar"
                               style="background-image: url('<?php echo $avatar_url ?>')"></span>
                         <span class="name"><?php echo $user_name ?></span>
+                        <div class="dropdown">
+                            <a id="view-my-profile" class="click button">
+                                <i class="fa fa-user fa-fw"></i> My profile
+                            </a>
+                            <a id="edit-my-profile" class="click button">
+                                <i class="fa fa-edit fa-fw"></i> Edit my profile
+                            </a>
+                            <a class="click button"
+                               href="<?php echo wp_logout_url(home_url()); ?>">
+                                <i class="fa fa-sign-out fa-fw"></i> Logout
+                            </a>
+                        </div>
                     <?php else: ?>
                         <span class="avatar" style="display:none;"></span>
                         <span class="name">Login</span>
+                        <div class="dropdown" style="display:none">
+                            <a id="view-my-profile" class="click button">
+                                <i class="fa fa-user fa-fw"></i> My profile
+                            </a>
+                            <a id="edit-my-profile" class="click button">
+                                <i class="fa fa-edit fa-fw"></i> Edit my profile
+                            </a>
+                            <a class="click button"
+                               href="<?php echo wp_logout_url(home_url()); ?>">
+                                <i class="fa fa-sign-out fa-fw"></i> Logout
+                            </a>
+                        </div>
                     <?php endif; ?>
                 </span>
 

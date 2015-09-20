@@ -16,19 +16,17 @@
  */
 
 jQuery(function () {
-    jQuery('a[href*="?page_id="], a[href*="#page/"]').click(function (event) {
+    jQuery('a[href*="#page/"]').click(function (event) {
         event.preventDefault();
         
         var href = jQuery(this).attr('href');
-        var pageId;
+        var slug;
         
-        if(href.indexOf('?page_id=') > -1) {
-            pageId = parseInt(href.match(/\?page_id\=(\d+)/)[1]);
-        } else if (href.indexOf('#page/') > -1) {
-            pageId = parseInt(href.match(/#page\/(\d+)/)[1]);
+        if (href.indexOf('#page/') > -1) {
+            slug = href.match(/#page\/(\w+)/)[1];
         }
         
-        viewStaticPage(pageId);
+        viewStaticPage(slug);
     });
 });
 
@@ -38,12 +36,12 @@ jQuery(function () {
  * Open popup to query and display static page
  * @param {Number} pageId
  */
-function viewStaticPage(pageId) {
+function viewStaticPage(slug) {
     openPopup(jQuery('#static-page-popup'));
 
     var request = {
         'action': 'get_page_data',
-        'page_id': pageId
+        'page_slug': slug
     };
     jQuery.ajax({
         url: ajaxurl,
