@@ -190,6 +190,7 @@
                     <label>From</label>
                     <?php su_get_year_select(null, 'xp_start', 'year', 'add-xp-start-input'); ?>
                     <select name="xp_start_month" id="add-xp-start-month-input">
+                        <option value="00">--</option>
                         <option value="01">January</option>
                         <option value="02">February</option>
                         <option value="03">March</option>
@@ -208,6 +209,7 @@
                     <label>To</label>
                     <?php su_get_year_select(null, 'xp_end', 'year', 'add-xp-end-input'); ?>
                     <select name="xp_end_month" id="add-xp-end-month-input">
+                        <option value="00">--</option>
                         <option value="01">January</option>
                         <option value="02">February</option>
                         <option value="03">March</option>

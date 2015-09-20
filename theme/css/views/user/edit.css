@@ -129,6 +129,11 @@ label.school-label {
         15px 15px no-repeat url('../../../img/dot.png');
 }
 
+.experience-item:first-child {
+    background: url('../../../img/line.png') no-repeat 19px 19px,
+        15px 15px no-repeat url('../../../img/dot.png');
+}
+
 #user-edit-experience .experience-item {
     padding-right: 30px;
 }
@@ -138,6 +143,7 @@ label.school-label {
     right: 0;
     top: 0;
     padding: 10px;
+    color: red;
     cursor: pointer;
 }
 

@@ -215,7 +215,7 @@ function editUserPopup(userId) {
         for (var xpKey in experience) {
             if (experience.hasOwnProperty(xpKey)) {
                 var xp = experience[xpKey];
-                addUserExperience(xpKey, xp.start, xp.end, xp.desc);
+                addUserExperience(xpKey, xp.start, xp.start_month, xp.end, xp.end_month, xp.desc);
             }
         }
 
@@ -350,12 +350,16 @@ jQuery(function () {
     // Experience
     jQuery('#add-xp-button').click(function () {
         var start = jQuery('#add-xp-start-input').val();
+        var startMonth = jQuery('#add-xp-start-month-input').val();
         var end = jQuery('#add-xp-end-input').val();
+        var endMonth = jQuery('#add-xp-end-month-input').val();
         var desc = jQuery('#add-xp-desc-input').val();
         var request = {
             'action': 'add_user_experience',
             'start': start,
+            'start_month': startMonth,
             'end': end,
+            'end_month': endMonth,
             'desc': desc
         };
         jQuery.ajax({
@@ -364,7 +368,7 @@ jQuery(function () {
             method: 'POST',
             dataType: 'json'
         }).done(function (response) {
-            addUserExperience(response.uuid, start, end, desc);
+            addUserExperience(response.uuid, start, startMonth, end, endMonth, desc);
         });
     });
 
@@ -418,6 +422,8 @@ function viewUserPopup(userId) {
         jQuery('#user-page-popup .header').css('background-color', response.color);
         jQuery('#user-page-popup .avatar').css('background-color', response.color);
         jQuery('#user-page-popup .links a').css('color', response.color);
+        
+        jQuery('#user-page-popup .live-city').text(response.live_city);
 
         // Schools
         if (response.role === 'tutor' || response.role === 'teacher') {
@@ -474,9 +480,33 @@ function viewUserPopup(userId) {
         for (var xpKey in experience) {
             if (experience.hasOwnProperty(xpKey)) {
                 var xp = experience[xpKey];
-                var $xp = jQuery('<div class="experience-item">' + xp.start + '-'
-                        + xp.end + ' ' + xp.desc + '</div>');
-                jQuery('#user-page-popup .experience').append($xp);
+                var $xp;
+                if (xp.start_month === undefined) {
+                    xp.start_month = '01';
+                }
+                if (xp.end_month === undefined) {
+                    xp.end_month = '01';
+                }
+                var date;
+                if (xp.end === 0 || xp.endMonth === '00') {
+                    date = xp.start + '.' + xp.start_month + '-' + 'Present';
+                } else {
+                    date = xp.start + '.' + xp.start_month + '-' + xp.end + '.' + xp.end_month;
+                }
+                $xp = jQuery('<div class="experience-item">' + date + ' ' + xp.desc + '</div>');
+                
+                var placed = false;
+
+                jQuery('#user-page-popup .experience .experience-item').each(function () {
+                    if (!placed && $xp.html() > jQuery(this).html()) {
+                        $xp.insertBefore(jQuery(this));
+                        placed = true;
+                    }
+                });
+                
+                if (!placed) {
+                    jQuery('#user-page-popup .experience').append($xp);
+                }
             }
         }
 
@@ -539,15 +569,22 @@ function addUserSkill(skill) {
 }
 
 // Add experience
-function addUserExperience(uuid, start, end, desc) {
+function addUserExperience(uuid, start, startMonth, end, endMonth, desc) {
     var $xp;
-    if (end) {
-        $xp = jQuery('<div class="experience-item">' + start + '-' + end + ' '
-                + desc + '<span class="remove"><i class="fa fa-remove"></i></span></div>');
-    } else {
-        $xp = jQuery('<div class="experience-item">' + start + ' ' + desc +
-                '<span class="remove"><i class="fa fa-remove"></i></span></div>');
+    if (startMonth === undefined) {
+        startMonth = '01';
     }
+    if (endMonth === undefined) {
+        endMonth = '01';
+    }
+    var date;
+    if (end == 0) {
+        date = start + '.' + startMonth + '-' + 'Present';
+    } else {
+        date = start + '.' + startMonth + '-' + end + '.' + endMonth;
+    }
+    $xp = jQuery('<div class="experience-item">' + date + ' ' + desc +
+                '<span class="remove"><i class="fa fa-remove"></i></span></div>');
     $xp.find('.remove').click(function () {
         $xp.remove();
         var request = {
@@ -561,7 +598,18 @@ function addUserExperience(uuid, start, end, desc) {
             dataType: 'json'
         });
     });
-    jQuery('#user-edit-experience .experience').append($xp);
+    
+    var placed = false;
+    jQuery('#user-edit-experience .experience .experience-item').each(function () {
+        if (!placed && $xp.html() > jQuery(this).html()) {
+            $xp.insertBefore(jQuery(this));
+            placed = true;
+        }
+    });
+    
+    if (!placed) {
+        jQuery('#user-edit-experience .experience').append($xp);
+    }
 }
 
 

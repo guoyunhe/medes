@@ -49,6 +49,7 @@
                         <a id="link-website" class="link"><i class="fa fa-chain"></i></a>
                         <a id="link-email" class="link"><i class="fa fa-envelope"></i></a>
                     </div>
+                    <div class="live-city"></div>
                     <div class="experience"></div>
                 </div>
                 <div class="right">

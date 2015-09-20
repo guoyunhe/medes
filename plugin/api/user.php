@@ -456,7 +456,9 @@ function su_add_user_experience() {
     }
     
     $start = filter_input(INPUT_POST, 'start', FILTER_VALIDATE_INT);
+    $start_month = filter_input(INPUT_POST, 'start_month');
     $end = filter_input(INPUT_POST, 'end', FILTER_VALIDATE_INT);
+    $end_month = filter_input(INPUT_POST, 'end_month');
     $desc = filter_input(INPUT_POST, 'desc');
     
     if (empty($start) || empty($desc)) {
@@ -465,10 +467,11 @@ function su_add_user_experience() {
         die();
     }
     
-    $experience[$uuid] = ['start' => $start, 'end' => $end, 'desc' => $desc];
+    $experience[$uuid] = ['start' => $start, 'start_month' => $start_month,
+        'end' => $end, 'end_month' => $end_month, 'desc' => $desc];
     update_user_meta($user_id, 'experience', json_encode($experience, JSON_UNESCAPED_UNICODE));
     
-    $response = ['succeed' => true];
+    $response = ['succeed' => true, 'uuid' => $uuid];
     echo json_encode($response);
     die();
 }

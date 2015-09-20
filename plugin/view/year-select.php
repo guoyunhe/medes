@@ -19,7 +19,8 @@
 
 ?>
 <select name="<?= $name ?>" class="<?= $class ?>" id="<?= $id ?>">
-    <?php for ($year = $start; $year <= $end; $year++): ?>
-        <option><?php echo $year ?></option>
+    <option value="0">Present</option>
+    <?php for ($year = $end; $year >= $start; $year--): ?>
+    <option value="<?php echo $year ?>"><?php echo $year ?></option>
     <?php endfor; ?>
 </select>
