@@ -25,7 +25,7 @@
         foreach ($featured_people as $featured_person) {
             $id = $featured_person->ID;
             $name = $featured_person->first_name . ' ' . $featured_person->last_name;
-            $color = su_text_to_color($name);
+            $color = get_post_meta($featured_person->school, 'color', true);
             $avatar = $featured_person->avatar_url;
             $pictures = array_values(json_decode(get_user_meta($id, 'pictures', true), true));
             $picture = $pictures[0]['url'];

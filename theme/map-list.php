@@ -57,9 +57,10 @@
                         $avatar = get_user_meta($user->ID, 'avatar_url', true);
                         $name = get_user_meta($user->ID, 'first_name', true) . ' ' .
                                 get_user_meta($user->ID, 'last_name', true);
+                        $color = get_post_meta($user->school, 'color', true);
                         ?>
                         <person class="card" data-user-id="<?php echo $user->ID; ?>"
-                                style="background-color:<?php echo su_text_to_color($name) ?>;
+                                style="background-color:<?php echo $color ?>;
                                 background-image:url('<?php echo $avatar; ?>')">
                                     <?php echo $name; ?>
                         </person>

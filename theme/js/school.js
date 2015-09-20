@@ -229,7 +229,7 @@ jQuery(function () {
                 // Basic information
                 // Post title
                 jQuery('#school-view-popup .name').text(response.post_title);
-                jQuery('#school-view-popup .location').text(response.city + ', ' + response.country);
+                jQuery('#school-view-popup .location').text(response.city + ', ' + response.country_name);
                 jQuery('#school-view-popup .website a').text(response.website).attr('href', response.website);
                 // Staff
                 jQuery('#school-view-popup .coordinator-name').text(response.coordinator_name);
