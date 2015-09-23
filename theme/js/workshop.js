@@ -265,4 +265,9 @@ jQuery(function () {
         openPopup(jQuery('#workshop-view-popup'));
         initWorkshopViewPopup(postId);
     });
+    
+    window.viewWorkshopPopup = function (postId) {
+        openPopup(jQuery('#workshop-view-popup'));
+        initWorkshopViewPopup(postId);
+    };
 });

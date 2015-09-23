@@ -277,4 +277,9 @@ jQuery(function () {
         openPopup(jQuery('#school-view-popup'));
         initSchoolViewPopup(postId);
     });
+    
+    window.viewSchoolPopup = function (postId) {
+        openPopup(jQuery('#school-view-popup'));
+        initSchoolViewPopup(postId);
+    };
 });

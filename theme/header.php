@@ -42,8 +42,7 @@
                 <a class="site-logo" href="#"></a>
             </div>
             <div class="nav-wrap pull-right">
-                <span id="site-search">
-                    <input type="search" placeholder="Search..."/>
+                <span id="site-search" class="click inline">
                     <i class="fa fa-search fa-lg"></i>
                 </span>
 

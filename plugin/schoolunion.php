@@ -49,3 +49,4 @@ require_once 'api/user.php';
 require_once 'api/school.php';
 require_once 'api/workshop.php';
 require_once 'api/page.php';
+require_once 'api/search.php';

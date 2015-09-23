@@ -82,4 +82,38 @@ get_template_part('page');
 
 <?php get_template_part('map-list'); ?>
 
+<div id="search-popup" class="popup">
+    <div class="popup-close"><i class="fa fa-close"></i></div>
+    <div class="popup-body">
+        <div class="container">
+            <p>
+                <input type="search" name="keywords" placeholder="Search"/>
+                <a class="click inline button">
+                    <i class="fa fa-lg fa-search"></i>
+                </a>
+            </p>
+            <div class="tabs clearfix">
+                <span id="people-search-tab" class="click tab active" data-target="#people-search-pane">
+                    People <span class="number"></span>
+                </span>
+                <span id="school-search-tab" class="click tab" data-target="#school-search-pane">
+                    School <span class="number"></span>
+                </span>
+                <span id="workshop-search-tab" class="click tab" data-target="#workshop-search-pane">
+                    Workshop <span class="number"></span>
+                </span>
+            </div>
+            <div class="panes">
+                <div id="people-search-pane" class="pane clearfix active">
+                </div>
+                <div id="school-search-pane" class="pane clearfix">
+                </div>
+                <div id="workshop-search-pane" class="pane clearfix">
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
 <?php get_footer();
