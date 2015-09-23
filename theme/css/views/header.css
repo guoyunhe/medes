@@ -93,3 +93,13 @@ fused with page content */
     vertical-align: bottom;
     background-size: cover;
 }
+
+@media screen and (max-width: 400px) {
+    #user-menu .name {
+        display: none;
+    }
+    
+    #admin-menu {
+        display: none;
+    }
+}

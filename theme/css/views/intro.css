@@ -37,3 +37,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #front-page-intro .long {
     display: none;
 }
+
+@media screen and (max-width: 400px) {
+    #front-page-intro h1 {
+        font-size: 32px;
+    }
+}                                  

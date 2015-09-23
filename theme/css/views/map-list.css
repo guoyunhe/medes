@@ -71,3 +71,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     background-position: center center;
     background-color: #A8A8A8;
 }
+
+@media screen and (max-width: 400px) {
+    #map-list > .tabs .click {
+        font-size: 16px;
+    }
+}
