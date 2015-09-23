@@ -21,16 +21,45 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 .site-info {
     font-style: italic;
+    text-align: center;
 }
 
-.social-links {
-    float: left;
+.school-logos {
+    text-align: center;
 }
 
-.social-links a {
-    color: white;
+.school-logo {
+    display: inline-block;
+    width: 130px;
+    height: 65px;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
-.download-link {
-    float: right;
+.school-logo.aalto {
+    background-image: url("../../img/school-logos/aalto.png");
+}
+
+.school-logo.aveiro {
+    background-image: url("../../img/school-logos/aveiro.png");
+}
+
+.school-logo.ensci {
+    background-image: url("../../img/school-logos/ensci.png");
+}
+
+.school-logo.glasgow {
+    background-image: url("../../img/school-logos/glasgow.png");
+}
+
+.school-logo.kisd {
+    background-image: url("../../img/school-logos/kisd.png");
+}
+
+.school-logo.konstfack {
+    background-image: url("../../img/school-logos/konstfack.png");
+}
+
+.school-logo.polimi {
+    background-image: url("../../img/school-logos/polimi.png");
 }

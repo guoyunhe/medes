@@ -21,6 +21,15 @@
         <div class="site-info">
             2015 MEDes, website developed by Guo Yunhe.
         </div><!-- .site-info -->
+        <div class="school-logos">
+            <a class="school-logo aalto" href="http://arts.aalto.fi/en/"></a>
+            <a class="school-logo aveiro" href="http://www.ua.pt/deca/"></a>
+            <a class="school-logo ensci" href="http://www.ensci.com/en/"></a>
+            <a class="school-logo glasgow" href="http://www.gsa.ac.uk/study/undergraduate-degrees/product-design/"></a>
+            <a class="school-logo kisd" href="http://kisd.de/en/kisd-online/"></a>
+            <a class="school-logo konstfack" href="http://www.konstfack.se/en/"></a>
+            <a class="school-logo polimi" href="http://www.design.polimi.it/?lang=en"></a>
+        </div>
     </footer><!-- #site-footer -->
 
     <?php wp_footer(); ?>
